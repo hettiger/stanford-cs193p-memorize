@@ -3,15 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B49AE182597CF240043E301 /* CardViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49AE172597CF240043E301 /* CardViewTests.swift */; };
+		5B49AE212597D3320043E301 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 5B49AE202597D3320043E301 /* ViewInspector */; };
 		5BE64D8E25976B3B002B1D70 /* MemorizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE64D8D25976B3B002B1D70 /* MemorizeApp.swift */; };
 		5BE64D9025976B3B002B1D70 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE64D8F25976B3B002B1D70 /* ContentView.swift */; };
 		5BE64D9225976B3B002B1D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE64D9125976B3B002B1D70 /* Assets.xcassets */; };
 		5BE64D9525976B3B002B1D70 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE64D9425976B3B002B1D70 /* Preview Assets.xcassets */; };
-		5BE64DA025976B3C002B1D70 /* MemorizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE64D9F25976B3C002B1D70 /* MemorizeTests.swift */; };
 		5BE64DAB25976B3C002B1D70 /* MemorizeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE64DAA25976B3C002B1D70 /* MemorizeUITests.swift */; };
 		5BE64DBF25977BD0002B1D70 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE64DBE25977BD0002B1D70 /* Emoji.swift */; };
 		5BE64DC425977BF8002B1D70 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE64DC325977BF8002B1D70 /* CardView.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B49AE172597CF240043E301 /* CardViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewTests.swift; sourceTree = "<group>"; };
 		5BE64D8A25976B3B002B1D70 /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BE64D8D25976B3B002B1D70 /* MemorizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeApp.swift; sourceTree = "<group>"; };
 		5BE64D8F25976B3B002B1D70 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,7 +45,6 @@
 		5BE64D9425976B3B002B1D70 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5BE64D9625976B3B002B1D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BE64D9B25976B3C002B1D70 /* MemorizeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemorizeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5BE64D9F25976B3C002B1D70 /* MemorizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeTests.swift; sourceTree = "<group>"; };
 		5BE64DA125976B3C002B1D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BE64DA625976B3C002B1D70 /* MemorizeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemorizeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BE64DAA25976B3C002B1D70 /* MemorizeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeUITests.swift; sourceTree = "<group>"; };
@@ -65,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B49AE212597D3320043E301 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +80,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B49AE162597CF160043E301 /* Cases */ = {
+			isa = PBXGroup;
+			children = (
+				5B49AE172597CF240043E301 /* CardViewTests.swift */,
+			);
+			path = Cases;
+			sourceTree = "<group>";
+		};
 		5BE64D8125976B3B002B1D70 = {
 			isa = PBXGroup;
 			children = (
@@ -124,7 +134,7 @@
 		5BE64D9E25976B3C002B1D70 /* MemorizeTests */ = {
 			isa = PBXGroup;
 			children = (
-				5BE64D9F25976B3C002B1D70 /* MemorizeTests.swift */,
+				5B49AE162597CF160043E301 /* Cases */,
 				5BE64DA125976B3C002B1D70 /* Info.plist */,
 			);
 			path = MemorizeTests;
@@ -181,6 +191,9 @@
 				5BE64D9D25976B3C002B1D70 /* PBXTargetDependency */,
 			);
 			name = MemorizeTests;
+			packageProductDependencies = (
+				5B49AE202597D3320043E301 /* ViewInspector */,
+			);
 			productName = MemorizeTests;
 			productReference = 5BE64D9B25976B3C002B1D70 /* MemorizeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -234,6 +247,9 @@
 				Base,
 			);
 			mainGroup = 5BE64D8125976B3B002B1D70;
+			packageReferences = (
+				5B49AE1F2597D3320043E301 /* XCRemoteSwiftPackageReference "ViewInspector" */,
+			);
 			productRefGroup = 5BE64D8B25976B3B002B1D70 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -288,7 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BE64DA025976B3C002B1D70 /* MemorizeTests.swift in Sources */,
+				5B49AE182597CF240043E301 /* CardViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +616,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5B49AE1F2597D3320043E301 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5B49AE202597D3320043E301 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B49AE1F2597D3320043E301 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5BE64D8225976B3B002B1D70 /* Project object */;
 }
