@@ -35,7 +35,9 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(isFaceUp: true, emoji: "👻")
-        CardView(isFaceUp: false, emoji: "👻")
+        Group {
+            CardView(isFaceUp: true, emoji: "👻")
+            CardView(isFaceUp: false, emoji: "👻")
+        }
     }
 }
