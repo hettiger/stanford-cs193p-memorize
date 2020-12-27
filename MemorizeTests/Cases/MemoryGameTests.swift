@@ -42,34 +42,22 @@ class MemoryGameTests: XCTestCase {
         XCTAssertEqual(expectedNumberOfPairsOfCards, actualNumberOfPairsOfCards)
     }
 
-    func test_card_whenFaceDownCardIsChosen_cardIsFaceUp() {
-        var card = sut.cards.first!
+    func test_memoryGame_whenFaceDownCardIsChosen_cardIsFaceUp() {
+        XCTAssertFalse(sut.cards.first!.isFaceUp)
 
-        XCTAssertFalse(card.isFaceUp)
+        sut.choose(card: sut.cards.first!)
 
-        card.choose()
-
-        XCTAssertTrue(card.isFaceUp)
+        XCTAssertTrue(sut.cards.first!.isFaceUp)
     }
 
-    func test_card_whenFaceUpCardIsChosen_cardIsFaceUp() {
-        var card = sut.cards.first!
-        card.choose()
+    func test_memoryGame_whenFaceUpCardIsChosen_cardIsFaceUp() {
+        sut.choose(card: sut.cards.first!)
 
-        XCTAssertTrue(card.isFaceUp)
+        XCTAssertTrue(sut.cards.first!.isFaceUp)
 
-        card.choose()
+        sut.choose(card: sut.cards.first!)
 
-        XCTAssertFalse(card.isFaceUp)
-    }
-
-    func test_card_providesContent() {
-        let card = sut.cards.first!
-        let expectedContent = contents[0]
-
-        let actualContent = card.content
-
-        XCTAssertEqual(expectedContent, actualContent)
+        XCTAssertFalse(sut.cards.first!.isFaceUp)
     }
 
     func test_game_providesIdentifiableCards() {
@@ -80,5 +68,14 @@ class MemoryGameTests: XCTestCase {
 
         XCTAssertEqual(0, cardA.id)
         XCTAssertEqual(1, cardB.id)
+    }
+    
+    func test_card_providesContent() {
+        let card = sut.cards.first!
+        let expectedContent = contents[0]
+
+        let actualContent = card.content
+
+        XCTAssertEqual(expectedContent, actualContent)
     }
 }

@@ -17,6 +17,14 @@ struct MemoryGame<ContentType> {
             cards.append(Card(id: pairIndex * 2 + 1, content: cardContentFactory(pairIndex)))
         }
     }
+    
+    mutating func choose(card: Card) {
+        guard let index = cards.firstIndex(where: { $0.id == card.id }) else {
+            preconditionFailure()
+        }
+        
+        cards[index].choose()
+    }
 
     struct Card: Identifiable {
         let id: Int
@@ -26,6 +34,7 @@ struct MemoryGame<ContentType> {
 
         mutating func choose() {
             isFaceUp.toggle()
+            print("chose card: \(self)")
         }
     }
 }
