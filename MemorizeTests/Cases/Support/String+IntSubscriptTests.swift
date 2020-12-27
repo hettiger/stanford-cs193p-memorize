@@ -9,7 +9,7 @@
 import XCTest
 
 class String_IntSubscriptTests: XCTestCase {
-    func test_string_intIndex_returnsString() {
+    func test_stringSubscriptIntIndex_returnsString() {
         let expectedString = "b"
 
         let actualString = "abc"[1]
