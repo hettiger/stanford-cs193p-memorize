@@ -21,7 +21,7 @@ struct MemoryGame<ContentType> {
             cards.append(Card(id: pairIndex * 2, content: cardContentFactory(pairIndex)))
             cards.append(Card(id: pairIndex * 2 + 1, content: cardContentFactory(pairIndex)))
         }
-        cards = randomSource.arrayByShufflingObjects(in: cards) as! [Card]
+        cards.shuffle(using: randomSource)
     }
 
     mutating func choose(card: Card) {

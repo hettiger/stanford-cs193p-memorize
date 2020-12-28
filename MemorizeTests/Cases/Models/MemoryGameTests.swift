@@ -66,7 +66,7 @@ class MemoryGameTests: XCTestCase {
     func test_memoryGame_shufflesCards() {
         let expectedCards = [
             MemoryGame<String>.Card(id: 2, content: "b"),
-            MemoryGame<String>.Card(id: 1, content: "a")
+            MemoryGame<String>.Card(id: 1, content: "a"),
         ]
         randomSourceFake.shuffle = { _ in expectedCards }
 
