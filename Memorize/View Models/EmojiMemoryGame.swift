@@ -13,10 +13,11 @@ class EmojiMemoryGame {
     lazy var randomSource = Container.shared.randomSource
 
     private lazy var game: MemoryGame<String> = {
-        let emojis = "🐶🐱🐭🐰🦊"
+        var emojis = Array("🐶🐱🐭🐰🦊🐻🐼🐻‍❄️🐨🐯🦁🐮🐷🐽🐸🐵🐔🐧🐦🐤🐣🦆🦅🦉🦇🐺🐗🐴🦄🐝🐌")
+        emojis.shuffle(using: randomSource)
         return MemoryGame<String>(numberOfPairsOfCards: .random(in: 2 ... 5, using: randomSource)) {
             pairIndex in
-            emojis[pairIndex]
+            String(emojis[pairIndex])
         }
     }()
 

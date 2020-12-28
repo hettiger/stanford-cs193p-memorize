@@ -29,6 +29,18 @@ class EmojiMemoryGameTests: XCTestCase {
         XCTAssertTrue((sut.cards as Any) is [MemoryGame<String>.Card])
     }
 
+    func test_emojiMemoryGame_shufflesEmojis() {
+        let expectedEmojis = Array("🐶🐱")
+        randomSourceFake.shuffle = { _ in expectedEmojis }
+        randomSourceFake.nextInt = 0
+
+        let cards = sut.cards
+
+        for card in cards {
+            XCTAssertTrue(expectedEmojis.contains(card.content.first!))
+        }
+    }
+
     func test_emojiMemoryGame_providesRandomNumberOfPairsOfCardsBetweenTwoAndFivePairs() {
         let lowerBound = 2
         let upperBound = 5

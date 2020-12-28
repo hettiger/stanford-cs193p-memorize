@@ -11,7 +11,7 @@ import XCTest
 
 class MemoryGameTests: XCTestCase {
     var sut: MemoryGame<String>!
-    var contents: String!
+    var contents: [Character]!
     var randomSourceFake: RandomSourceFake!
 
     override func setUpWithError() throws {
@@ -29,11 +29,11 @@ class MemoryGameTests: XCTestCase {
     }
 
     func withContents(_ newContents: String) {
-        contents = newContents
+        contents = Array(newContents)
         sut = MemoryGame<String>(
             numberOfPairsOfCards: contents.count
         ) { pairIndex in
-            contents[pairIndex]
+            String(contents[pairIndex])
         }
     }
 
