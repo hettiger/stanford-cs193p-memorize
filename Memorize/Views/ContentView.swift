@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    let game = EmojiMemoryGame.shared
+    var game = EmojiMemoryGame.shared
 
     var body: some View {
         HStack {
@@ -23,7 +23,11 @@ struct ContentView: View {
         }
         .padding()
         .foregroundColor(.orange)
-        .font(.largeTitle)
+        .font(numberOfPairsOfCards < 5 ? .largeTitle : .body)
+    }
+    
+    var numberOfPairsOfCards: Int {
+        get { game.cards.count / 2 }
     }
 }
 
