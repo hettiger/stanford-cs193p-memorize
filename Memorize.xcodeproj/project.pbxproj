@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		5B49AE182597CF240043E301 /* CardViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49AE172597CF240043E301 /* CardViewTests.swift */; };
 		5B49AE212597D3320043E301 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 5B49AE202597D3320043E301 /* ViewInspector */; };
+		5B8C0F2D259A3001003ABC74 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F2C259A3001003ABC74 /* Container.swift */; };
+		5B8C0F32259A3148003ABC74 /* ContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F31259A3148003ABC74 /* ContainerTests.swift */; };
+		5B8C0F38259A3315003ABC74 /* RandomSourceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F37259A3315003ABC74 /* RandomSourceFake.swift */; };
 		5BA327AF25991F41004DA33B /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA327AE25991F41004DA33B /* ContentViewTests.swift */; };
 		5BB61EFF2598A43E00B9D6D2 /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB61EFE2598A43E00B9D6D2 /* MemoryGame.swift */; };
 		5BB61F072598A46200B9D6D2 /* MemoryGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB61F062598A46200B9D6D2 /* MemoryGameTests.swift */; };
@@ -45,6 +48,9 @@
 
 /* Begin PBXFileReference section */
 		5B49AE172597CF240043E301 /* CardViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewTests.swift; sourceTree = "<group>"; };
+		5B8C0F2C259A3001003ABC74 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		5B8C0F31259A3148003ABC74 /* ContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTests.swift; sourceTree = "<group>"; };
+		5B8C0F37259A3315003ABC74 /* RandomSourceFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSourceFake.swift; sourceTree = "<group>"; };
 		5BA327AE25991F41004DA33B /* ContentViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTests.swift; sourceTree = "<group>"; };
 		5BB61EFE2598A43E00B9D6D2 /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
 		5BB61F062598A46200B9D6D2 /* MemoryGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameTests.swift; sourceTree = "<group>"; };
@@ -105,10 +111,19 @@
 			path = Cases;
 			sourceTree = "<group>";
 		};
+		5B8C0F36259A32FB003ABC74 /* Fakes */ = {
+			isa = PBXGroup;
+			children = (
+				5B8C0F37259A3315003ABC74 /* RandomSourceFake.swift */,
+			);
+			path = Fakes;
+			sourceTree = "<group>";
+		};
 		5BB61F112598ADD800B9D6D2 /* Support */ = {
 			isa = PBXGroup;
 			children = (
 				5BB61F122598AE0100B9D6D2 /* String+IntSubscriptTests.swift */,
+				5B8C0F31259A3148003ABC74 /* ContainerTests.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -213,6 +228,7 @@
 			children = (
 				5BE64DA125976B3C002B1D70 /* Info.plist */,
 				5B49AE162597CF160043E301 /* Cases */,
+				5B8C0F36259A32FB003ABC74 /* Fakes */,
 			);
 			path = MemorizeTests;
 			sourceTree = "<group>";
@@ -230,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				5BB61F1A2598B01F00B9D6D2 /* String+IntSubscript.swift */,
+				5B8C0F2C259A3001003ABC74 /* Container.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -374,6 +391,7 @@
 				5BB61EFF2598A43E00B9D6D2 /* MemoryGame.swift in Sources */,
 				5BE64D9025976B3B002B1D70 /* ContentView.swift in Sources */,
 				5BE64DC425977BF8002B1D70 /* CardView.swift in Sources */,
+				5B8C0F2D259A3001003ABC74 /* Container.swift in Sources */,
 				5BE64D8E25976B3B002B1D70 /* MemorizeApp.swift in Sources */,
 				5BB61F242598C11D00B9D6D2 /* EmojiMemoryGame.swift in Sources */,
 			);
@@ -385,8 +403,10 @@
 			files = (
 				5BA327AF25991F41004DA33B /* ContentViewTests.swift in Sources */,
 				5BB61F072598A46200B9D6D2 /* MemoryGameTests.swift in Sources */,
+				5B8C0F38259A3315003ABC74 /* RandomSourceFake.swift in Sources */,
 				5B49AE182597CF240043E301 /* CardViewTests.swift in Sources */,
 				5BB61F582599039F00B9D6D2 /* MemoryGame+CardTests.swift in Sources */,
+				5B8C0F32259A3148003ABC74 /* ContainerTests.swift in Sources */,
 				5BB61F132598AE0100B9D6D2 /* String+IntSubscriptTests.swift in Sources */,
 				5BB61F292598C16000B9D6D2 /* EmojiMemoryGameTests.swift in Sources */,
 			);
