@@ -10,9 +10,12 @@ import Foundation
 class EmojiMemoryGame {
     static var shared = EmojiMemoryGame()
 
+    lazy var randomSource = Container.shared.randomSource
+
     private lazy var game: MemoryGame<String> = {
-        let emojis = "🐶🐱🐭🐰"
-        return MemoryGame<String>(numberOfPairsOfCards: emojis.count) { pairIndex in
+        let emojis = "🐶🐱🐭🐰🦊"
+        return MemoryGame<String>(numberOfPairsOfCards: .random(in: 2 ... 5, using: randomSource)) {
+            pairIndex in
             emojis[pairIndex]
         }
     }()
