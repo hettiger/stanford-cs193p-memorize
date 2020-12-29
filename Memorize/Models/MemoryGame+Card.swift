@@ -20,3 +20,15 @@ extension MemoryGame {
         }
     }
 }
+
+// MARK: - Hashable Card Implementation
+
+extension MemoryGame.Card: Hashable {
+    static func == (lhs: MemoryGame<ContentType>.Card, rhs: MemoryGame<ContentType>.Card) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}

@@ -47,4 +47,8 @@ class MemoryGame_CardTests: XCTestCase {
 
         XCTAssertFalse(sut.isFaceUp)
     }
+
+    func test_memoryGameCard_isHashable() {
+        XCTAssertTrue((sut as Any) is AnyHashable)
+    }
 }

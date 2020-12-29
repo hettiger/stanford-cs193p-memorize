@@ -25,10 +25,7 @@ struct MemoryGame<ContentType> {
     }
 
     mutating func choose(card: Card) {
-        guard let index = cards.firstIndex(where: { $0.id == card.id }) else {
-            preconditionFailure()
-        }
-
+        guard let index = cards.firstIndex(of: card) else { preconditionFailure() }
         cards[index].choose()
     }
 }
