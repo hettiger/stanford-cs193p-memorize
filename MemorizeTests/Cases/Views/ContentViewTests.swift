@@ -13,28 +13,28 @@ import XCTest
 extension ContentView: Inspectable {}
 
 class ContentViewTests: XCTestCase {
-    func test_contentView_showsCardViews() throws {
-        let sut = ContentView()
-
-        for element in try sut.inspect().hStack().forEach(0) {
-            let cardView = try? element.view(CardView.self)
-            XCTAssertNotNil(cardView)
-        }
+    var sut: ContentView!
+    
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        sut = ContentView()
+    }
+    
+    override func tearDownWithError() throws {
+        sut = nil
+        try super.tearDownWithError()
     }
 
     func test_contentView_showsCorrectNumberOfCardViews() throws {
-        let sut = ContentView()
         let expectedNumberOfCardViews = sut.game.cards.count
 
-        let actualNumberOfCardViews = try sut.inspect().hStack().forEach(0).count
+        let actualNumberOfCardViews = try sut.inspect().findAll(CardView.self).count
 
         XCTAssertEqual(expectedNumberOfCardViews, actualNumberOfCardViews)
     }
 
     func test_contentView_onCardViewTap_choosesCard() throws {
-        let sut = ContentView()
-
-        try sut.inspect().hStack().forEach(0).first!.callOnTapGesture()
+        try sut.inspect().find(CardView.self).callOnTapGesture()
 
         XCTAssertTrue(sut.game.cards.first!.isFaceUp)
     }
