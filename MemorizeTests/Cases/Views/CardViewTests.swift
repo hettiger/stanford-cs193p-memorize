@@ -15,7 +15,7 @@ class CardViewTests: XCTestCase {
     func test_cardView_isFaceDown_doesNotShowEmoji() throws {
         let sut = CardView(card: .init(id: 0, content: "emoji"))
 
-        let visibleText = try? sut.inspect().zStack().text(2).string()
+        let visibleText = try? sut.inspect().geometryReader().zStack().text(2).string()
 
         XCTAssertNil(visibleText)
     }
@@ -23,7 +23,7 @@ class CardViewTests: XCTestCase {
     func test_cardView_isFaceUp_showsEmoji() throws {
         let sut = CardView(card: .init(id: 0, content: "emoji", isFaceUp: true))
 
-        let visibleText = try sut.inspect().zStack().text(2).string()
+        let visibleText = try sut.inspect().geometryReader().zStack().text(2).string()
 
         XCTAssertEqual(sut.card.content, visibleText)
     }

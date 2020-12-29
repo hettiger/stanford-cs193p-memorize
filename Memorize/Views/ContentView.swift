@@ -20,10 +20,7 @@ struct ContentView: View {
         }
         .padding()
         .foregroundColor(.orange)
-        .font(numberOfPairsOfCards < 5 ? .largeTitle : .body)
     }
-
-    var numberOfPairsOfCards: Int { game.cards.count / 2 }
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -11,16 +11,24 @@ struct CardView: View {
     var card: MemoryGame<String>.Card
 
     var body: some View {
-        ZStack {
-            if card.isFaceUp {
-                RoundedRectangle(cornerRadius: cornerRadius).fill(fillColor)
-                RoundedRectangle(cornerRadius: cornerRadius).strokeBorder(lineWidth: strokeWidth)
-                Text(card.content)
-            } else {
-                RoundedRectangle(cornerRadius: cornerRadius).fill()
+        GeometryReader { geometry in
+            ZStack {
+                if card.isFaceUp {
+                    RoundedRectangle(cornerRadius: cornerRadius).fill(fillColor)
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        .strokeBorder(lineWidth: strokeWidth)
+                    Text(card.content)
+                } else {
+                    RoundedRectangle(cornerRadius: cornerRadius).fill()
+                }
             }
+            .font(font(for: geometry.size))
         }
         .aspectRatio(aspectRatio, contentMode: .fit)
+    }
+
+    func font(for size: CGSize) -> Font {
+        .system(size: min(size.width, size.height) * aspectRatio)
     }
 
     // MARK: - Drawing Constants
