@@ -10,6 +10,10 @@ import GameKit
 
 extension Array {
     mutating func shuffle(using randomSource: GKRandomSource) {
-        self = randomSource.arrayByShufflingObjects(in: self as [Any]) as! [Element]
+        self = shuffled(using: randomSource)
+    }
+    
+    func shuffled(using randomSource: GKRandomSource) -> [Element] {
+        randomSource.arrayByShufflingObjects(in: self as [Any]) as! [Element]
     }
 }
