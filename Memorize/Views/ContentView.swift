@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    var game = EmojiMemoryGame.shared
+    @ObservedObject var game = EmojiMemoryGame.shared
 
     var body: some View {
         HStack {
             ForEach(game.cards) { card in
-                CardView(
-                    isFaceUp: card.isFaceUp,
-                    emoji: card.content
-                ).onTapGesture {
+                CardView(card: card).onTapGesture {
                     game.choose(card: card)
                 }
             }

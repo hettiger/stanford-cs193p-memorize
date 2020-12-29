@@ -13,7 +13,7 @@ extension CardView: Inspectable {}
 
 class CardViewTests: XCTestCase {
     func test_cardView_isFaceDown_doesNotShowEmoji() throws {
-        let sut = CardView(emoji: "emoji")
+        let sut = CardView(card: .init(id: 0, content: "emoji"))
 
         let visibleText = try? sut.inspect().zStack().text(2).string()
 
@@ -21,10 +21,10 @@ class CardViewTests: XCTestCase {
     }
 
     func test_cardView_isFaceUp_showsEmoji() throws {
-        let sut = CardView(isFaceUp: true, emoji: "emoji")
+        let sut = CardView(card: .init(id: 0, content: "emoji", isFaceUp: true))
 
         let visibleText = try sut.inspect().zStack().text(2).string()
 
-        XCTAssertEqual(sut.emoji, visibleText)
+        XCTAssertEqual(sut.card.content, visibleText)
     }
 }

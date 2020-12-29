@@ -14,15 +14,20 @@ class EmojiMemoryGameTests: XCTestCase {
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = EmojiMemoryGame()
         randomSourceFake = RandomSourceFake()
-        sut.randomSource = randomSourceFake
+        sut = EmojiMemoryGame(randomSource: randomSourceFake)
     }
 
     override func tearDownWithError() throws {
-        sut = nil
         randomSourceFake = nil
+        sut = nil
         try super.tearDownWithError()
+    }
+
+    func withRandom(shuffle: (([Any]) -> [Any])? = nil, nextInt: Int? = nil) {
+        randomSourceFake.shuffle = shuffle ?? randomSourceFake.shuffle
+        randomSourceFake.nextInt = nextInt ?? randomSourceFake.nextInt
+        sut = EmojiMemoryGame(randomSource: randomSourceFake)
     }
 
     func test_emojiMemoryGame_providesCards() {
@@ -31,8 +36,7 @@ class EmojiMemoryGameTests: XCTestCase {
 
     func test_emojiMemoryGame_shufflesEmojis() {
         let expectedEmojis = Array("🐶🐱")
-        randomSourceFake.shuffle = { _ in expectedEmojis }
-        randomSourceFake.nextInt = 0
+        withRandom(shuffle: { _ in expectedEmojis }, nextInt: 0)
 
         let cards = sut.cards
 
@@ -45,7 +49,7 @@ class EmojiMemoryGameTests: XCTestCase {
         let lowerBound = 2
         let upperBound = 5
         let nextInt = 2
-        randomSourceFake.nextInt = nextInt
+        withRandom(nextInt: nextInt)
 
         let cards = sut.cards
 

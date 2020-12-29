@@ -6,18 +6,20 @@
 //
 
 import Foundation
+import GameKit
 
-class EmojiMemoryGame {
+class EmojiMemoryGame: ObservableObject {
     static var shared = EmojiMemoryGame()
 
-    lazy var randomSource = Container.shared.randomSource
+    @Published
+    private var game: MemoryGame<String>
 
-    private lazy var game: MemoryGame<String> = {
-        var emojis = Array("🐶🐱🐭🐰🦊🐻🐼🐻‍❄️🐨🐯🦁🐮🐷🐽🐸🐵🐔🐧").shuffled(using: randomSource)
-        return MemoryGame<String>(numberOfPairsOfCards: .random(in: 2 ... 5, using: randomSource)) {
+    init(randomSource: GKRandomSource = Container.shared.randomSource) {
+        let emojis = Array("🐶🐱🐭🐰🦊🐻🐼🐻‍❄️🐨🐯🦁🐮🐷🐽🐸🐵🐔🐧").shuffled(using: randomSource)
+        game = MemoryGame<String>(numberOfPairsOfCards: .random(in: 2 ... 5, using: randomSource)) {
             "\(emojis[$0])"
         }
-    }()
+    }
 
     // MARK: - Model Accessors
 

@@ -12,7 +12,7 @@ extension Array {
     mutating func shuffle(using randomSource: GKRandomSource) {
         self = shuffled(using: randomSource)
     }
-    
+
     func shuffled(using randomSource: GKRandomSource) -> [Element] {
         randomSource.arrayByShufflingObjects(in: self as [Any]) as! [Element]
     }
