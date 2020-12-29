@@ -14,12 +14,12 @@ extension ContentView: Inspectable {}
 
 class ContentViewTests: XCTestCase {
     var sut: ContentView!
-    
+
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = ContentView()
     }
-    
+
     override func tearDownWithError() throws {
         sut = nil
         try super.tearDownWithError()
