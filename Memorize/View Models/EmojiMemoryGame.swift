@@ -14,7 +14,7 @@ class EmojiMemoryGame: ObservableObject {
     @Published
     private var game: MemoryGame<String>
 
-    init(randomSource: GKRandomSource = Container.shared.randomSource) {
+    init(randomSource: GKRandomSource = .sharedRandom()) {
         let emojis = Array("🐶🐱🐭🐰🦊🐻🐼🐻‍❄️🐨🐯🦁🐮🐷🐽🐸🐵🐔🐧").shuffled(using: randomSource)
         game = MemoryGame<String>(numberOfPairsOfCards: .random(in: 2 ... 5, using: randomSource)) {
             "\(emojis[$0])"

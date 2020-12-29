@@ -17,12 +17,10 @@ class MemoryGameTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         randomSourceFake = RandomSourceFake()
-        Container.shared.randomSource = randomSourceFake
         withContents("🐶🐱🐭🐰")
     }
 
     override func tearDownWithError() throws {
-        Container.shared = Container()
         randomSourceFake = nil
         sut = nil
         try super.tearDownWithError()
@@ -31,7 +29,8 @@ class MemoryGameTests: XCTestCase {
     func withContents(_ newContents: String) {
         contents = Array(newContents)
         sut = MemoryGame<String>(
-            numberOfPairsOfCards: contents.count
+            numberOfPairsOfCards: contents.count,
+            randomSource: randomSourceFake
         ) { pairIndex in
             String(contents[pairIndex])
         }

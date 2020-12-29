@@ -9,12 +9,11 @@ import Foundation
 import GameKit
 
 struct MemoryGame<ContentType> {
-    lazy var randomSource = Container.shared.randomSource
-
     var cards: [Card]
 
     init(
         numberOfPairsOfCards: Int,
+        randomSource: GKRandomSource = .sharedRandom(),
         cardContentFactory: (Int) -> ContentType
     ) {
         cards = []
