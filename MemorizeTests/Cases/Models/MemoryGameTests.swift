@@ -70,10 +70,7 @@ class MemoryGameTests: XCTestCase {
         randomSourceFake.shuffle = { _ in expectedCards }
 
         withContents("ab")
-
-        XCTAssertEqual(
-            expectedCards.map { String($0.id) }.joined(separator: ","),
-            sut.cards.map { String($0.id) }.joined(separator: ",")
-        )
+        
+        XCTAssertEqual(expectedCards, sut.cards)
     }
 }
