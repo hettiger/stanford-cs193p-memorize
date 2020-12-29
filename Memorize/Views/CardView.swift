@@ -8,30 +8,28 @@
 import SwiftUI
 
 struct CardView: View {
-    enum Constants {
-        static let cornerRadius: CGFloat = 10
-        static let fillColor: Color = .white
-        static let strokeWidth: CGFloat = 3
-    }
-
     var isFaceUp: Bool = false
     var emoji: String
 
     var body: some View {
         ZStack {
             if isFaceUp {
-                RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                    .fill(Constants.fillColor)
-                RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                    .strokeBorder(lineWidth: Constants.strokeWidth)
+                RoundedRectangle(cornerRadius: cornerRadius).fill(fillColor)
+                RoundedRectangle(cornerRadius: cornerRadius).strokeBorder(lineWidth: strokeWidth)
                 Text(emoji)
             } else {
-                RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                    .fill()
+                RoundedRectangle(cornerRadius: cornerRadius).fill()
             }
         }
-        .aspectRatio(2 / 3, contentMode: .fit)
+        .aspectRatio(aspectRatio, contentMode: .fit)
     }
+
+    // MARK: - Drawing Constants
+
+    let cornerRadius: CGFloat = 10
+    let fillColor: Color = .white
+    let strokeWidth: CGFloat = 3
+    let aspectRatio: CGFloat = 2 / 3
 }
 
 struct CardView_Previews: PreviewProvider {
