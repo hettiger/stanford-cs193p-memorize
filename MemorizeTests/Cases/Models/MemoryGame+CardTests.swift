@@ -27,8 +27,10 @@ class MemoryGame_CardTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func test_memoryGameCard_providesIdentifiableCards() {
-        XCTAssertEqual(id, sut.id)
+    func assertIsIdentifiable<T: Identifiable>(object _: T) where T.ID: Any {}
+
+    func test_memoryGameCard_isIdentifiable() {
+        assertIsIdentifiable(object: sut)
     }
 
     func test_memoryGameCard_providesContent() {
