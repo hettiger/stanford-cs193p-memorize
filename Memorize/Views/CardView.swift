@@ -18,7 +18,7 @@ struct CardView: View {
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .strokeBorder(lineWidth: strokeWidth)
                     Text(card.content)
-                } else {
+                } else if !card.isMatched {
                     RoundedRectangle(cornerRadius: cornerRadius).fill()
                 }
             }

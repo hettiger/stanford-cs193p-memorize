@@ -6,6 +6,7 @@
 //
 
 @testable import Memorize
+import SwiftUI
 import ViewInspector
 import XCTest
 
@@ -24,23 +25,32 @@ class CardViewTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func withCard(isFaceUp: Bool) {
-        sut = CardView(card: .init(id: 0, content: "emoji", isFaceUp: isFaceUp))
+    func withCard(isFaceUp: Bool = false, isMatched: Bool = false) {
+        sut =
+            CardView(card: .init(id: 0, content: "emoji", isFaceUp: isFaceUp, isMatched: isMatched))
     }
 
     func test_cardView_isFaceDown_doesNotShowEmoji() throws {
         withCard(isFaceUp: false)
 
-        let text = try? sut.inspect().find(text: sut.card.content)
-
-        XCTAssertNil(text)
+        XCTAssertThrowsError(try sut.inspect().find(text: sut.card.content))
     }
 
     func test_cardView_isFaceUp_showsEmoji() throws {
         withCard(isFaceUp: true)
 
-        let text = try? sut.inspect().find(text: sut.card.content)
+        XCTAssertNoThrow(try sut.inspect().find(text: sut.card.content))
+    }
 
-        XCTAssertNotNil(text)
+    func test_cardView_isMatched_doesNotShowShapeView() throws {
+        withCard(isFaceUp: false, isMatched: true)
+        
+        XCTAssertThrowsError(try sut.inspect().find(ViewType.ZStack.self).shape(0))
+    }
+
+    func test_cardView_isFaceUpisMatched_showsShapeView() throws {
+        withCard(isFaceUp: true, isMatched: true)
+        
+        XCTAssertNoThrow(try sut.inspect().find(ViewType.ZStack.self).shape(0))
     }
 }
