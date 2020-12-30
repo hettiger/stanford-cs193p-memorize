@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B287F55259CC6A400D14B46 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B287F54259CC6A300D14B46 /* GridLayout.swift */; };
 		5B49AE182597CF240043E301 /* CardViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49AE172597CF240043E301 /* CardViewTests.swift */; };
 		5B49AE212597D3320043E301 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 5B49AE202597D3320043E301 /* ViewInspector */; };
 		5B8C0F38259A3315003ABC74 /* RandomSourceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F37259A3315003ABC74 /* RandomSourceFake.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B287F54259CC6A300D14B46 /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		5B49AE172597CF240043E301 /* CardViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewTests.swift; sourceTree = "<group>"; };
 		5B8C0F37259A3315003ABC74 /* RandomSourceFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSourceFake.swift; sourceTree = "<group>"; };
 		5B8C0F3F259A3AB7003ABC74 /* Int+random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+random.swift"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				5B8C0F4F259A4B9D003ABC74 /* Array+Shuffling.swift */,
+				5B287F54259CC6A300D14B46 /* GridLayout.swift */,
 				5B8C0F3F259A3AB7003ABC74 /* Int+random.swift */,
 			);
 			path = Support;
@@ -395,6 +398,7 @@
 				5BE64D9025976B3B002B1D70 /* ContentView.swift in Sources */,
 				5BE64DC425977BF8002B1D70 /* CardView.swift in Sources */,
 				5BE64D8E25976B3B002B1D70 /* MemorizeApp.swift in Sources */,
+				5B287F55259CC6A400D14B46 /* GridLayout.swift in Sources */,
 				5BB61F242598C11D00B9D6D2 /* EmojiMemoryGame.swift in Sources */,
 				5B8C0F50259A4B9D003ABC74 /* Array+Shuffling.swift in Sources */,
 			);
