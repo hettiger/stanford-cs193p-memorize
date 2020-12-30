@@ -70,7 +70,7 @@ class MemoryGameTests: XCTestCase {
         randomSourceFake.shuffle = { _ in expectedCards }
 
         withContents("ab")
-        
+
         XCTAssertEqual(expectedCards, sut.cards)
     }
 }

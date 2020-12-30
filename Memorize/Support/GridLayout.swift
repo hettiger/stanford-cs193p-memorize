@@ -12,7 +12,7 @@ struct GridLayout {
     var size: CGSize
     var rowCount: Int = 0
     var columnCount: Int = 0
-    
+
     init(itemCount: Int, nearAspectRatio desiredAspectRatio: Double = 1, in size: CGSize) {
         self.size = size
         // if our size is zero width or height or the itemCount is not > 0
@@ -24,11 +24,11 @@ struct GridLayout {
         // not necessarily most optimal code to do this, but easy to follow (hopefully)
         var bestLayout: (rowCount: Int, columnCount: Int) = (1, itemCount)
         var smallestVariance: Double?
-        let sizeAspectRatio = abs(Double(size.width/size.height))
-        for rows in 1...itemCount {
+        let sizeAspectRatio = abs(Double(size.width / size.height))
+        for rows in 1 ... itemCount {
             let columns = (itemCount / rows) + (itemCount % rows > 0 ? 1 : 0)
             if (rows - 1) * columns < itemCount {
-                let itemAspectRatio = sizeAspectRatio * (Double(rows)/Double(columns))
+                let itemAspectRatio = sizeAspectRatio * (Double(rows) / Double(columns))
                 let variance = abs(itemAspectRatio - desiredAspectRatio)
                 if smallestVariance == nil || variance < smallestVariance! {
                     smallestVariance = variance
@@ -39,7 +39,7 @@ struct GridLayout {
         rowCount = bestLayout.rowCount
         columnCount = bestLayout.columnCount
     }
-    
+
     var itemSize: CGSize {
         if rowCount == 0 || columnCount == 0 {
             return CGSize.zero
@@ -50,7 +50,7 @@ struct GridLayout {
             )
         }
     }
-    
+
     func location(ofItemAt index: Int) -> CGPoint {
         if rowCount == 0 || columnCount == 0 {
             return CGPoint.zero
