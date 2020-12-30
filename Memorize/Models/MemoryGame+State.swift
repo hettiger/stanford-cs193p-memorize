@@ -16,8 +16,8 @@ extension MemoryGame {
         func showsMatch(in cards: [Card]) -> Bool {
             switch self {
             case let .twoCardsFaceUp(idA, idB):
-                let cardA = cards.first { $0.id == idA }!
-                let cardB = cards.first { $0.id == idB }!
+                let cardA = cards.first(with: idA)!
+                let cardB = cards.first(with: idB)!
                 return cardA.content == cardB.content
             default:
                 return false

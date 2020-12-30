@@ -16,7 +16,7 @@ extension Rectangle: Inspectable {}
 class GridTests: XCTestCase {
     func test_grid_drawsOneItemViewForEachProvidedItem() throws {
         let expectedNumberOfItemViews = 5
-        let items = Array(0 ..< expectedNumberOfItemViews).map { _ in ItemFake() }
+        let items = Array(0 ..< expectedNumberOfItemViews).map { _ in IdentifiableFake() }
         let sut = Grid(items) { _ in Rectangle() }
 
         let numberOfItemViews = try! sut.inspect().findAll(Rectangle.self).count

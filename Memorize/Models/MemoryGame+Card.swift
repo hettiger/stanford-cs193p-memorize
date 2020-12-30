@@ -8,7 +8,7 @@
 import Foundation
 
 extension MemoryGame {
-    struct Card: Identifiable, Hashable {
+    struct Card: Identifiable {
         let id: Int
         let content: ContentType
 

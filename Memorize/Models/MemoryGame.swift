@@ -8,7 +8,7 @@
 import Foundation
 import GameKit
 
-struct MemoryGame<ContentType> where ContentType: Hashable {
+struct MemoryGame<ContentType> where ContentType: Equatable {
     private(set) var state: State = .noCardFaceUp {
         didSet {
             print("current state: \(state)")
@@ -38,12 +38,12 @@ struct MemoryGame<ContentType> where ContentType: Hashable {
             cards[cards.firstIndex(of: card)!].isFaceUp = true
             state = .oneCardFaceUp(card.id)
         case let .oneCardFaceUp(id) where card.id != id:
-            let index = cards.firstIndex(of: card)!
-            cards[index].isFaceUp = true
+            let cardIndex = cards.firstIndex(of: card)!
+            cards[cardIndex].isFaceUp = true
             state = .twoCardsFaceUp(id, card.id)
             if state.showsMatch(in: cards) {
-                cards[cards.firstIndex { id == $0.id }!].isMatched = true
-                cards[index].isMatched = true
+                cards[cards.firstIndex(with: id)!].isMatched = true
+                cards[cardIndex].isMatched = true
             }
         case let .twoCardsFaceUp(idA, idB)
             where card.id != idA && card.id != idB:

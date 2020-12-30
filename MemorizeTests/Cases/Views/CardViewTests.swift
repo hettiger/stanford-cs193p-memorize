@@ -44,13 +44,13 @@ class CardViewTests: XCTestCase {
 
     func test_cardView_isMatched_doesNotShowShapeView() throws {
         withCard(isFaceUp: false, isMatched: true)
-        
+
         XCTAssertThrowsError(try sut.inspect().find(ViewType.ZStack.self).shape(0))
     }
 
     func test_cardView_isFaceUpisMatched_showsShapeView() throws {
         withCard(isFaceUp: true, isMatched: true)
-        
+
         XCTAssertNoThrow(try sut.inspect().find(ViewType.ZStack.self).shape(0))
     }
 }

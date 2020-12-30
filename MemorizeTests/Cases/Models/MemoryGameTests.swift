@@ -60,7 +60,7 @@ class MemoryGameTests: XCTestCase {
 
         withShuffledCards(expected)
 
-        XCTAssertEqual(expected.cards, sut.cards)
+        XCTAssertEqual(expected.cards.map(\.id), sut.cards.map(\.id))
     }
 
     func test_memoryGame_startsInNoFaceUpCardState() {
@@ -71,7 +71,7 @@ class MemoryGameTests: XCTestCase {
     func test_memoryGameChoose_noCardFaceUp_stateBecomesOneCardFaceUp() {
         sut.choose(card: sut.cards[0])
 
-        XCTAssertEqual([sut.cards[0]], sut.cards.filter { $0.isFaceUp })
+        XCTAssertEqual([sut.cards[0].id], sut.cards.filter(\.isFaceUp).map(\.id))
         XCTAssertTrue(sut.state == .oneCardFaceUp(sut.cards[0].id))
     }
 
@@ -80,7 +80,10 @@ class MemoryGameTests: XCTestCase {
 
         sut.choose(card: sut.cards[1])
 
-        XCTAssertEqual([sut.cards[0], sut.cards[1]], sut.cards.filter { $0.isFaceUp })
+        XCTAssertEqual(
+            [sut.cards[0].id, sut.cards[1].id],
+            sut.cards.filter(\.isFaceUp).map(\.id)
+        )
         XCTAssertTrue(sut.state == .twoCardsFaceUp(sut.cards[0].id, sut.cards[1].id))
     }
 
@@ -89,17 +92,20 @@ class MemoryGameTests: XCTestCase {
 
         sut.choose(card: sut.cards[0])
 
-        XCTAssertEqual([sut.cards[0]], sut.cards.filter { $0.isFaceUp })
+        XCTAssertEqual([sut.cards[0].id], sut.cards.filter(\.isFaceUp).map(\.id))
         XCTAssertTrue(sut.state == .oneCardFaceUp(sut.cards[0].id))
     }
-    
+
     func test_memoryGameChooseMatch_oneCardFaceUp_marksCardsAsMatched() {
         withShuffledCards("aabb")
         sut.choose(card: sut.cards[0])
-        
+
         sut.choose(card: sut.cards[1])
 
-        XCTAssertEqual([sut.cards[0], sut.cards[1]], sut.cards.filter { $0.isMatched })
+        XCTAssertEqual(
+            [sut.cards[0].id, sut.cards[1].id],
+            sut.cards.filter(\.isMatched).map(\.id)
+        )
     }
 
     func test_memoryGameChoose_twoCardsFaceUp_stateBecomesOneCardFaceUp() {
@@ -108,13 +114,16 @@ class MemoryGameTests: XCTestCase {
 
         sut.choose(card: sut.cards[2])
 
-        XCTAssertEqual([sut.cards[2]], sut.cards.filter { $0.isFaceUp })
+        XCTAssertEqual([sut.cards[2].id], sut.cards.filter(\.isFaceUp).map(\.id))
         XCTAssertTrue(sut.state == .oneCardFaceUp(sut.cards[2].id))
     }
 
     func test_memoryGameChooseAlreadyFaceUpCard_twoCardsFaceUp_stateDoesNotChange() {
         func assertIsExpectedState() {
-            XCTAssertEqual([sut.cards[0], sut.cards[1]], sut.cards.filter { $0.isFaceUp })
+            XCTAssertEqual(
+                [sut.cards[0].id, sut.cards[1].id],
+                sut.cards.filter(\.isFaceUp).map(\.id)
+            )
             XCTAssertTrue(sut.state == .twoCardsFaceUp(sut.cards[0].id, sut.cards[1].id))
         }
 
@@ -132,7 +141,7 @@ class MemoryGameTests: XCTestCase {
 
     func test_memoryGameChooseAlreadyMatchedCard_oneCardFaceUp_stateDoesNotChange() {
         func assertIsExpectedState() {
-            XCTAssertEqual([sut.cards[2]], sut.cards.filter { $0.isFaceUp })
+            XCTAssertEqual([sut.cards[2].id], sut.cards.filter(\.isFaceUp).map(\.id))
             XCTAssertTrue(sut.state == .oneCardFaceUp(sut.cards[2].id))
         }
 
