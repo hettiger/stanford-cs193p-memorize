@@ -38,14 +38,17 @@ struct MemoryGame<ContentType> where ContentType: Hashable {
             cards[cards.firstIndex(of: card)!].isFaceUp = true
             state = .oneCardFaceUp(card.id)
         case let .oneCardFaceUp(id) where card.id != id:
-            cards[cards.firstIndex(of: card)!].isFaceUp = true
+            let index = cards.firstIndex(of: card)!
+            cards[index].isFaceUp = true
             state = .twoCardsFaceUp(id, card.id)
+            if state.showsMatch(in: cards) {
+                cards[cards.firstIndex { id == $0.id }!].isMatched = true
+                cards[index].isMatched = true
+            }
         case let .twoCardsFaceUp(idA, idB)
             where card.id != idA && card.id != idB:
-            let showsMatch = state.showsMatch(in: cards)
             for (i, c) in cards.enumerated() {
                 cards[i].isFaceUp = card.id == c.id
-                cards[i].isMatched = showsMatch && [idA, idB].contains(c.id)
             }
             state = .oneCardFaceUp(card.id)
         default:
