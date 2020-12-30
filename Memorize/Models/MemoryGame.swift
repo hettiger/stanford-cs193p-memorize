@@ -9,12 +9,6 @@ import Foundation
 import GameKit
 
 struct MemoryGame<ContentType> where ContentType: Hashable {
-    enum State: Equatable {
-        case noCardFaceUp
-        case oneCardFaceUp(Card.ID)
-        case twoCardsFaceUp(Card.ID, Card.ID)
-    }
-
     private(set) var state: State = .noCardFaceUp {
         didSet {
             print("current state: \(state)")
@@ -37,6 +31,7 @@ struct MemoryGame<ContentType> where ContentType: Hashable {
     }
 
     mutating func choose(card: Card) {
+        guard !card.isMatched else { return }
         print("choose card: \(card)")
         switch state {
         case .noCardFaceUp:
@@ -47,8 +42,10 @@ struct MemoryGame<ContentType> where ContentType: Hashable {
             state = .twoCardsFaceUp(id, card.id)
         case let .twoCardsFaceUp(idA, idB)
             where card.id != idA && card.id != idB:
+            let showsMatch = state.showsMatch(in: cards)
             for (i, c) in cards.enumerated() {
                 cards[i].isFaceUp = card.id == c.id
+                cards[i].isMatched = showsMatch && [idA, idB].contains(c.id)
             }
             state = .oneCardFaceUp(card.id)
         default:

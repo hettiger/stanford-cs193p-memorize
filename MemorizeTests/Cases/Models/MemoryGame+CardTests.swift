@@ -30,20 +30,20 @@ class MemoryGame_CardTests: XCTestCase {
     func test_memoryGameCard_providesContent() {
         XCTAssertEqual(content, sut.content)
     }
-    
+
     func test_memoryGameCard_providesIsFaceUp() {
         let expectedIsFaceUp = true
-        
+
         sut.isFaceUp = expectedIsFaceUp
-        
+
         XCTAssertEqual(expectedIsFaceUp, sut.isFaceUp)
     }
-    
+
     func test_memoryGameCard_providesIsMatched() {
         let expectedIsMatched = true
-        
+
         sut.isMatched = expectedIsMatched
-        
+
         XCTAssertEqual(expectedIsMatched, sut.isMatched)
     }
 }

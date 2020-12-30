@@ -36,6 +36,12 @@ class MemoryGameTests: XCTestCase {
         }
     }
 
+    func withShuffledCards(_ string: String) {
+        randomSourceFake.shuffle = { _ in string.cards }
+
+        withContents("") // input does not matter
+    }
+
     func test_memoryGame_providesMemoryGameCards() {
         XCTAssertTrue((sut.cards as Any) is [MemoryGame<String>.Card])
     }
@@ -50,72 +56,96 @@ class MemoryGameTests: XCTestCase {
     }
 
     func test_memoryGame_shufflesCards() {
-        let expectedCards = [
-            MemoryGame<String>.Card(id: 2, content: "b"),
-            MemoryGame<String>.Card(id: 1, content: "a"),
-        ]
-        randomSourceFake.shuffle = { _ in expectedCards }
+        let expected = "aabb"
 
-        withContents("ab")
+        withShuffledCards(expected)
 
-        XCTAssertEqual(expectedCards, sut.cards)
+        XCTAssertEqual(expected.cards, sut.cards)
     }
-    
+
     func test_memoryGame_startsInNoFaceUpCardState() {
         XCTAssertEqual(0, sut.cards.filter { $0.isFaceUp }.count)
         XCTAssertTrue(sut.state == .noCardFaceUp)
     }
-    
+
     func test_memoryGameChoose_noCardFaceUp_stateBecomesOneCardFaceUp() {
         sut.choose(card: sut.cards[0])
-        
+
         XCTAssertEqual([sut.cards[0]], sut.cards.filter { $0.isFaceUp })
         XCTAssertTrue(sut.state == .oneCardFaceUp(sut.cards[0].id))
     }
-    
+
     func test_memoryGameChoose_oneCardFaceUp_stateBecomesTwoCardsFaceUp() {
         sut.choose(card: sut.cards[0])
-        
+
         sut.choose(card: sut.cards[1])
-        
+
         XCTAssertEqual([sut.cards[0], sut.cards[1]], sut.cards.filter { $0.isFaceUp })
         XCTAssertTrue(sut.state == .twoCardsFaceUp(sut.cards[0].id, sut.cards[1].id))
     }
-    
+
     func test_memoryGameChooseAlreadyFaceUpCard_oneCardFaceUp_stateDoesNotChange() {
         sut.choose(card: sut.cards[0])
-        
+
         sut.choose(card: sut.cards[0])
-        
+
         XCTAssertEqual([sut.cards[0]], sut.cards.filter { $0.isFaceUp })
         XCTAssertTrue(sut.state == .oneCardFaceUp(sut.cards[0].id))
     }
-    
+
     func test_memoryGameChoose_twoCardsFaceUp_stateBecomesOneCardFaceUp() {
         sut.choose(card: sut.cards[0])
         sut.choose(card: sut.cards[1])
-        
+
         sut.choose(card: sut.cards[2])
-        
+
         XCTAssertEqual([sut.cards[2]], sut.cards.filter { $0.isFaceUp })
         XCTAssertTrue(sut.state == .oneCardFaceUp(sut.cards[2].id))
     }
-    
+
     func test_memoryGameChooseAlreadyFaceUpCard_twoCardsFaceUp_stateDoesNotChange() {
-        func assertStateDoesNotChange() {
+        func assertIsExpectedState() {
             XCTAssertEqual([sut.cards[0], sut.cards[1]], sut.cards.filter { $0.isFaceUp })
             XCTAssertTrue(sut.state == .twoCardsFaceUp(sut.cards[0].id, sut.cards[1].id))
         }
-        
+
         sut.choose(card: sut.cards[0])
         sut.choose(card: sut.cards[1])
-        
+
         sut.choose(card: sut.cards[0])
-        
-        assertStateDoesNotChange()
-        
+
+        assertIsExpectedState()
+
         sut.choose(card: sut.cards[1])
-        
-        assertStateDoesNotChange()
+
+        assertIsExpectedState()
+    }
+
+    func test_memoryGameChooseMatch_twoCardsFaceUp_setsIsMatched() {
+        withShuffledCards("aabb")
+        sut.choose(card: sut.cards[0])
+        sut.choose(card: sut.cards[1])
+
+        sut.choose(card: sut.cards[2])
+
+        XCTAssertEqual([sut.cards[0], sut.cards[1]], sut.cards.filter { $0.isMatched })
+    }
+
+    func test_memoryGameChooseAlreadyMatchedCard_oneCardFaceUp_stateDoesNotChange() {
+        func assertIsExpectedState() {
+            XCTAssertEqual([sut.cards[2]], sut.cards.filter { $0.isFaceUp })
+            XCTAssertTrue(sut.state == .oneCardFaceUp(sut.cards[2].id))
+        }
+
+        withShuffledCards("aabb")
+        sut.choose(card: sut.cards[0])
+        sut.choose(card: sut.cards[1])
+        sut.choose(card: sut.cards[2])
+
+        assertIsExpectedState()
+
+        sut.choose(card: sut.cards[0])
+
+        assertIsExpectedState()
     }
 }
