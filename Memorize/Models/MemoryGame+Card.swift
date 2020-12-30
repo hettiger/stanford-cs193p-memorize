@@ -8,7 +8,7 @@
 import Foundation
 
 extension MemoryGame {
-    struct Card: Identifiable {
+    struct Card: Identifiable, Hashable {
         let id: Int
         let content: ContentType
 
@@ -18,17 +18,5 @@ extension MemoryGame {
             isFaceUp.toggle()
             print("chose card: \(self)")
         }
-    }
-}
-
-// MARK: - Hashable Card Implementation
-
-extension MemoryGame.Card: Hashable {
-    static func == (lhs: MemoryGame<ContentType>.Card, rhs: MemoryGame<ContentType>.Card) -> Bool {
-        lhs.id == rhs.id
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
     }
 }

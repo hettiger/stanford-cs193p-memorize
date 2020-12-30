@@ -8,7 +8,7 @@
 import Foundation
 import GameKit
 
-struct MemoryGame<ContentType> {
+struct MemoryGame<ContentType> where ContentType: Hashable {
     var cards: [Card]
 
     init(

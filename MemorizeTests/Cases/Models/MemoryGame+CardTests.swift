@@ -27,12 +27,6 @@ class MemoryGame_CardTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func assertIsIdentifiable<T: Identifiable>(object _: T) where T.ID: Any {}
-
-    func test_memoryGameCard_isIdentifiable() {
-        assertIsIdentifiable(object: sut)
-    }
-
     func test_memoryGameCard_providesContent() {
         XCTAssertEqual(content, sut.content)
     }
@@ -48,9 +42,5 @@ class MemoryGame_CardTests: XCTestCase {
         sut.choose()
 
         XCTAssertFalse(sut.isFaceUp)
-    }
-
-    func test_memoryGameCard_isHashable() {
-        XCTAssertTrue((sut as Any) is AnyHashable)
     }
 }
