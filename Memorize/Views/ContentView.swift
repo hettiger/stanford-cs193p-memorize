@@ -11,14 +11,11 @@ struct ContentView: View {
     @ObservedObject var game = EmojiMemoryGame.shared
 
     var body: some View {
-        HStack {
-            ForEach(game.cards) { card in
-                CardView(card: card).onTapGesture {
-                    game.choose(card: card)
-                }
-            }
+        Grid(game.cards) { card in
+            CardView(card: card).onTapGesture {
+                game.choose(card: card)
+            }.padding()
         }
-        .padding()
         .foregroundColor(.orange)
     }
 }
