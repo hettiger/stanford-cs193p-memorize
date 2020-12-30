@@ -62,11 +62,4 @@ class EmojiMemoryGameTests: XCTestCase {
 
         XCTAssertTrue(sut.cards.first!.isFaceUp)
     }
-
-    func test_emojiMemoryGameChoose_isFaceUp_setsIsFaceUpToFalse() {
-        sut.choose(card: sut.cards.first!)
-        sut.choose(card: sut.cards.first!)
-
-        XCTAssertFalse(sut.cards.first!.isFaceUp)
-    }
 }

@@ -9,7 +9,19 @@ import Foundation
 import GameKit
 
 struct MemoryGame<ContentType> where ContentType: Hashable {
-    var cards: [Card]
+    enum State: Equatable {
+        case noCardFaceUp
+        case oneCardFaceUp(Card.ID)
+        case twoCardsFaceUp(Card.ID, Card.ID)
+    }
+
+    private(set) var state: State = .noCardFaceUp {
+        didSet {
+            print("current state: \(state)")
+        }
+    }
+
+    private(set) var cards: [Card]
 
     init(
         numberOfPairsOfCards: Int,
@@ -25,7 +37,22 @@ struct MemoryGame<ContentType> where ContentType: Hashable {
     }
 
     mutating func choose(card: Card) {
-        guard let index = cards.firstIndex(of: card) else { preconditionFailure() }
-        cards[index].choose()
+        print("choose card: \(card)")
+        switch state {
+        case .noCardFaceUp:
+            cards[cards.firstIndex(of: card)!].isFaceUp = true
+            state = .oneCardFaceUp(card.id)
+        case let .oneCardFaceUp(id) where card.id != id:
+            cards[cards.firstIndex(of: card)!].isFaceUp = true
+            state = .twoCardsFaceUp(id, card.id)
+        case let .twoCardsFaceUp(idA, idB)
+            where card.id != idA && card.id != idB:
+            for (i, c) in cards.enumerated() {
+                cards[i].isFaceUp = card.id == c.id
+            }
+            state = .oneCardFaceUp(card.id)
+        default:
+            break
+        }
     }
 }

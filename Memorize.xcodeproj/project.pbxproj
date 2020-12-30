@@ -124,9 +124,9 @@
 		5B8C0F36259A32FB003ABC74 /* Fakes */ = {
 			isa = PBXGroup;
 			children = (
-				5B8C0F37259A3315003ABC74 /* RandomSourceFake.swift */,
 				5B8C0F5C259A899D003ABC74 /* EmojiMemoryGameFake.swift */,
 				5B3C3C3A259CCD4D006332B1 /* ItemFake.swift */,
+				5B8C0F37259A3315003ABC74 /* RandomSourceFake.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";

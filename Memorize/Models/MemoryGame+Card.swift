@@ -12,11 +12,6 @@ extension MemoryGame {
         let id: Int
         let content: ContentType
 
-        private(set) var isFaceUp = false
-
-        mutating func choose() {
-            isFaceUp.toggle()
-            print("chose card: \(self)")
-        }
+        var isFaceUp = false
     }
 }
