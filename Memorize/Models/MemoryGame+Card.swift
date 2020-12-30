@@ -13,5 +13,6 @@ extension MemoryGame {
         let content: ContentType
 
         var isFaceUp = false
+        var isMatched = false
     }
 }
