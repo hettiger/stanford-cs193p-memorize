@@ -9,16 +9,26 @@ import SwiftUI
 
 struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
     var items: [Item]
+    var desiredAspectRatio: Double
     var viewForItem: (Item) -> ItemView
 
-    init(_ items: [Item], viewForItem: @escaping (Item) -> ItemView) {
+    init(
+        _ items: [Item],
+        desiredAspectRatio: CGFloat = 1,
+        viewForItem: @escaping (Item) -> ItemView
+    ) {
         self.items = items
+        self.desiredAspectRatio = Double(desiredAspectRatio)
         self.viewForItem = viewForItem
     }
 
     var body: some View {
         GeometryReader { geometry in
-            let layout = GridLayout(itemCount: items.count, in: geometry.size)
+            let layout = GridLayout(
+                itemCount: items.count,
+                nearAspectRatio: desiredAspectRatio,
+                in: geometry.size
+            )
             let (width, height) = (layout.itemSize.width, layout.itemSize.height)
             ForEach(items) { item in
                 let position = layout.location(ofItemAt: items.firstIndex(of: item)!)

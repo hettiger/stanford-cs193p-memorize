@@ -14,29 +14,29 @@ struct CardView: View {
         GeometryReader { geometry in
             ZStack {
                 if card.isFaceUp {
-                    RoundedRectangle(cornerRadius: cornerRadius).fill(fillColor)
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                        .strokeBorder(lineWidth: strokeWidth)
+                    RoundedRectangle(cornerRadius: CardView.cornerRadius).fill(CardView.fillColor)
+                    RoundedRectangle(cornerRadius: CardView.cornerRadius)
+                        .strokeBorder(lineWidth: CardView.strokeWidth)
                     Text(card.content)
                 } else if !card.isMatched {
-                    RoundedRectangle(cornerRadius: cornerRadius).fill()
+                    RoundedRectangle(cornerRadius: CardView.cornerRadius).fill()
                 }
             }
             .font(font(for: geometry.size))
         }
-        .aspectRatio(aspectRatio, contentMode: .fit)
+        .aspectRatio(CardView.aspectRatio, contentMode: .fit)
     }
 
     func font(for size: CGSize) -> Font {
-        .system(size: min(size.width, size.height) * aspectRatio)
+        .system(size: min(size.width, size.height) * CardView.aspectRatio)
     }
 
     // MARK: - Drawing Constants
 
-    let cornerRadius: CGFloat = 10
-    let fillColor: Color = .white
-    let strokeWidth: CGFloat = 3
-    let aspectRatio: CGFloat = 2 / 3
+    static let cornerRadius: CGFloat = 10
+    static let fillColor: Color = .white
+    static let strokeWidth: CGFloat = 3
+    static let aspectRatio: CGFloat = 2 / 3
 }
 
 struct CardView_Previews: PreviewProvider {

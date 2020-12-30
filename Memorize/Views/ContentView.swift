@@ -11,12 +11,13 @@ struct ContentView: View {
     @ObservedObject var game = EmojiMemoryGame.shared
 
     var body: some View {
-        Grid(game.cards) { card in
+        Grid(game.cards, desiredAspectRatio: CardView.aspectRatio) { card in
             CardView(card: card).onTapGesture {
                 game.choose(card: card)
             }.padding()
         }
         .foregroundColor(.orange)
+        .padding()
     }
 }
 
