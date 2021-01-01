@@ -11,8 +11,8 @@ import SwiftUI
 extension MemoryGame {
     struct Theme {
         let name: String
-        let color: Color
         let cards: [Card]
+        let color: Color
 
         init<Contents: Sequence>(
             name: String,
@@ -35,10 +35,6 @@ extension MemoryGame {
                 using: randomSource
             )
 
-            self.init(name: name, cards: cards, color: color)
-        }
-
-        private init(name: String, cards: [Card], color: Color = .clear) {
             self.name = name
             self.cards = cards
             self.color = color
