@@ -23,7 +23,7 @@ struct MemoryGame<ContentType: Hashable> {
         didSet {
             state = .noCardFaceUp
             cards = theme.cards
-            print("current theme: \(theme)")
+            print("current theme: \(theme.name)")
         }
     }
 

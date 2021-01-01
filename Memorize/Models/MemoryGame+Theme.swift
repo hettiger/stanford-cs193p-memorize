@@ -19,7 +19,7 @@ extension MemoryGame {
             contents: Contents,
             numberOfCards: Int? = nil,
             color: Color = .clear,
-            randomSource: GKRandomSource = .sharedRandom()
+            randomSource: GKRandomSource? = .sharedRandom()
         ) where Contents.Element == ContentType {
             let contents = Set(contents)
 
@@ -35,46 +35,43 @@ extension MemoryGame {
                 using: randomSource
             )
 
-            self.init(name: name, color: color, cards: cards)
+            self.init(name: name, cards: cards, color: color)
         }
 
-        init<Contents: Sequence>(name: String, color: Color = .clear, contents: Contents)
-            where Contents.Element == ContentType
-        {
-            let cards = Theme.cards(for: Set(contents))
-
-            self.init(name: name, color: color, cards: cards)
-        }
-
-        private init(name: String, color: Color = .clear, cards: [Card]) {
+        private init(name: String, cards: [Card], color: Color = .clear) {
             self.name = name
-            self.color = color
             self.cards = cards
+            self.color = color
         }
 
         private static func numberOfPairsOfCards(
             numberOfCards: Int?,
             contents: Set<ContentType>,
-            using randomSource: GKRandomSource
+            using randomSource: GKRandomSource?
         ) -> Int {
             if let numberOfCards = numberOfCards {
                 return min(max(0, Int(numberOfCards / 2)), contents.count)
             }
 
-            return .random(
-                in: UInt32(min(2, contents.count)) ... UInt32(min(Int(UInt32.max), contents.count)),
-                using: randomSource
-            )
+            if let randomSource = randomSource {
+                return .random(
+                    in: UInt32(min(2, contents.count)) ...
+                        UInt32(min(Int(UInt32.max), contents.count)),
+                    using: randomSource
+                )
+            }
+
+            return contents.count
         }
 
         private static func cards(
             for contents: Set<ContentType>,
-            withNumberOfPairs numberOfPairs: Int? = nil,
+            withNumberOfPairs numberOfPairs: Int,
             using randomSource: GKRandomSource? = nil
         ) -> [Card] {
             let contents = Array(contents)
             var cards = [Card]()
-            for pairIndex in 0 ..< (numberOfPairs ?? contents.count) {
+            for pairIndex in 0 ..< numberOfPairs {
                 cards.append(Card(id: pairIndex * 2, content: contents[pairIndex]))
                 cards.append(Card(id: pairIndex * 2 + 1, content: contents[pairIndex]))
             }

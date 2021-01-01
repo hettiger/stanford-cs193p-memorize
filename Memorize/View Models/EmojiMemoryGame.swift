@@ -18,7 +18,12 @@ class EmojiMemoryGame: ObservableObject {
 
     init() {
         game = Game(themes: [
-            .init(name: "Animals", contents: "🦆🦅🦉🐺🐗🐴🐝🪱🐛🦋🐌", color: .orange),
+            .init(name: "Animals", contents: "🦆🦅🦉🐺🐗🐴🐝🪱🐛🦋", color: .orange),
+            .init(name: "Food", contents: "🍎🍋🍉🍇🍓🍌🍒🥝🌽🧅", color: .red),
+            .init(name: "Activities", contents: "⚽️🏀🏈🎾🎱🏓⛳️🛼🥋🪁", color: .green),
+            .init(name: "Tech", contents: "⌚️💻📱🖥🖨📷☎️📡🔦📺", numberOfCards: 6, color: .gray),
+            .init(name: "Travel", contents: "🚙🚌🚕🚑🚓🚒🚜🚃🚂✈️", numberOfCards: 8, color: .blue),
+            .init(name: "Countries", contents: "🇺🇸🇩🇪🇫🇷🇱🇺🇵🇱🇨🇭🇩🇰🇦🇹🇨🇿🇮🇹", color: .purple),
         ])
     }
 
