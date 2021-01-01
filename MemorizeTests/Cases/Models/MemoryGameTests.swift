@@ -25,7 +25,7 @@ class MemoryGameTests: XCTestCase {
     }
 
     func withContents(_ newContents: String) {
-        sut = Game(themes: [.init(name: "Test", cards: newContents.cards)])
+        sut = Game(themes: [.init(name: "Test", contents: newContents)])
     }
 
     func test_memoryGame_providesMemoryGameCards() {

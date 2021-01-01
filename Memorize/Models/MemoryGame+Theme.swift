@@ -38,7 +38,15 @@ extension MemoryGame {
             self.init(name: name, color: color, cards: cards)
         }
 
-        init(name: String, color: Color = .clear, cards: [Card]) {
+        init<Contents: Sequence>(name: String, color: Color = .clear, contents: Contents)
+            where Contents.Element == ContentType
+        {
+            let cards = Theme.cards(for: Set(contents))
+
+            self.init(name: name, color: color, cards: cards)
+        }
+
+        private init(name: String, color: Color = .clear, cards: [Card]) {
             self.name = name
             self.color = color
             self.cards = cards
@@ -61,16 +69,18 @@ extension MemoryGame {
 
         private static func cards(
             for contents: Set<ContentType>,
-            withNumberOfPairs numberOfPairs: Int,
-            using randomSource: GKRandomSource
+            withNumberOfPairs numberOfPairs: Int? = nil,
+            using randomSource: GKRandomSource? = nil
         ) -> [Card] {
             let contents = Array(contents)
             var cards = [Card]()
-            for pairIndex in 0 ..< numberOfPairs {
+            for pairIndex in 0 ..< (numberOfPairs ?? contents.count) {
                 cards.append(Card(id: pairIndex * 2, content: contents[pairIndex]))
                 cards.append(Card(id: pairIndex * 2 + 1, content: contents[pairIndex]))
             }
-            cards.shuffle(using: randomSource)
+            if let randomSource = randomSource {
+                cards.shuffle(using: randomSource)
+            }
             return cards
         }
     }
