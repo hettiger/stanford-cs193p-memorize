@@ -10,57 +10,26 @@ import GameKit
 import XCTest
 
 class MemoryGameTests: XCTestCase {
-    var sut: MemoryGame<String>!
-    var contents: [Character]!
-    var randomSourceFake: RandomSourceFake!
+    typealias Game = MemoryGame<Character>
+
+    var sut: Game!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        randomSourceFake = RandomSourceFake()
         withContents("🐶🐱🐭🐰")
     }
 
     override func tearDownWithError() throws {
-        randomSourceFake = nil
         sut = nil
         try super.tearDownWithError()
     }
 
     func withContents(_ newContents: String) {
-        contents = Array(newContents)
-        sut = MemoryGame<String>(
-            numberOfPairsOfCards: contents.count,
-            randomSource: randomSourceFake
-        ) { pairIndex in
-            String(contents[pairIndex])
-        }
-    }
-
-    func withShuffledCards(_ string: String) {
-        randomSourceFake.shuffle = { _ in string.cards }
-
-        withContents("") // input does not matter
+        sut = Game(themes: [.init(name: "Test", cards: newContents.cards)])
     }
 
     func test_memoryGame_providesMemoryGameCards() {
-        XCTAssertTrue((sut.cards as Any) is [MemoryGame<String>.Card])
-    }
-
-    func test_memoryGame_providesPairsOfMemoryGameCards() {
-        let expectedNumberOfPairsOfCards = contents.count * 2
-
-        let actualNumberOfPairsOfCards = sut.cards.count
-
-        XCTAssertGreaterThan(expectedNumberOfPairsOfCards, 1)
-        XCTAssertEqual(expectedNumberOfPairsOfCards, actualNumberOfPairsOfCards)
-    }
-
-    func test_memoryGame_shufflesCards() {
-        let expected = "aabb"
-
-        withShuffledCards(expected)
-
-        XCTAssertEqual(expected.cards.map(\.id), sut.cards.map(\.id))
+        XCTAssertTrue((sut.cards as Any) is [Game.Card])
     }
 
     func test_memoryGame_startsInNoFaceUpCardState() {
@@ -97,7 +66,7 @@ class MemoryGameTests: XCTestCase {
     }
 
     func test_memoryGameChooseMatch_oneCardFaceUp_marksCardsAsMatched() {
-        withShuffledCards("aabb")
+        withContents("aabb")
         sut.choose(card: sut.cards[0])
 
         sut.choose(card: sut.cards[1])
@@ -145,7 +114,7 @@ class MemoryGameTests: XCTestCase {
             XCTAssertTrue(sut.state == .oneCardFaceUp(sut.cards[2].id))
         }
 
-        withShuffledCards("aabb")
+        withContents("aabb")
         sut.choose(card: sut.cards[0])
         sut.choose(card: sut.cards[1])
         sut.choose(card: sut.cards[2])

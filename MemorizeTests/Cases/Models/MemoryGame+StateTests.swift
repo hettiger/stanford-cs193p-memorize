@@ -9,7 +9,7 @@
 import XCTest
 
 class MemoryGame_StateTests: XCTestCase {
-    var sut: MemoryGame<String>.State!
+    var sut: MemoryGame<Character>.State!
 
     override func setUpWithError() throws {
         try super.setUpWithError()

@@ -8,40 +8,42 @@
 import Foundation
 import GameKit
 
-struct MemoryGame<ContentType> where ContentType: Hashable {
+struct MemoryGame<ContentType: Hashable> {
+    private(set) var themes: [Theme] {
+        willSet {
+            guard newValue.count > 0
+            else { preconditionFailure("a game requires at least one theme") }
+        }
+        didSet {
+            theme = themes[0]
+        }
+    }
+
+    var theme: Theme {
+        didSet {
+            state = .noCardFaceUp
+            cards = theme.cards
+            print("current theme: \(theme)")
+        }
+    }
+
     private(set) var state: State = .noCardFaceUp {
         didSet {
             print("current state: \(state)")
         }
     }
 
-    var theme: Theme? {
-        didSet {
-            print("current theme: \(String(describing: theme))")
-            cards = theme?.cards ?? []
-        }
-    }
-
-    var themes = [Theme]()
-
     private(set) var cards = [Card]()
 
-    init(
-        numberOfPairsOfCards: Int,
-        randomSource: GKRandomSource = .sharedRandom(),
-        cardContentFactory: (Int) -> ContentType
-    ) {
-        cards = []
-        for pairIndex in 0 ..< numberOfPairsOfCards {
-            cards.append(Card(id: pairIndex * 2, content: cardContentFactory(pairIndex)))
-            cards.append(Card(id: pairIndex * 2 + 1, content: cardContentFactory(pairIndex)))
-        }
-        cards.shuffle(using: randomSource)
+    init(themes: [Theme]) {
+        self.themes = [.init(name: "Empty", contents: [])]
+        theme = themes[0]
+        defer { self.themes = themes }
     }
 
     mutating func choose(card: Card) {
         guard !card.isMatched else { return }
-        print("choose card: \(card)")
+        print("chosen card: \(card)")
         switch state {
         case .noCardFaceUp:
             cards[cards.firstIndex(of: card)!].isFaceUp = true

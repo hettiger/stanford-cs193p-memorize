@@ -9,27 +9,28 @@ import Foundation
 import GameKit
 
 class EmojiMemoryGame: ObservableObject {
+    typealias Game = MemoryGame<Character>
+
     static var shared = EmojiMemoryGame()
 
     @Published
-    private var game: MemoryGame<String>
+    private var game: Game
 
-    init(randomSource: GKRandomSource = .sharedRandom()) {
-        let emojis = Array("🐶🐱🐭🐰🦊🐻🐼🐻‍❄️🐨🐯🦁🐮🐷🐽🐸🐵🐔🐧").shuffled(using: randomSource)
-        game = MemoryGame<String>(numberOfPairsOfCards: .random(in: 2 ... 5, using: randomSource)) {
-            "\(emojis[$0])"
-        }
+    init() {
+        game = Game(themes: [
+            .init(name: "Animals", contents: "🦆🦅🦉🐺🐗🐴🐝🪱🐛🦋🐌", color: .orange),
+        ])
     }
 
     // MARK: - Model Accessors
 
-    var cards: [MemoryGame<String>.Card] {
+    var cards: [Game.Card] {
         game.cards
     }
 
     // MARK: - Intents
 
-    func choose(card: MemoryGame<String>.Card) {
+    func choose(card: Game.Card) {
         game.choose(card: card)
     }
 }

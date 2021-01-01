@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardView: View {
-    var card: MemoryGame<String>.Card
+    var card: MemoryGame<Character>.Card
 
     var body: some View {
         GeometryReader { geometry in
@@ -17,7 +17,7 @@ struct CardView: View {
                     RoundedRectangle(cornerRadius: CardView.cornerRadius).fill(CardView.fillColor)
                     RoundedRectangle(cornerRadius: CardView.cornerRadius)
                         .strokeBorder(lineWidth: CardView.strokeWidth)
-                    Text(card.content)
+                    Text(String(card.content))
                 } else if !card.isMatched {
                     RoundedRectangle(cornerRadius: CardView.cornerRadius).fill()
                 }

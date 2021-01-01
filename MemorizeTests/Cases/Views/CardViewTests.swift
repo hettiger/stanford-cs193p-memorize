@@ -27,19 +27,19 @@ class CardViewTests: XCTestCase {
 
     func withCard(isFaceUp: Bool = false, isMatched: Bool = false) {
         sut =
-            CardView(card: .init(id: 0, content: "emoji", isFaceUp: isFaceUp, isMatched: isMatched))
+            CardView(card: .init(id: 0, content: "e", isFaceUp: isFaceUp, isMatched: isMatched))
     }
 
     func test_cardView_isFaceDown_doesNotShowEmoji() throws {
         withCard(isFaceUp: false)
 
-        XCTAssertThrowsError(try sut.inspect().find(text: sut.card.content))
+        XCTAssertThrowsError(try sut.inspect().find(text: String(sut.card.content)))
     }
 
     func test_cardView_isFaceUp_showsEmoji() throws {
         withCard(isFaceUp: true)
 
-        XCTAssertNoThrow(try sut.inspect().find(text: sut.card.content))
+        XCTAssertNoThrow(try sut.inspect().find(text: String(sut.card.content)))
     }
 
     func test_cardView_isMatched_doesNotShowShapeView() throws {

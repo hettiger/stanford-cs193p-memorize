@@ -7,116 +7,119 @@
 
 import GameKit
 @testable import Memorize
+import SwiftUI
 import XCTest
 
 class MemoryGame_ThemeTests: XCTestCase {
-    typealias ContentType = String
+    typealias ContentType = Character
     typealias Game = MemoryGame<ContentType>
 
-    var sut: MemoryGame<String>.Theme!
+    let themeName = "name"
+    let color = Color.clear
+
+    var sut: MemoryGame<Character>.Theme!
+    var contents: Set<ContentType>!
+    var numberOfCards: Int?
     var randomSourceFake: RandomSourceFake!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
+        numberOfCards = nil
         randomSourceFake = RandomSourceFake()
-        sut = .init(
-            name: "Name",
-            contents: [],
-            numberOfCards: 0,
-            color: .clear,
-            randomSource: randomSourceFake
-        )
+        withContents("abcdefg")
     }
 
     override func tearDownWithError() throws {
-        randomSourceFake = nil
         sut = nil
+        contents = nil
+        numberOfCards = nil
+        randomSourceFake = nil
         try super.tearDownWithError()
     }
 
-    func withContents(_ contents: Set<ContentType>) {
+    func withContents(_ contents: String) {
+        self.contents = .init(contents)
         sut = .init(
-            name: sut.name,
+            name: themeName,
             contents: contents,
-            numberOfCards: sut.numberOfCards,
-            color: sut.color,
+            numberOfCards: numberOfCards,
+            color: color,
             randomSource: randomSourceFake
         )
     }
 
     func withNumberOfCards(_ numberOfCards: Int?) {
+        self.numberOfCards = numberOfCards
         sut = .init(
-            name: sut.name,
-            contents: sut.contents,
+            name: themeName,
+            contents: contents,
             numberOfCards: numberOfCards,
-            color: sut.color,
+            color: color,
             randomSource: randomSourceFake
         )
     }
 
-    func test_themeNumberOfPairsOfCards_evenNumberOfCards_returnsNumberOfCardsDividedByTwo() {
+    func test_theme_evenNumberOfCards_cardsCountIsMatchingNumbersOfCards() {
         withNumberOfCards(4)
 
-        XCTAssertEqual(2, sut.numberOfPairsOfCards)
+        XCTAssertEqual(4, sut.cards.count)
     }
 
-    func test_themeNumberOfPairsOfCards_unevenNumberOfCards_returnsRoundedDownNumberOfPairsOfCards(
+    func test_theme_unevenNumberOfCards_cardsCountIsNearestEvenNumberInNumberOfCards(
     ) {
         withNumberOfCards(5)
 
-        XCTAssertEqual(2, sut.numberOfPairsOfCards)
+        XCTAssertEqual(4, sut.cards.count)
     }
 
-    func test_themeNumberOfPairsOfCards_negativeNumberOfCards_returnsZero() {
+    func test_theme_negativeNumberOfCards_cardsCountIsZero() {
         withNumberOfCards(-10)
 
-        XCTAssertEqual(0, sut.numberOfPairsOfCards)
+        XCTAssertEqual(0, sut.cards.count)
     }
 
-    func test_themeNumberOfPairsOfCards_zeroNumberOfCards_returnsZero() {
+    func test_theme_zeroNumberOfCards_cardsCountIsZero() {
         withNumberOfCards(0)
 
-        XCTAssertEqual(0, sut.numberOfPairsOfCards)
+        XCTAssertEqual(0, sut.cards.count)
     }
 
-    func test_themeNumberOfPairsOfCards_nilNumberOfCards_returnsRandomNumberOfPairsOfCards() {
-        randomSourceFake.nextInt = 4
+    func test_theme_nilNumberOfCards_cardsCountIsRandom() {
+        let lowerBound = 2
+        let nextInt = 4
+        let expectedCardsCount = 2 * (nextInt + lowerBound)
+        randomSourceFake.nextInt = nextInt
+
         withNumberOfCards(nil)
 
-        XCTAssertEqual(4, sut.numberOfPairsOfCards)
+        XCTAssertEqual(expectedCardsCount, sut.cards.count)
     }
 
-    func test_themeNumberOfPairsOfCards_nilNumberOfCards_randomSourceUsesAppropriateUppderBound() {
-        let contentsData: [Set<ContentType>] = [
-            [],
-            ["a"],
-            ["a", "b"],
-            ["a", "b", "c"],
-            ["a", "b", "c", "d"],
-        ]
+    func test_theme_nilNumberOfCards_randomSourceUsesAppropriateUppderBound() {
+        withNumberOfCards(nil)
 
-        for contents in contentsData {
+        for contents in ["", "a", "ab", "abc", "abcd"] {
             let lowerBound = min(2, contents.count)
             let upperBound = contents.count
-            withNumberOfCards(nil)
-            withContents(contents)
 
-            _ = sut.numberOfPairsOfCards
+            withContents(contents)
 
             XCTAssertEqual(upperBound + 1 - lowerBound, randomSourceFake.lastUpperBound)
         }
     }
 
-    func test_themeCards_emptyContents_returnsZeroCards() {
-        withContents([])
+    func test_theme_lessContentThanRequestedNumberOfCards_cardsCountIsContentElementCountTimesTwo() {
+        withNumberOfCards(10)
+        withContents("ab")
 
-        XCTAssertEqual(0, sut.cards.count)
+        XCTAssertEqual(4, sut.cards.count)
     }
 
-    func test_themeCards_contents_returnsTwoCardsForEachPairInNumberOfPairsOfCards() {
-        withContents(["a", "b", "c", "d"])
+    func test_theme_emptyContentButNumberOfCards_cardsCountIsZero() {
+        withNumberOfCards(10)
+        withContents("")
 
-        XCTAssertEqual(2 * sut.numberOfPairsOfCards, sut.cards.count)
+        XCTAssertEqual(0, sut.cards.count)
     }
 
     func test_themeCards_returnsShuffledCards() {
