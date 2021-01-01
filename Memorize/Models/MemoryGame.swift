@@ -8,14 +8,23 @@
 import Foundation
 import GameKit
 
-struct MemoryGame<ContentType> where ContentType: Equatable {
+struct MemoryGame<ContentType> where ContentType: Hashable {
     private(set) var state: State = .noCardFaceUp {
         didSet {
             print("current state: \(state)")
         }
     }
 
-    private(set) var cards: [Card]
+    var theme: Theme? {
+        didSet {
+            print("current theme: \(String(describing: theme))")
+            cards = theme?.cards ?? []
+        }
+    }
+
+    var themes = [Theme]()
+
+    private(set) var cards = [Card]()
 
     init(
         numberOfPairsOfCards: Int,
