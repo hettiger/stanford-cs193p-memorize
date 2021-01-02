@@ -17,16 +17,29 @@ class MemorizeUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        let navigationBar = app.navigationBars
-        let newGameButton = navigationBar.buttons["New Game"]
-        let navigationTitle = navigationBar.staticTexts
-        let initialTheme = navigationTitle.firstMatch.label
+        let navigationBar = app.navigationBars.firstMatch
+        let toolBar = app.toolbars.firstMatch
+        let newGameButton = toolBar.buttons["New Game"].firstMatch
+        let navigationTitle = navigationBar.staticTexts.firstMatch
+        let initialTheme = navigationTitle.label
 
         XCTAssertTrue(newGameButton.exists)
         XCTAssertFalse(initialTheme.isEmpty)
 
         newGameButton.tap()
 
-        XCTAssertNotEqual(initialTheme, navigationTitle.firstMatch.label)
+        XCTAssertNotEqual(initialTheme, navigationTitle.label)
+    }
+    
+    func test_rootView_showsCurrentScore() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        XCTAssertTrue(app.staticTexts["Score: 0"].exists)
+        
+        app.otherElements["Memory Game Card 0"].tap()
+        app.otherElements["Memory Game Card 1"].tap()
+
+        XCTAssertTrue(app.staticTexts["Score: 2"].exists)
     }
 }

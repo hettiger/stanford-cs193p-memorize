@@ -18,8 +18,16 @@ struct RootView: View {
     var body: some View {
         NavigationView {
             ContentView()
-                .navigationBarItems(trailing: Button("New Game", action: game.restart))
+                .navigationBarItems(trailing: Text("Score: \(game.score)"))
                 .navigationBarTitle(game.theme.name, displayMode: .inline)
+                .toolbar {
+                    ToolbarItemGroup(placement: .bottomBar) {
+                        Text("Highscore: 0") // TODO: Implement real highscore here
+                        Spacer()
+                        Button("New Game", action: game.restart)
+                    }
+                }
+                .foregroundColor(.secondary)
         }
     }
 }

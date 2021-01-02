@@ -15,6 +15,7 @@ struct ContentView: View {
             CardView(card: card).onTapGesture {
                 game.choose(card: card)
             }
+            .accessibilityIdentifier("Memory Game Card \(card.id)")
             .padding(ContentView.padding)
         }
         .foregroundColor(game.theme.color)

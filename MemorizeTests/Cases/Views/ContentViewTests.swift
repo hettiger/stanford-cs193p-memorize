@@ -38,4 +38,13 @@ class ContentViewTests: XCTestCase {
 
         XCTAssertTrue(sut.game.cards.first!.isFaceUp)
     }
+
+    func test_contentView_cardsHaveAccessibilityIdentifier() throws {
+        let expectedAccessibilityIdentifier = "Memory Game Card \(sut.game.cards[0].id)"
+
+        let accessibilityIdentifier = try sut.inspect().find(CardView.self)
+            .accessibilityIdentifier()
+        
+        XCTAssertEqual(expectedAccessibilityIdentifier, accessibilityIdentifier)
+    }
 }
