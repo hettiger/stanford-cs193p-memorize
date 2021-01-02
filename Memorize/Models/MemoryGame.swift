@@ -38,6 +38,7 @@ struct MemoryGame<ContentType: Hashable> {
 
     private(set) var state: State = .noCardFaceUp {
         didSet {
+            updateScore()
             print("current state: \(state)")
         }
     }
@@ -65,18 +66,7 @@ struct MemoryGame<ContentType: Hashable> {
             let indexA = cards.firstIndex(of: cardA)!
             let indexB = cards.firstIndex(of: card)!
             cards[indexB].isFaceUp = true
-            if cardContentsMatch(lhs: cards[indexA], rhs: cards[indexB]) {
-                cards[indexA].isMatched = true
-                cards[indexB].isMatched = true
-                score += matchScore
-            } else {
-                if cards[indexA].hasBeenFaceUp {
-                    score -= 1
-                }
-                if cards[indexB].hasBeenFaceUp {
-                    score -= 1
-                }
-            }
+            markMatchedCards(cards[indexA], cards[indexB])
             state = .twoCardsFaceUp(cards[indexA], cards[indexB])
         case let .twoCardsFaceUp(cardA, cardB)
             where card != cardA && card != cardB:
@@ -90,8 +80,28 @@ struct MemoryGame<ContentType: Hashable> {
         }
     }
 
-    private func cardContentsMatch(lhs: Card, rhs: Card) -> Bool {
-        lhs.content == rhs.content
+    private mutating func markMatchedCards(_ cardA: Card, _ cardB: Card) {
+        guard cardA.content == cardB.content else { return }
+        let indexA = cards.firstIndex(of: cardA)!
+        let indexB = cards.firstIndex(of: cardB)!
+        cards[indexA].isMatched = true
+        cards[indexB].isMatched = true
+    }
+
+    private mutating func updateScore() {
+        switch state {
+        case let .twoCardsFaceUp(cardA, cardB):
+            for card in [cardA, cardB] {
+                let index = cards.firstIndex(of: card)!
+                if cards[index].isMatched {
+                    score += isMatchedScore
+                } else if cards[index].hasBeenFaceUp {
+                    score += hasBeenFaceUpScore
+                }
+            }
+        default:
+            break
+        }
     }
 
     mutating func restart() {
@@ -105,5 +115,6 @@ struct MemoryGame<ContentType: Hashable> {
     // MARK: - Score Constants
 
     let initialScore = 0
-    let matchScore = 2
+    let isMatchedScore = 1
+    let hasBeenFaceUpScore = -1
 }
