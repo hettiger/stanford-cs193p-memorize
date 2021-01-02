@@ -51,8 +51,7 @@ extension MemoryGame {
 
             if let randomSource = randomSource {
                 return .random(
-                    in: UInt32(min(2, contents.count)) ...
-                        UInt32(min(Int(UInt32.max), contents.count)),
+                    in: min(2, contents.count) ... contents.count,
                     using: randomSource
                 )
             }

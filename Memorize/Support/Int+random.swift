@@ -9,8 +9,8 @@ import Foundation
 import GameKit
 
 extension Int {
-    static func random(in range: ClosedRange<UInt32>, using randomSource: GKRandom) -> Int {
-        let bounds = (lower: Int(range.lowerBound), upper: Int(range.upperBound))
+    static func random(in range: ClosedRange<Int>, using randomSource: GKRandom) -> Int {
+        let bounds = (lower: range.lowerBound, upper: range.upperBound)
         return randomSource.nextInt(upperBound: bounds.upper + 1 - bounds.lower) + bounds.lower
     }
 }
