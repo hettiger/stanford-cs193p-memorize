@@ -35,6 +35,8 @@
 		5BEDB7B9259F54D500E93C26 /* MemoryGame+ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7B8259F54D500E93C26 /* MemoryGame+ThemeTests.swift */; };
 		5BEDB7CD25A0011300E93C26 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7CC25A0011300E93C26 /* RootView.swift */; };
 		5BEDB7E325A0C77E00E93C26 /* MemoryGame+CardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7E225A0C77E00E93C26 /* MemoryGame+CardTests.swift */; };
+		5BEDB7F425A0E5EC00E93C26 /* UserDefaults+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7F325A0E5EC00E93C26 /* UserDefaults+Keys.swift */; };
+		5BEDB7FC25A0EB4800E93C26 /* UserDefaultsFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7FB25A0EB4800E93C26 /* UserDefaultsFake.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		5BEDB7B8259F54D500E93C26 /* MemoryGame+ThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryGame+ThemeTests.swift"; sourceTree = "<group>"; };
 		5BEDB7CC25A0011300E93C26 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		5BEDB7E225A0C77E00E93C26 /* MemoryGame+CardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryGame+CardTests.swift"; sourceTree = "<group>"; };
+		5BEDB7F325A0E5EC00E93C26 /* UserDefaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Keys.swift"; sourceTree = "<group>"; };
+		5BEDB7FB25A0EB4800E93C26 /* UserDefaultsFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsFake.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +136,7 @@
 			children = (
 				5B3C3C3A259CCD4D006332B1 /* IdentifiableFake.swift */,
 				5B8C0F37259A3315003ABC74 /* RandomSourceFake.swift */,
+				5BEDB7FB25A0EB4800E93C26 /* UserDefaultsFake.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				5B8C0F4F259A4B9D003ABC74 /* Array+Shuffling.swift */,
 				5B287F54259CC6A300D14B46 /* GridLayout.swift */,
 				5B8C0F3F259A3AB7003ABC74 /* Int+random.swift */,
+				5BEDB7F325A0E5EC00E93C26 /* UserDefaults+Keys.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -415,6 +421,7 @@
 				5BB61EFF2598A43E00B9D6D2 /* MemoryGame.swift in Sources */,
 				5B8C0F40259A3AB7003ABC74 /* Int+random.swift in Sources */,
 				5B287F5A259CC75400D14B46 /* Grid.swift in Sources */,
+				5BEDB7F425A0E5EC00E93C26 /* UserDefaults+Keys.swift in Sources */,
 				5BE64D9025976B3B002B1D70 /* ContentView.swift in Sources */,
 				5BE64DC425977BF8002B1D70 /* CardView.swift in Sources */,
 				5BE64D8E25976B3B002B1D70 /* MemorizeApp.swift in Sources */,
@@ -432,6 +439,7 @@
 				5B5CD2D1259CFD95001ECD96 /* String+Cards.swift in Sources */,
 				5BA327AF25991F41004DA33B /* ContentViewTests.swift in Sources */,
 				5BB61F072598A46200B9D6D2 /* MemoryGameTests.swift in Sources */,
+				5BEDB7FC25A0EB4800E93C26 /* UserDefaultsFake.swift in Sources */,
 				5B8C0F48259A4340003ABC74 /* Int+randomTests.swift in Sources */,
 				5B8C0F55259A4BB7003ABC74 /* Array+ShufflingTests.swift in Sources */,
 				5BEDB7E325A0C77E00E93C26 /* MemoryGame+CardTests.swift in Sources */,

@@ -40,6 +40,10 @@ class EmojiMemoryGame: ObservableObject {
     var score: Int {
         game.score
     }
+    
+    var highscore: Int {
+        game.highscore
+    }
 
     // MARK: - Intents
 

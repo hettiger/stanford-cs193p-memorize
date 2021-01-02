@@ -31,7 +31,7 @@ class MemorizeUITests: XCTestCase {
         XCTAssertNotEqual(initialTheme, navigationTitle.label)
     }
 
-    func test_rootView_showsCurrentScore() throws {
+    func test_rootView_showsCurrentScoreAndHighscore() throws {
         let app = XCUIApplication()
         app.launch()
 
@@ -41,5 +41,6 @@ class MemorizeUITests: XCTestCase {
         app.otherElements["Memory Game Card 1"].tap()
 
         XCTAssertTrue(app.staticTexts["Score: 2"].exists)
+        XCTAssertTrue(app.staticTexts["Highscore: 2"].exists)
     }
 }

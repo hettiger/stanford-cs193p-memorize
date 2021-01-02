@@ -22,7 +22,7 @@ struct RootView: View {
                 .navigationBarTitle(game.theme.name, displayMode: .inline)
                 .toolbar {
                     ToolbarItemGroup(placement: .bottomBar) {
-                        Text("Highscore: 0") // TODO: Implement real highscore here
+                        Text("Highscore: \(game.highscore)")
                         Spacer()
                         Button("New Game", action: game.startFresh)
                     }

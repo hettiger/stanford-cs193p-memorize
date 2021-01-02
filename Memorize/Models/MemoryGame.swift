@@ -16,6 +16,7 @@ struct MemoryGame<ContentType: Hashable> {
     }
 
     private var randomSource: GKRandomSource?
+    private var userDefaults: UserDefaults
 
     private(set) var themes: [Theme] {
         willSet {
@@ -45,10 +46,24 @@ struct MemoryGame<ContentType: Hashable> {
 
     private(set) var cards = [Card]()
 
-    private(set) var score = 0
+    private(set) var score = 0 {
+        didSet {
+            highscore = max(highscore, score)
+        }
+    }
 
-    init(themes: [Theme], randomSource: GKRandomSource? = .sharedRandom()) {
+    var highscore: Int {
+        get { userDefaults.integer(forKey: UserDefaults.Key.highscore) }
+        set { userDefaults.set(newValue, forKey: UserDefaults.Key.highscore) }
+    }
+
+    init(
+        themes: [Theme],
+        randomSource: GKRandomSource? = .sharedRandom(),
+        userDefaults: UserDefaults = .standard
+    ) {
         self.randomSource = randomSource
+        self.userDefaults = userDefaults
         self.themes = [.init(name: "Empty", contents: [])]
         theme = self.themes[0]
         defer { if !themes.isEmpty { self.themes = themes } }

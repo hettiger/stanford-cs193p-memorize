@@ -14,15 +14,18 @@ class MemoryGameTests: XCTestCase {
 
     var sut: Game!
     var randomSourceFake: RandomSourceFake!
+    var userDefaultsFake: UserDefaultsFake!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         randomSourceFake = RandomSourceFake()
+        userDefaultsFake = UserDefaultsFake()
         withContents("🐶🐱🐭🐰")
     }
 
     override func tearDownWithError() throws {
         randomSourceFake = nil
+        userDefaultsFake = nil
         sut = nil
         try super.tearDownWithError()
     }
@@ -30,7 +33,8 @@ class MemoryGameTests: XCTestCase {
     func withContents(_ newContents: String) {
         sut = Game(
             themes: [.init(name: "Test", contents: newContents, randomSource: nil)],
-            randomSource: randomSourceFake
+            randomSource: randomSourceFake,
+            userDefaults: userDefaultsFake
         )
     }
 
@@ -62,6 +66,10 @@ class MemoryGameTests: XCTestCase {
     }
 
     func test_memoryGame_providesScore() {
+        XCTAssertTrue((sut.score as Any) is Int)
+    }
+
+    func test_memoryGame_providesHighscore() {
         XCTAssertTrue((sut.score as Any) is Int)
     }
 
@@ -281,5 +289,31 @@ class MemoryGameTests: XCTestCase {
         sut.choose(card: sut.cards[2])
 
         XCTAssertEqual(-2, sut.score)
+    }
+
+    func test_score_doesNotChangeHighscoreIfScoreIsLower() {
+        userDefaultsFake.set(10, forKey: UserDefaults.Key.highscore)
+
+        XCTAssertEqual(0, sut.score)
+        XCTAssertEqual(10, sut.highscore)
+
+        sut.choose(card: sut.cards[0])
+        sut.choose(card: sut.cards[1])
+
+        XCTAssertEqual(2, sut.score)
+        XCTAssertEqual(10, sut.highscore)
+    }
+
+    func test_score_updatesHighscoreIfScoreIsGreater() {
+        userDefaultsFake.set(1, forKey: UserDefaults.Key.highscore)
+
+        XCTAssertEqual(0, sut.score)
+        XCTAssertEqual(1, sut.highscore)
+
+        sut.choose(card: sut.cards[0])
+        sut.choose(card: sut.cards[1])
+
+        XCTAssertEqual(2, sut.score)
+        XCTAssertEqual(2, sut.highscore)
     }
 }
