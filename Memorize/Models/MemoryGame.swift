@@ -9,17 +9,19 @@ import Foundation
 import GameKit
 
 struct MemoryGame<ContentType: Hashable> {
+    private var randomSource: GKRandomSource?
+
     private(set) var themes: [Theme] {
         willSet {
             guard newValue.count > 0
             else { preconditionFailure("a game requires at least one theme") }
         }
         didSet {
-            theme = themes[0]
+            restart()
         }
     }
 
-    var theme: Theme {
+    private(set) var theme: Theme {
         didSet {
             state = .noCardFaceUp
             cards = theme.cards
@@ -35,7 +37,8 @@ struct MemoryGame<ContentType: Hashable> {
 
     private(set) var cards = [Card]()
 
-    init(themes: [Theme]) {
+    init(themes: [Theme], randomSource: GKRandomSource? = .sharedRandom()) {
+        self.randomSource = randomSource
         self.themes = [.init(name: "Empty", contents: [])]
         theme = self.themes[0]
         defer { if !themes.isEmpty { self.themes = themes } }
@@ -64,6 +67,14 @@ struct MemoryGame<ContentType: Hashable> {
             state = .oneCardFaceUp(card.id)
         default:
             break
+        }
+    }
+
+    mutating func restart() {
+        if themes.count > 1, let randomSource = randomSource {
+            theme = themes.filter { $0 != theme }.shuffled(using: randomSource)[0]
+        } else {
+            theme = themes[0]
         }
     }
 }
