@@ -34,7 +34,7 @@ class EmojiMemoryGameTests: XCTestCase {
     func test_emojiMemoryGame_providesScore() {
         XCTAssertTrue((sut.score as Any) is Int)
     }
-    
+
     func test_emojiMemoryGame_providesHighscore() {
         XCTAssertTrue((sut.highscore as Any) is Int)
     }

@@ -12,7 +12,7 @@ class UserDefaultsFake: UserDefaults {
         super.init(suiteName: suitename ?? #file)
         removePersistentDomain(forName: suitename ?? #file)
     }
-    
+
     init() {
         super.init(suiteName: #file)!
         removePersistentDomain(forName: #file)

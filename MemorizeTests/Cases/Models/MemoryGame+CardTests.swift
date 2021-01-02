@@ -13,13 +13,16 @@ class MemoryGame_CardTests: XCTestCase {
     typealias Game = MemoryGame<ContentType>
 
     var sut: Game.Card!
+    var timeMachine = TimeMachine.shared
 
     override func setUpWithError() throws {
         try super.setUpWithError()
+        timeMachine.isActive = true
         sut = Game.Card(id: 0, content: "a")
     }
 
     override func tearDownWithError() throws {
+        timeMachine.isActive = false
         sut = nil
         try super.tearDownWithError()
     }
@@ -46,6 +49,11 @@ class MemoryGame_CardTests: XCTestCase {
         XCTAssertTrue((sut.hasBeenFaceUp as Any) is Bool)
     }
 
+    func test_card_providesChosenAt() {
+        sut.isFaceUp.toggle()
+        XCTAssertTrue((sut.chosenAt as Any) is Date)
+    }
+
     func test_card_providesIsMatched() {
         XCTAssertTrue((sut.isMatched as Any) is Bool)
     }
@@ -66,5 +74,25 @@ class MemoryGame_CardTests: XCTestCase {
 
         XCTAssertTrue(sut.isFaceUp)
         XCTAssertTrue(sut.hasBeenFaceUp)
+    }
+
+    func test_card_chosenAtIsNil() {
+        XCTAssertNil(sut.chosenAt)
+    }
+
+    func test_cardIsFaceUpSetToTrue_chosenAtIsSetToCurrentTime() {
+        sut.isFaceUp = true
+
+        XCTAssertEqual(timeMachine.date, sut.chosenAt)
+    }
+
+    func test_cardIsFaceUpSetToFalse_chosenAt_doesNotChangeChosenAt() {
+        sut.isFaceUp = true
+        let expectedChosenAt = sut.chosenAt
+        timeMachine.date = expectedChosenAt!.addingTimeInterval(10)
+
+        sut.isFaceUp = false
+
+        XCTAssertEqual(expectedChosenAt, sut.chosenAt)
     }
 }

@@ -11,7 +11,7 @@ extension UserDefaults {
     enum Key: String, CaseIterable {
         case highscore
     }
-    
+
     func reset() {
         for key in Key.allCases {
             removeObject(forKey: key.rawValue)
