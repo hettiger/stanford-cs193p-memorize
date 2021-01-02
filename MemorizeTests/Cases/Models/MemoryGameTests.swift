@@ -151,55 +151,55 @@ class MemoryGameTests: XCTestCase {
 
         assertIsExpectedState()
     }
-    
+
     func test_memoryGameRestart_oneTheme_startsWithOneAndOnlyThemeRestartsWithSameTheme() {
         let expectedTheme = sut.theme
         let expectedState = sut.state
         sut.choose(card: sut.cards[0])
-        
+
         XCTAssertEqual(expectedTheme, sut.theme)
         XCTAssertNotEqual(expectedState, sut.state)
         XCTAssertTrue(sut.cards[0].isFaceUp)
-        
+
         sut.restart()
-        
+
         XCTAssertEqual(expectedTheme, sut.theme)
         XCTAssertEqual(expectedState, sut.state)
         XCTAssertFalse(sut.cards[0].isFaceUp)
     }
-    
+
     func test_memoryGameRestart_twoThemes_startsWithFirstThemeRestartsWithOtherTheme() {
         let initialTheme = Game.Theme(name: "initial", contents: "ab", randomSource: nil)
         let expectedTheme = Game.Theme(name: "expected", contents: "cd", randomSource: nil)
         sut = Game(themes: [initialTheme, expectedTheme], randomSource: randomSourceFake)
-        
+
         XCTAssertEqual(initialTheme, sut.theme)
-        
+
         sut.restart()
-        
+
         XCTAssertEqual(expectedTheme, sut.theme)
     }
-    
+
     func test_memoryGameRestart_manyThemes_startsWithRandomThemeRestartsWithRandomOtherTheme() {
         let initialTheme = Game.Theme(name: "initial", contents: "ab", randomSource: nil)
         let expectedTheme = Game.Theme(name: "expected", contents: "cd", randomSource: nil)
         let someTheme = Game.Theme(name: "some", contents: "cd", randomSource: nil)
         let themes = [someTheme, someTheme, initialTheme, someTheme, expectedTheme, someTheme]
-        
+
         randomSourceFake.shuffle = { _ in
             [initialTheme, someTheme, someTheme, expectedTheme, someTheme]
         }
-        
+
         sut = Game(themes: themes, randomSource: randomSourceFake)
-        
+
         XCTAssertEqual(initialTheme, sut.theme)
-        
+
         randomSourceFake.shuffle = { _ in
             [expectedTheme, someTheme, someTheme, someTheme, someTheme]
         }
-        
+
         sut.restart()
-        
+
         XCTAssertEqual(expectedTheme, sut.theme)
     }
 }

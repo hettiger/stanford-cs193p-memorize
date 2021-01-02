@@ -128,7 +128,7 @@ class MemoryGame_ThemeTests: XCTestCase {
 
         XCTAssertEqual(expectedCards.map(\.id), sut.cards.map(\.id))
     }
-    
+
     func test_theme_isHashable() {
         XCTAssertTrue((sut as Any) is AnyHashable)
     }

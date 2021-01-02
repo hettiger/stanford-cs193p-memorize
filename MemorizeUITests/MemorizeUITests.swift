@@ -26,7 +26,7 @@ class MemorizeUITests: XCTestCase {
         XCTAssertFalse(initialTheme.isEmpty)
 
         newGameButton.tap()
-        
+
         XCTAssertNotEqual(initialTheme, navigationTitle.firstMatch.label)
     }
 }

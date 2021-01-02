@@ -32,7 +32,7 @@ class EmojiMemoryGame: ObservableObject {
     var theme: Game.Theme {
         game.theme
     }
-    
+
     var cards: [Game.Card] {
         game.cards
     }
@@ -42,7 +42,7 @@ class EmojiMemoryGame: ObservableObject {
     func choose(card: Game.Card) {
         game.choose(card: card)
     }
-    
+
     func restart() {
         game.restart()
     }
