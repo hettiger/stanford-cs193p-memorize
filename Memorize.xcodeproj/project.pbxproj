@@ -38,6 +38,7 @@
 		5BEDB7B1259F3BF200E93C26 /* MemoryGame+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7B0259F3BF200E93C26 /* MemoryGame+Theme.swift */; };
 		5BEDB7B9259F54D500E93C26 /* MemoryGame+ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7B8259F54D500E93C26 /* MemoryGame+ThemeTests.swift */; };
 		5BEDB7CD25A0011300E93C26 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7CC25A0011300E93C26 /* RootView.swift */; };
+		5BEDB7E325A0C77E00E93C26 /* MemoryGame+CardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7E225A0C77E00E93C26 /* MemoryGame+CardTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		5BEDB7B0259F3BF200E93C26 /* MemoryGame+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryGame+Theme.swift"; sourceTree = "<group>"; };
 		5BEDB7B8259F54D500E93C26 /* MemoryGame+ThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryGame+ThemeTests.swift"; sourceTree = "<group>"; };
 		5BEDB7CC25A0011300E93C26 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		5BEDB7E225A0C77E00E93C26 /* MemoryGame+CardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryGame+CardTests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 		5BB61F532599030000B9D6D2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5BEDB7E225A0C77E00E93C26 /* MemoryGame+CardTests.swift */,
 				5B5CD2D5259CFE34001ECD96 /* MemoryGame+StateTests.swift */,
 				5BEDB7B8259F54D500E93C26 /* MemoryGame+ThemeTests.swift */,
 				5BB61F062598A46200B9D6D2 /* MemoryGameTests.swift */,
@@ -446,6 +449,7 @@
 				5BB61F072598A46200B9D6D2 /* MemoryGameTests.swift in Sources */,
 				5B8C0F48259A4340003ABC74 /* Int+randomTests.swift in Sources */,
 				5B8C0F55259A4BB7003ABC74 /* Array+ShufflingTests.swift in Sources */,
+				5BEDB7E325A0C77E00E93C26 /* MemoryGame+CardTests.swift in Sources */,
 				5B8C0F38259A3315003ABC74 /* RandomSourceFake.swift in Sources */,
 				5B49AE182597CF240043E301 /* CardViewTests.swift in Sources */,
 				5B5CD2D6259CFE34001ECD96 /* MemoryGame+StateTests.swift in Sources */,

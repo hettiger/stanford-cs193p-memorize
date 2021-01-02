@@ -12,7 +12,15 @@ extension MemoryGame {
         let id: Int
         let content: ContentType
 
-        var isFaceUp = false
+        var isFaceUp = false {
+            willSet {
+                if isFaceUp {
+                    hasBeenFaceUp = true
+                }
+            }
+        }
+        
+        private(set) var hasBeenFaceUp = false
         var isMatched = false
     }
 }

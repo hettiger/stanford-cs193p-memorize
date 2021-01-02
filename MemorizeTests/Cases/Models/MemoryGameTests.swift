@@ -33,7 +33,7 @@ class MemoryGameTests: XCTestCase {
             randomSource: randomSourceFake
         )
     }
-    
+
     func withMatch() {
         withContents("aabb")
         sut.choose(card: sut.cards[0])
@@ -56,7 +56,7 @@ class MemoryGameTests: XCTestCase {
     func test_memoryGame_providesState() {
         XCTAssertTrue((sut.state as Any) is Game.State)
     }
-    
+
     func test_memoryGame_providesScore() {
         XCTAssertTrue((sut.score as Any) is Int)
     }
@@ -208,22 +208,48 @@ class MemoryGameTests: XCTestCase {
 
         XCTAssertEqual(expectedTheme, sut.theme)
     }
-    
+
     func test_memoryGameRestart_score_resetsScoreToZero() {
         withMatch()
-        
+
         sut.restart()
-        
+
         XCTAssertEqual(0, sut.score)
     }
-    
+
     func test_score_newGame_isZero() {
         XCTAssertEqual(0, sut.score)
     }
-    
+
     func test_score_match_increasesByTwo() {
         withMatch()
-        
+
         XCTAssertEqual(2, sut.score)
+    }
+    
+    func test_score_mismatchWithOnePreviouslySeenCard_penalizesOnePoint() {
+        sut.choose(card: sut.cards[0])
+        sut.choose(card: sut.cards[2])
+        sut.choose(card: sut.cards[3])
+        
+        XCTAssertEqual(0, sut.score)
+        
+        sut.choose(card: sut.cards[0])
+        
+        XCTAssertEqual(-1, sut.score)
+    }
+    
+    func test_score_mismatchWithTwoPreviouslySeenCards_penalizesTwoPoints() {
+        sut.choose(card: sut.cards[0])
+        sut.choose(card: sut.cards[2])
+        sut.choose(card: sut.cards[3])
+        sut.choose(card: sut.cards[5])
+        
+        XCTAssertEqual(0, sut.score)
+        
+        sut.choose(card: sut.cards[0])
+        sut.choose(card: sut.cards[2])
+        
+        XCTAssertEqual(-2, sut.score)
     }
 }
