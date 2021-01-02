@@ -15,11 +15,15 @@ struct ContentView: View {
             CardView(card: card).onTapGesture {
                 game.choose(card: card)
             }
-            .padding()
+            .padding(ContentView.padding)
         }
         .foregroundColor(game.theme.color)
-        .padding()
+        .padding(ContentView.padding)
     }
+    
+    // MARK: - Drawing Constants
+    
+    static let padding: CGFloat = 10
 }
 
 struct ContentView_Previews: PreviewProvider {
