@@ -7,4 +7,14 @@
 
 import Foundation
 
-class UserDefaultsFake: UserDefaults {}
+class UserDefaultsFake: UserDefaults {
+    override init?(suiteName suitename: String?) {
+        super.init(suiteName: suitename ?? #file)
+        removePersistentDomain(forName: suitename ?? #file)
+    }
+    
+    init() {
+        super.init(suiteName: #file)!
+        removePersistentDomain(forName: #file)
+    }
+}
