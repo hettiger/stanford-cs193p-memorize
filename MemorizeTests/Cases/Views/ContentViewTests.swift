@@ -44,7 +44,7 @@ class ContentViewTests: XCTestCase {
 
         let accessibilityIdentifier = try sut.inspect().find(CardView.self)
             .accessibilityIdentifier()
-        
+
         XCTAssertEqual(expectedAccessibilityIdentifier, accessibilityIdentifier)
     }
 }

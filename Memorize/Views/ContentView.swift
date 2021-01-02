@@ -21,9 +21,9 @@ struct ContentView: View {
         .foregroundColor(game.theme.color)
         .padding(ContentView.padding)
     }
-    
+
     // MARK: - Drawing Constants
-    
+
     static let padding: CGFloat = 10
 }
 

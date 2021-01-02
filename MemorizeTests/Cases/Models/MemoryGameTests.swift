@@ -226,30 +226,30 @@ class MemoryGameTests: XCTestCase {
 
         XCTAssertEqual(2, sut.score)
     }
-    
+
     func test_score_mismatchWithOnePreviouslySeenCard_penalizesOnePoint() {
         sut.choose(card: sut.cards[0])
         sut.choose(card: sut.cards[2])
         sut.choose(card: sut.cards[3])
-        
+
         XCTAssertEqual(0, sut.score)
-        
+
         sut.choose(card: sut.cards[0])
-        
+
         XCTAssertEqual(-1, sut.score)
     }
-    
+
     func test_score_mismatchWithTwoPreviouslySeenCards_penalizesTwoPoints() {
         sut.choose(card: sut.cards[0])
         sut.choose(card: sut.cards[2])
         sut.choose(card: sut.cards[3])
         sut.choose(card: sut.cards[5])
-        
+
         XCTAssertEqual(0, sut.score)
-        
+
         sut.choose(card: sut.cards[0])
         sut.choose(card: sut.cards[2])
-        
+
         XCTAssertEqual(-2, sut.score)
     }
 }

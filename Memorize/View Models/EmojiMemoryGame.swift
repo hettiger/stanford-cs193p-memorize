@@ -36,7 +36,7 @@ class EmojiMemoryGame: ObservableObject {
     var cards: [Game.Card] {
         game.cards
     }
-    
+
     var score: Int {
         game.score
     }

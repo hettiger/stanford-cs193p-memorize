@@ -19,7 +19,7 @@ extension MemoryGame {
                 }
             }
         }
-        
+
         private(set) var hasBeenFaceUp = false
         var isMatched = false
     }
