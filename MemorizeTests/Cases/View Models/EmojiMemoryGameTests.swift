@@ -30,6 +30,10 @@ class EmojiMemoryGameTests: XCTestCase {
     func test_emojiMemoryGame_providesCards() {
         XCTAssertTrue((sut.cards as Any) is [Game.Card])
     }
+    
+    func test_emojiMemoryGame_providesScore() {
+        XCTAssertTrue((sut.score as Any) is Int)
+    }
 
     func test_emojiMemoryGameChoose_isFaceDown_setsIsFaceUpToTrue() {
         sut.choose(card: sut.cards.first!)
