@@ -9,6 +9,12 @@ import Foundation
 import GameKit
 
 struct MemoryGame<ContentType: Hashable> {
+    enum State: Hashable {
+        case noCardFaceUp
+        case oneCardFaceUp(Card)
+        case twoCardsFaceUp(Card, Card)
+    }
+
     private var randomSource: GKRandomSource?
 
     private(set) var themes: [Theme] {
@@ -52,14 +58,14 @@ struct MemoryGame<ContentType: Hashable> {
         print("chosen card: \(card)")
         switch state {
         case .noCardFaceUp:
-            cards[cards.firstIndex(of: card)!].isFaceUp = true
-            state = .oneCardFaceUp(card.id)
-        case let .oneCardFaceUp(id) where card.id != id:
-            let indexA = cards.firstIndex(with: id)!
-            let indexB = cards.firstIndex(with: card.id)!
+            let index = cards.firstIndex(of: card)!
+            cards[index].isFaceUp = true
+            state = .oneCardFaceUp(cards[index])
+        case let .oneCardFaceUp(cardA) where card != cardA:
+            let indexA = cards.firstIndex(of: cardA)!
+            let indexB = cards.firstIndex(of: card)!
             cards[indexB].isFaceUp = true
-            state = .twoCardsFaceUp(id, card.id)
-            if state.showsMatch(in: cards) {
+            if cardContentsMatch(lhs: cards[indexA], rhs: cards[indexB]) {
                 cards[indexA].isMatched = true
                 cards[indexB].isMatched = true
                 score += matchScore
@@ -71,15 +77,21 @@ struct MemoryGame<ContentType: Hashable> {
                     score -= 1
                 }
             }
-        case let .twoCardsFaceUp(idA, idB)
-            where card.id != idA && card.id != idB:
+            state = .twoCardsFaceUp(cards[indexA], cards[indexB])
+        case let .twoCardsFaceUp(cardA, cardB)
+            where card != cardA && card != cardB:
+            let index = cards.firstIndex(of: card)!
             for (i, c) in cards.enumerated() {
-                cards[i].isFaceUp = card.id == c.id
+                cards[i].isFaceUp = c == card
             }
-            state = .oneCardFaceUp(card.id)
+            state = .oneCardFaceUp(cards[index])
         default:
             break
         }
+    }
+
+    private func cardContentsMatch(lhs: Card, rhs: Card) -> Bool {
+        lhs.content == rhs.content
     }
 
     mutating func restart() {

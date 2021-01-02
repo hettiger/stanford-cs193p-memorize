@@ -126,7 +126,9 @@ class MemoryGame_ThemeTests: XCTestCase {
         let expectedCards = "dbca".cards
         randomSourceFake.shuffle = { _ in expectedCards }
 
-        XCTAssertEqual(expectedCards.map(\.id), sut.cards.map(\.id))
+        withContents("")
+
+        XCTAssertEqual(expectedCards, sut.cards)
     }
 
     func test_theme_isHashable() {

@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct IdentifiableFake: Identifiable {
+struct IdentifiableFake: Identifiable, Hashable {
     var id = UUID()
 }

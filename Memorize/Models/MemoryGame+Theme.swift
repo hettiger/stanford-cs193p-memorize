@@ -9,7 +9,7 @@ import GameKit
 import SwiftUI
 
 extension MemoryGame {
-    struct Theme {
+    struct Theme: Hashable {
         let name: String
         let cards: [Card]
         let color: Color
@@ -76,20 +76,5 @@ extension MemoryGame {
             }
             return cards
         }
-    }
-}
-
-extension MemoryGame.Theme: Hashable {
-    static func == (
-        lhs: MemoryGame<ContentType>.Theme,
-        rhs: MemoryGame<ContentType>.Theme
-    ) -> Bool {
-        lhs.hashValue == rhs.hashValue
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-        hasher.combine(color)
-        hasher.combine(cards.map(\.id))
     }
 }

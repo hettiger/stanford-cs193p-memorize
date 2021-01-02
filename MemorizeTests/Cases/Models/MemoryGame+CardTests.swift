@@ -30,6 +30,10 @@ class MemoryGame_CardTests: XCTestCase {
         assertIsIdentifiable(sut)
     }
 
+    func test_card_isHashable() {
+        XCTAssertTrue((sut as Any) is AnyHashable)
+    }
+
     func test_card_providesContent() {
         XCTAssertTrue((sut.content as Any) is ContentType)
     }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Grid<Item: Identifiable, ItemView: View>: View {
+struct Grid<Item: Identifiable, ItemView: View>: View where Item: Hashable {
     var items: [Item]
     var desiredAspectRatio: Double
     var viewForItem: (Item) -> ItemView
