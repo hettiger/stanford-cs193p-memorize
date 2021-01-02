@@ -59,6 +59,22 @@ class MemoryGame_ThemeTests: XCTestCase {
         )
     }
 
+    func test_theme_isHashable() {
+        XCTAssertTrue((sut as Any) is AnyHashable)
+    }
+
+    func test_theme_providesName() {
+        XCTAssertTrue((sut.name as Any) is String)
+    }
+
+    func test_theme_providesCards() {
+        XCTAssertTrue((sut.cards as Any) is [Game.Card])
+    }
+
+    func test_theme_providesColor() {
+        XCTAssertTrue((sut.color as Any) is Color)
+    }
+
     func test_theme_evenNumberOfCards_cardsCountIsMatchingNumbersOfCards() {
         withNumberOfCards(4)
 
@@ -129,9 +145,5 @@ class MemoryGame_ThemeTests: XCTestCase {
         withContents("")
 
         XCTAssertEqual(expectedCards, sut.cards)
-    }
-
-    func test_theme_isHashable() {
-        XCTAssertTrue((sut as Any) is AnyHashable)
     }
 }
