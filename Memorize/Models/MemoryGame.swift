@@ -37,8 +37,8 @@ struct MemoryGame<ContentType: Hashable> {
 
     init(themes: [Theme]) {
         self.themes = [.init(name: "Empty", contents: [])]
-        theme = themes[0]
-        defer { self.themes = themes }
+        theme = self.themes[0]
+        defer { if !themes.isEmpty { self.themes = themes } }
     }
 
     mutating func choose(card: Card) {

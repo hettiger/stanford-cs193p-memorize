@@ -28,8 +28,12 @@ class MemoryGameTests: XCTestCase {
         sut = Game(themes: [.init(name: "Test", contents: newContents, randomSource: nil)])
     }
 
-    func test_memoryGame_providesMemoryGameCards() {
-        XCTAssertTrue((sut.cards as Any) is [Game.Card])
+    func test_memoryGame_zeroThemes_initializesWithEmptyTheme() throws {
+        sut = Game(themes: [])
+        
+        XCTAssertEqual("Empty", sut.theme.name)
+        XCTAssertEqual(1, sut.themes.count)
+        XCTAssertEqual(0, sut.cards.count)
     }
 
     func test_memoryGame_startsInNoFaceUpCardState() {
