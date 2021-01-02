@@ -292,7 +292,7 @@ class MemoryGameTests: XCTestCase {
     }
 
     func test_score_doesNotChangeHighscoreIfScoreIsLower() {
-        userDefaultsFake.set(10, forKey: UserDefaults.Key.highscore)
+        userDefaultsFake.set(10, forKey: UserDefaults.Key.highscore.rawValue)
 
         XCTAssertEqual(0, sut.score)
         XCTAssertEqual(10, sut.highscore)
@@ -305,7 +305,7 @@ class MemoryGameTests: XCTestCase {
     }
 
     func test_score_updatesHighscoreIfScoreIsGreater() {
-        userDefaultsFake.set(1, forKey: UserDefaults.Key.highscore)
+        userDefaultsFake.set(1, forKey: UserDefaults.Key.highscore.rawValue)
 
         XCTAssertEqual(0, sut.score)
         XCTAssertEqual(1, sut.highscore)

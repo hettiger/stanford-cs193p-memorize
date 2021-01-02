@@ -33,6 +33,7 @@ class MemorizeUITests: XCTestCase {
 
     func test_rootView_showsCurrentScoreAndHighscore() throws {
         let app = XCUIApplication()
+        app.launchArguments.append(CommandLine.Argument.resetUserDefaults.rawValue)
         app.launch()
 
         XCTAssertTrue(app.staticTexts["Score: 0"].exists)

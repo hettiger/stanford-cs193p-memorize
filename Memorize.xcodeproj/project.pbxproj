@@ -14,6 +14,8 @@
 		5B49AE182597CF240043E301 /* CardViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49AE172597CF240043E301 /* CardViewTests.swift */; };
 		5B49AE212597D3320043E301 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 5B49AE202597D3320043E301 /* ViewInspector */; };
 		5B5CD2D1259CFD95001ECD96 /* String+Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CD2D0259CFD95001ECD96 /* String+Cards.swift */; };
+		5B85110325A1201800CF6F11 /* CommandLine+Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */; };
+		5B85111125A1213000CF6F11 /* CommandLine+Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */; };
 		5B8C0F38259A3315003ABC74 /* RandomSourceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F37259A3315003ABC74 /* RandomSourceFake.swift */; };
 		5B8C0F40259A3AB7003ABC74 /* Int+random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F3F259A3AB7003ABC74 /* Int+random.swift */; };
 		5B8C0F48259A4340003ABC74 /* Int+randomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F47259A4340003ABC74 /* Int+randomTests.swift */; };
@@ -63,6 +65,7 @@
 		5B3C3C3A259CCD4D006332B1 /* IdentifiableFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableFake.swift; sourceTree = "<group>"; };
 		5B49AE172597CF240043E301 /* CardViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewTests.swift; sourceTree = "<group>"; };
 		5B5CD2D0259CFD95001ECD96 /* String+Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Cards.swift"; sourceTree = "<group>"; };
+		5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommandLine+Arguments.swift"; sourceTree = "<group>"; };
 		5B8C0F37259A3315003ABC74 /* RandomSourceFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSourceFake.swift; sourceTree = "<group>"; };
 		5B8C0F3F259A3AB7003ABC74 /* Int+random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+random.swift"; sourceTree = "<group>"; };
 		5B8C0F47259A4340003ABC74 /* Int+randomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+randomTests.swift"; sourceTree = "<group>"; };
@@ -274,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				5B8C0F4F259A4B9D003ABC74 /* Array+Shuffling.swift */,
+				5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */,
 				5B287F54259CC6A300D14B46 /* GridLayout.swift */,
 				5B8C0F3F259A3AB7003ABC74 /* Int+random.swift */,
 				5BEDB7F325A0E5EC00E93C26 /* UserDefaults+Keys.swift */,
@@ -426,6 +430,7 @@
 				5BE64DC425977BF8002B1D70 /* CardView.swift in Sources */,
 				5BE64D8E25976B3B002B1D70 /* MemorizeApp.swift in Sources */,
 				5BEDB7B1259F3BF200E93C26 /* MemoryGame+Theme.swift in Sources */,
+				5B85110325A1201800CF6F11 /* CommandLine+Arguments.swift in Sources */,
 				5B287F55259CC6A400D14B46 /* GridLayout.swift in Sources */,
 				5BB61F242598C11D00B9D6D2 /* EmojiMemoryGame.swift in Sources */,
 				5B8C0F50259A4B9D003ABC74 /* Array+Shuffling.swift in Sources */,
@@ -456,6 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B85111125A1213000CF6F11 /* CommandLine+Arguments.swift in Sources */,
 				5BE64DAB25976B3C002B1D70 /* MemorizeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

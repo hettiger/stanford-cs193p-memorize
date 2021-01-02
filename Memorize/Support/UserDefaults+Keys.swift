@@ -8,7 +8,13 @@
 import Foundation
 
 extension UserDefaults {
-    enum Key {
-        static let highscore = "highscore"
+    enum Key: String, CaseIterable {
+        case highscore
+    }
+    
+    func reset() {
+        for key in Key.allCases {
+            removeObject(forKey: key.rawValue)
+        }
     }
 }
