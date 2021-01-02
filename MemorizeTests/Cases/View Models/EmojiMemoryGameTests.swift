@@ -23,6 +23,10 @@ class EmojiMemoryGameTests: XCTestCase {
         try super.tearDownWithError()
     }
 
+    func test_emojiMemoryGame_providesTheme() {
+        XCTAssertTrue((sut.theme as Any) is Game.Theme)
+    }
+    
     func test_emojiMemoryGame_providesCards() {
         XCTAssertTrue((sut.cards as Any) is [Game.Card])
     }

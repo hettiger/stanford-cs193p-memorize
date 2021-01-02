@@ -27,8 +27,20 @@ class MemoryGameTests: XCTestCase {
     func withContents(_ newContents: String) {
         sut = Game(themes: [.init(name: "Test", contents: newContents, randomSource: nil)])
     }
+    
+    func test_memoryGame_providesTheme() {
+        XCTAssertTrue((sut.theme as Any) is Game.Theme)
+    }
+    
+    func test_memoryGame_providesThemes() {
+        XCTAssertTrue((sut.themes as Any) is [Game.Theme])
+    }
+    
+    func test_memoryGame_providesCards() {
+        XCTAssertTrue((sut.cards as Any) is [Game.Card])
+    }
 
-    func test_memoryGame_zeroThemes_initializesWithEmptyTheme() throws {
+    func test_memoryGame_zeroThemes_initializesWithEmptyTheme() {
         sut = Game(themes: [])
         
         XCTAssertEqual("Empty", sut.theme.name)

@@ -14,9 +14,10 @@ struct ContentView: View {
         Grid(game.cards, desiredAspectRatio: CardView.aspectRatio) { card in
             CardView(card: card).onTapGesture {
                 game.choose(card: card)
-            }.padding()
+            }
+            .padding()
         }
-        .foregroundColor(.orange)
+        .foregroundColor(game.theme.color)
         .padding()
     }
 }

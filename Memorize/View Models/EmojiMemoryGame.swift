@@ -29,6 +29,10 @@ class EmojiMemoryGame: ObservableObject {
 
     // MARK: - Model Accessors
 
+    var theme: Game.Theme {
+        game.theme
+    }
+    
     var cards: [Game.Card] {
         game.cards
     }
