@@ -42,4 +42,8 @@ class EmojiMemoryGame: ObservableObject {
     func choose(card: Game.Card) {
         game.choose(card: card)
     }
+    
+    func restart() {
+        game.restart()
+    }
 }
