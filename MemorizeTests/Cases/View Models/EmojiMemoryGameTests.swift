@@ -41,10 +41,10 @@ class EmojiMemoryGameTests: XCTestCase {
         XCTAssertTrue(sut.cards.first!.isFaceUp)
     }
 
-    func test_emojiMemoryGameRestart_themeChanges() {
+    func test_emojiMemoryGameStartFresh_themeChanges() {
         let initialTheme = sut.theme
 
-        sut.restart()
+        sut.startFresh()
 
         XCTAssertNotEqual(initialTheme, sut.theme)
     }

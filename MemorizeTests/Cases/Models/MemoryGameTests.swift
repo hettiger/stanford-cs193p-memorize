@@ -162,7 +162,7 @@ class MemoryGameTests: XCTestCase {
         assertIsExpectedState()
     }
 
-    func test_memoryGameRestart_oneTheme_startsWithOneAndOnlyThemeRestartsWithSameTheme() {
+    func test_memoryGameStartFresh_oneTheme_startsWithOneAndOnlyThemeRestartsWithSameTheme() {
         let expectedTheme = sut.theme
         let expectedState = sut.state
         sut.choose(card: sut.cards[0])
@@ -171,26 +171,26 @@ class MemoryGameTests: XCTestCase {
         XCTAssertNotEqual(expectedState, sut.state)
         XCTAssertTrue(sut.cards[0].isFaceUp)
 
-        sut.restart()
+        sut.startFresh()
 
         XCTAssertEqual(expectedTheme, sut.theme)
         XCTAssertEqual(expectedState, sut.state)
         XCTAssertFalse(sut.cards[0].isFaceUp)
     }
 
-    func test_memoryGameRestart_twoThemes_startsWithFirstThemeRestartsWithOtherTheme() {
+    func test_memoryGameStartFresh_twoThemes_startsWithFirstThemeRestartsWithOtherTheme() {
         let initialTheme = Game.Theme(name: "initial", contents: "ab", randomSource: nil)
         let expectedTheme = Game.Theme(name: "expected", contents: "cd", randomSource: nil)
         sut = Game(themes: [initialTheme, expectedTheme], randomSource: randomSourceFake)
 
         XCTAssertEqual(initialTheme, sut.theme)
 
-        sut.restart()
+        sut.startFresh()
 
         XCTAssertEqual(expectedTheme, sut.theme)
     }
 
-    func test_memoryGameRestart_manyThemes_startsWithRandomThemeRestartsWithRandomOtherTheme() {
+    func test_memoryGameStartFresh_manyThemes_startsWithRandomThemeRestartsWithRandomOtherTheme() {
         let initialTheme = Game.Theme(name: "initial", contents: "ab", randomSource: nil)
         let expectedTheme = Game.Theme(name: "expected", contents: "cd", randomSource: nil)
         let someTheme = Game.Theme(name: "some", contents: "cd", randomSource: nil)
@@ -208,15 +208,15 @@ class MemoryGameTests: XCTestCase {
             [expectedTheme, someTheme, someTheme, someTheme, someTheme]
         }
 
-        sut.restart()
+        sut.startFresh()
 
         XCTAssertEqual(expectedTheme, sut.theme)
     }
 
-    func test_memoryGameRestart_score_resetsScoreToZero() {
+    func test_memoryGameStartFresh_score_resetsScoreToZero() {
         withMatch()
 
-        sut.restart()
+        sut.startFresh()
 
         XCTAssertEqual(0, sut.score)
     }
@@ -230,19 +230,19 @@ class MemoryGameTests: XCTestCase {
 
         XCTAssertEqual(2, sut.score)
     }
-    
+
     func test_score_matchWithOnePreviouslySeenCard_increasesByTwo() {
         sut.choose(card: sut.cards[0])
         sut.choose(card: sut.cards[2])
         sut.choose(card: sut.cards[3])
 
         XCTAssertEqual(0, sut.score)
-        
+
         sut.choose(card: sut.cards[2])
-        
+
         XCTAssertEqual(2, sut.score)
     }
-    
+
     func test_score_matchWithTwoPreviouslySeenCards_increasesByTwo() {
         sut.choose(card: sut.cards[0])
         sut.choose(card: sut.cards[2])
@@ -250,10 +250,10 @@ class MemoryGameTests: XCTestCase {
         sut.choose(card: sut.cards[3])
 
         XCTAssertEqual(0, sut.score)
-        
+
         sut.choose(card: sut.cards[0])
         sut.choose(card: sut.cards[1])
-        
+
         XCTAssertEqual(2, sut.score)
     }
 

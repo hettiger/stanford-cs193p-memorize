@@ -23,7 +23,7 @@ struct MemoryGame<ContentType: Hashable> {
             else { preconditionFailure("a game requires at least one theme") }
         }
         didSet {
-            restart()
+            startFresh()
         }
     }
 
@@ -104,7 +104,7 @@ struct MemoryGame<ContentType: Hashable> {
         }
     }
 
-    mutating func restart() {
+    mutating func startFresh() {
         if themes.count > 1, let randomSource = randomSource {
             theme = themes.filter { $0 != theme }.shuffled(using: randomSource)[0]
         } else {

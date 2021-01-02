@@ -24,7 +24,7 @@ struct RootView: View {
                     ToolbarItemGroup(placement: .bottomBar) {
                         Text("Highscore: 0") // TODO: Implement real highscore here
                         Spacer()
-                        Button("New Game", action: game.restart)
+                        Button("New Game", action: game.startFresh)
                     }
                 }
                 .foregroundColor(.secondary)
