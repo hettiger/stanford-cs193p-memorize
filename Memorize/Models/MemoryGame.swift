@@ -25,6 +25,7 @@ struct MemoryGame<ContentType: Hashable> {
         didSet {
             state = .noCardFaceUp
             cards = theme.cards
+            score = initialScore
             print("current theme: \(theme.name)")
         }
     }
@@ -36,6 +37,8 @@ struct MemoryGame<ContentType: Hashable> {
     }
 
     private(set) var cards = [Card]()
+    
+    private(set) var score = 0
 
     init(themes: [Theme], randomSource: GKRandomSource? = .sharedRandom()) {
         self.randomSource = randomSource
@@ -58,6 +61,7 @@ struct MemoryGame<ContentType: Hashable> {
             if state.showsMatch(in: cards) {
                 cards[cards.firstIndex(with: id)!].isMatched = true
                 cards[cardIndex].isMatched = true
+                score += matchScore
             }
         case let .twoCardsFaceUp(idA, idB)
             where card.id != idA && card.id != idB:
@@ -77,4 +81,9 @@ struct MemoryGame<ContentType: Hashable> {
             theme = themes[0]
         }
     }
+    
+    // MARK: - Score Constants
+    
+    let initialScore = 0
+    let matchScore = 2
 }
