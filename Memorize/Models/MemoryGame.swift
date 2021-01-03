@@ -36,7 +36,7 @@ struct MemoryGame<ContentType: Hashable> {
         get { userDefaults.integer(forKey: UserDefaults.Key.highscore.rawValue) }
         set { userDefaults.set(newValue, forKey: UserDefaults.Key.highscore.rawValue) }
     }
-    
+
     private var userDefaults: UserDefaults
 
     init(

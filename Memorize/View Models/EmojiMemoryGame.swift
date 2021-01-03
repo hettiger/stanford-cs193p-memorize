@@ -13,7 +13,7 @@ class EmojiMemoryGame: ObservableObject {
 
     static var shared = EmojiMemoryGame()
     static var randomSource = GKRandomSource.sharedRandom()
-    
+
     private static var themes: [Game.Theme] {
         [
             .init(name: "Animals", contents: "🦆🦅🦉🐺🐗🐴🐝🪱🐛🦋", color: .orange),
