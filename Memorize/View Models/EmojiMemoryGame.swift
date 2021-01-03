@@ -12,7 +12,7 @@ class EmojiMemoryGame: ObservableObject {
     typealias Game = MemoryGame<Character>
 
     static var shared = EmojiMemoryGame()
-    static var randomSource: RandomSource = GKRandomSource.sharedRandom()
+    static var randomSource: RandomSource = MersenneTwisterRandomSource.shared
 
     private static var themes: [Game.Theme] {
         [
