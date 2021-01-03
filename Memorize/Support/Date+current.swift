@@ -9,8 +9,8 @@ import Foundation
 
 extension Date {
     static var current: Date {
-        __dateFactory()
+        now()
     }
 }
 
-internal var __dateFactory: () -> Date = Date.init
+var now: () -> Date = Date.init

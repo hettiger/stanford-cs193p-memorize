@@ -15,7 +15,7 @@ class TimeMachine {
     var date = Date()
 
     private init() {
-        __dateFactory = makeDate
+        now = makeDate
     }
 
     func makeDate() -> Date {
