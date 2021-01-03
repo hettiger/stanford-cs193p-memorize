@@ -15,17 +15,20 @@ class MemoryGameTests: XCTestCase {
     var sut: Game!
     var randomSourceFake: RandomSourceFake!
     var userDefaultsFake: UserDefaultsFake!
+    var timeMachine = TimeMachine.shared
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         randomSourceFake = RandomSourceFake()
         userDefaultsFake = UserDefaultsFake()
+        timeMachine.isActive = true
         withContents("🐶🐱🐭🐰")
     }
 
     override func tearDownWithError() throws {
         randomSourceFake = nil
         userDefaultsFake = nil
+        timeMachine.isActive = false
         sut = nil
         try super.tearDownWithError()
     }
@@ -263,6 +266,15 @@ class MemoryGameTests: XCTestCase {
         sut.choose(card: sut.cards[1])
 
         XCTAssertEqual(2, sut.score)
+    }
+
+    func test_score_matchFiveSecondsAfterChoosing_scoreDoesNotChange() {
+        sut.choose(card: sut.cards[0])
+        timeMachine.date = timeMachine.date.addingTimeInterval(sut.maxAllowedSecondsToMatch)
+
+        sut.choose(card: sut.cards[1])
+
+        XCTAssertEqual(0, sut.score)
     }
 
     func test_score_mismatchWithOnePreviouslySeenCard_penalizesOnePoint() {
