@@ -12,20 +12,25 @@ class EmojiMemoryGame: ObservableObject {
     typealias Game = MemoryGame<Character>
 
     static var shared = EmojiMemoryGame()
-
-    @Published
-    private var game: Game
-
-    init() {
-        game = Game(themes: [
+    static var randomSource = GKRandomSource.sharedRandom()
+    
+    private static var themes: [Game.Theme] {
+        [
             .init(name: "Animals", contents: "🦆🦅🦉🐺🐗🐴🐝🪱🐛🦋", color: .orange),
             .init(name: "Food", contents: "🍎🍋🍉🍇🍓🍌🍒🥝🌽🧅", color: .red),
             .init(name: "Activities", contents: "⚽️🏀🏈🎾🎱🏓⛳️🛼🥋🪁", color: .green),
             .init(name: "Tech", contents: "⌚️💻📱🖥🖨📷☎️📡🔦📺", numberOfCards: 6, color: .gray),
             .init(name: "Travel", contents: "🚙🚌🚕🚑🚓🚒🚜🚃🚂✈️", numberOfCards: 8, color: .blue),
             .init(name: "Countries", contents: "🇺🇸🇩🇪🇫🇷🇱🇺🇵🇱🇨🇭🇩🇰🇦🇹🇨🇿🇮🇹", color: .purple),
-        ])
+        ]
     }
+
+    private static func makeGame(isIncluded: ((Game.Theme) -> Bool) = { _ in true }) -> Game {
+        Game(theme: themes.filter(isIncluded).shuffled(using: randomSource).first ?? themes[0])
+    }
+
+    @Published
+    private var game = EmojiMemoryGame.makeGame()
 
     // MARK: - Model Accessors
 
@@ -52,6 +57,6 @@ class EmojiMemoryGame: ObservableObject {
     }
 
     func startFresh() {
-        game.startFresh()
+        game = EmojiMemoryGame.makeGame { $0.name != game.theme.name }
     }
 }

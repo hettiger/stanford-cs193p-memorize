@@ -13,20 +13,17 @@ class MemoryGameTests: XCTestCase {
     typealias Game = MemoryGame<Character>
 
     var sut: Game!
-    var randomSourceFake: RandomSourceFake!
     var userDefaultsFake: UserDefaultsFake!
     var timeMachine = TimeMachine.shared
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        randomSourceFake = RandomSourceFake()
         userDefaultsFake = UserDefaultsFake()
         timeMachine.isActive = true
         withContents("🐶🐱🐭🐰")
     }
 
     override func tearDownWithError() throws {
-        randomSourceFake = nil
         userDefaultsFake = nil
         timeMachine.isActive = false
         sut = nil
@@ -35,8 +32,7 @@ class MemoryGameTests: XCTestCase {
 
     func withContents(_ newContents: String) {
         sut = Game(
-            themes: [.init(name: "Test", contents: newContents, randomSource: nil)],
-            randomSource: randomSourceFake,
+            theme: .init(name: "Test", contents: newContents, randomSource: nil),
             userDefaults: userDefaultsFake
         )
     }
@@ -56,10 +52,6 @@ class MemoryGameTests: XCTestCase {
         XCTAssertTrue((sut.theme as Any) is Game.Theme)
     }
 
-    func test_memoryGame_providesThemes() {
-        XCTAssertTrue((sut.themes as Any) is [Game.Theme])
-    }
-
     func test_memoryGame_providesCards() {
         XCTAssertTrue((sut.cards as Any) is [Game.Card])
     }
@@ -74,14 +66,6 @@ class MemoryGameTests: XCTestCase {
 
     func test_memoryGame_providesHighscore() {
         XCTAssertTrue((sut.score as Any) is Int)
-    }
-
-    func test_memoryGame_zeroThemes_initializesWithEmptyTheme() {
-        sut = Game(themes: [])
-
-        XCTAssertEqual("Empty", sut.theme.name)
-        XCTAssertEqual(1, sut.themes.count)
-        XCTAssertEqual(0, sut.cards.count)
     }
 
     func test_memoryGame_startsInNoFaceUpCardState() {
@@ -171,65 +155,6 @@ class MemoryGameTests: XCTestCase {
         sut.choose(card: sut.cards[0])
 
         assertIsExpectedState()
-    }
-
-    func test_memoryGameStartFresh_oneTheme_startsWithOneAndOnlyThemeRestartsWithSameTheme() {
-        let expectedTheme = sut.theme
-        let expectedState = sut.state
-        sut.choose(card: sut.cards[0])
-
-        XCTAssertEqual(expectedTheme, sut.theme)
-        XCTAssertNotEqual(expectedState, sut.state)
-        XCTAssertTrue(sut.cards[0].isFaceUp)
-
-        sut.startFresh()
-
-        XCTAssertEqual(expectedTheme, sut.theme)
-        XCTAssertEqual(expectedState, sut.state)
-        XCTAssertFalse(sut.cards[0].isFaceUp)
-    }
-
-    func test_memoryGameStartFresh_twoThemes_startsWithFirstThemeRestartsWithOtherTheme() {
-        let initialTheme = Game.Theme(name: "initial", contents: "ab", randomSource: nil)
-        let expectedTheme = Game.Theme(name: "expected", contents: "cd", randomSource: nil)
-        sut = Game(themes: [initialTheme, expectedTheme], randomSource: randomSourceFake)
-
-        XCTAssertEqual(initialTheme, sut.theme)
-
-        sut.startFresh()
-
-        XCTAssertEqual(expectedTheme, sut.theme)
-    }
-
-    func test_memoryGameStartFresh_manyThemes_startsWithRandomThemeRestartsWithRandomOtherTheme() {
-        let initialTheme = Game.Theme(name: "initial", contents: "ab", randomSource: nil)
-        let expectedTheme = Game.Theme(name: "expected", contents: "cd", randomSource: nil)
-        let someTheme = Game.Theme(name: "some", contents: "cd", randomSource: nil)
-        let themes = [someTheme, someTheme, initialTheme, someTheme, expectedTheme, someTheme]
-
-        randomSourceFake.shuffle = { _ in
-            [initialTheme, someTheme, someTheme, expectedTheme, someTheme]
-        }
-
-        sut = Game(themes: themes, randomSource: randomSourceFake)
-
-        XCTAssertEqual(initialTheme, sut.theme)
-
-        randomSourceFake.shuffle = { _ in
-            [expectedTheme, someTheme, someTheme, someTheme, someTheme]
-        }
-
-        sut.startFresh()
-
-        XCTAssertEqual(expectedTheme, sut.theme)
-    }
-
-    func test_memoryGameStartFresh_score_resetsScoreToZero() {
-        withMatch()
-
-        sut.startFresh()
-
-        XCTAssertEqual(0, sut.score)
     }
 
     func test_score_newGame_isZero() {

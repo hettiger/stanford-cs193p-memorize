@@ -7,18 +7,26 @@
 
 @testable import Memorize
 import XCTest
+import GameKit
 
 class EmojiMemoryGameTests: XCTestCase {
     typealias Game = EmojiMemoryGame.Game
 
     var sut: EmojiMemoryGame!
+    var randomSource: GKRandomSource!
+    var randomSourceFake: RandomSourceFake!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
+        randomSource = EmojiMemoryGame.randomSource
+        randomSourceFake = RandomSourceFake()
+        EmojiMemoryGame.randomSource = randomSourceFake
         sut = EmojiMemoryGame()
     }
 
     override func tearDownWithError() throws {
+        EmojiMemoryGame.randomSource = randomSource
+        randomSourceFake = nil
         sut = nil
         try super.tearDownWithError()
     }
@@ -51,5 +59,26 @@ class EmojiMemoryGameTests: XCTestCase {
         sut.startFresh()
 
         XCTAssertNotEqual(initialTheme, sut.theme)
+    }
+    
+    func test_emojiMemoryGameStartFresh_startsNewGameWithRandomOtherTheme() {
+        let initialTheme = sut.theme
+        let expectedThemes = [Game.Theme(name: "expected", contents: "a")]
+        
+        randomSourceFake.shuffle = {
+            guard let themes = $0 as? [Game.Theme] else { return [] }
+            XCTAssertFalse(themes.contains(where: { $0.name == initialTheme.name }))
+            return expectedThemes
+        }
+        
+        sut.startFresh()
+        
+        XCTAssertEqual(expectedThemes[0], sut.theme)
+    }
+    
+    func test_emojiMemoryGameStartFresh_filteredAllThemes_startsNewGameWithFirstTheme() {
+        randomSourceFake.shuffle = { _ in [] }
+        
+        XCTAssertNoThrow(sut.startFresh())
     }
 }

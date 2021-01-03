@@ -15,27 +15,7 @@ struct MemoryGame<ContentType: Hashable> {
         case twoCardsFaceUp(Card, Card)
     }
 
-    private var randomSource: GKRandomSource?
-    private var userDefaults: UserDefaults
-
-    private(set) var themes: [Theme] {
-        willSet {
-            guard newValue.count > 0
-            else { preconditionFailure("a game requires at least one theme") }
-        }
-        didSet {
-            startFresh()
-        }
-    }
-
-    private(set) var theme: Theme {
-        didSet {
-            state = .noCardFaceUp
-            cards = theme.cards
-            score = initialScore
-            print("current theme: \(theme.name)")
-        }
-    }
+    let theme: Theme
 
     private(set) var state: State = .noCardFaceUp {
         didSet {
@@ -46,27 +26,27 @@ struct MemoryGame<ContentType: Hashable> {
 
     private(set) var cards = [Card]()
 
-    private(set) var score = 0 {
+    private(set) var score: Int {
         didSet {
             highscore = max(highscore, score)
         }
     }
 
-    var highscore: Int {
+    private(set) var highscore: Int {
         get { userDefaults.integer(forKey: UserDefaults.Key.highscore.rawValue) }
         set { userDefaults.set(newValue, forKey: UserDefaults.Key.highscore.rawValue) }
     }
+    
+    private var userDefaults: UserDefaults
 
     init(
-        themes: [Theme],
-        randomSource: GKRandomSource? = .sharedRandom(),
+        theme: Theme,
         userDefaults: UserDefaults = .standard
     ) {
-        self.randomSource = randomSource
         self.userDefaults = userDefaults
-        self.themes = [.init(name: "Empty", contents: [])]
-        theme = self.themes[0]
-        defer { if !themes.isEmpty { self.themes = themes } }
+        score = initialScore
+        self.theme = theme
+        cards = theme.cards
     }
 
     mutating func choose(card: Card) {
@@ -119,14 +99,6 @@ struct MemoryGame<ContentType: Hashable> {
             }
         default:
             break
-        }
-    }
-
-    mutating func startFresh() {
-        if themes.count > 1, let randomSource = randomSource {
-            theme = themes.filter { $0 != theme }.shuffled(using: randomSource)[0]
-        } else {
-            theme = themes[0]
         }
     }
 
