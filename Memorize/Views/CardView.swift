@@ -38,27 +38,14 @@ struct CardView: View {
     private func gradient(_ color: Color, for size: CGSize) -> some ShapeStyle {
         RadialGradient(
             gradient: .init(colors: [
-                self.color(color, for: .translucent),
-                self.color(color, for: .opaque),
-                self.color(color, for: .translucent),
+                color.opacity(CardView.translucentOpacity),
+                color.opacity(1),
+                color.opacity(CardView.translucentOpacity),
             ]),
             center: UnitPoint(x: CardView.aspectRatio, y: 1 - CardView.aspectRatio),
             startRadius: 0,
             endRadius: max(size.width, size.height)
         )
-    }
-
-    private func color(_ color: Color, for type: GradientColorType) -> Color {
-        switch type {
-        case .opaque:
-            return color.opacity(1)
-        case .translucent:
-            return color.opacity(CardView.translucentOpacity)
-        }
-    }
-
-    private enum GradientColorType {
-        case opaque, translucent
     }
 
     // MARK: - Drawing Constants
