@@ -7,18 +7,19 @@
 
 import Foundation
 import GameKit
+@testable import Memorize
 
-class RandomSourceFake: GKRandomSource {
+class RandomSourceFake: RandomSource {
     var shuffle: (([Any]) -> [Any])?
-    var lastUpperBound: Int?
+    var lastRange: ClosedRange<Int>?
     var nextInt = 0
 
-    override func arrayByShufflingObjects(in array: [Any]) -> [Any] {
-        (shuffle ?? { $0 })(array)
+    func randomInt(in range: ClosedRange<Int>) -> Int {
+        lastRange = range
+        return nextInt
     }
 
-    override func nextInt(upperBound: Int) -> Int {
-        lastUpperBound = upperBound
-        return nextInt
+    func shuffled<T>(_ array: [T]) -> [T] {
+        (shuffle ?? { $0 })(array) as! [T]
     }
 }

@@ -13,7 +13,7 @@ class EmojiMemoryGameTests: XCTestCase {
     typealias Game = EmojiMemoryGame.Game
 
     var sut: EmojiMemoryGame!
-    var randomSource: GKRandomSource!
+    var randomSource: RandomSource!
     var randomSourceFake: RandomSourceFake!
 
     override func setUpWithError() throws {

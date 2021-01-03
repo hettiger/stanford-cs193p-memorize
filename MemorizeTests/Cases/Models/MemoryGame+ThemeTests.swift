@@ -101,26 +101,24 @@ class MemoryGame_ThemeTests: XCTestCase {
     }
 
     func test_theme_nilNumberOfCards_cardsCountIsRandom() {
-        let lowerBound = 2
-        let nextInt = 4
-        let expectedCardsCount = 2 * (nextInt + lowerBound)
-        randomSourceFake.nextInt = nextInt
+        let numberOfPairsOfCards = 3
+        let expectedCardsCount = 2 * numberOfPairsOfCards
+        randomSourceFake.nextInt = numberOfPairsOfCards
 
         withNumberOfCards(nil)
 
         XCTAssertEqual(expectedCardsCount, sut.cards.count)
     }
 
-    func test_theme_nilNumberOfCards_randomSourceUsesAppropriateUppderBound() {
+    func test_theme_nilNumberOfCards_randomSourceUsesAppropriateRange() {
         withNumberOfCards(nil)
 
         for contents in ["", "a", "ab", "abc", "abcd"] {
-            let lowerBound = min(2, contents.count)
-            let upperBound = contents.count
+            let expectedRange = min(2, contents.count) ... contents.count
 
             withContents(contents)
 
-            XCTAssertEqual(upperBound + 1 - lowerBound, randomSourceFake.lastUpperBound)
+            XCTAssertEqual(expectedRange, randomSourceFake.lastRange)
         }
     }
 

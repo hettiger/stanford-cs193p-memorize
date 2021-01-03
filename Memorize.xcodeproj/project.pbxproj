@@ -25,6 +25,7 @@
 		5B8C0F48259A4340003ABC74 /* Int+randomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F47259A4340003ABC74 /* Int+randomTests.swift */; };
 		5B8C0F50259A4B9D003ABC74 /* Array+Shuffling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F4F259A4B9D003ABC74 /* Array+Shuffling.swift */; };
 		5B8C0F55259A4BB7003ABC74 /* Array+ShufflingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F54259A4BB7003ABC74 /* Array+ShufflingTests.swift */; };
+		5BA21B8225A203AD005B4825 /* GKRandomSource+RandomSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA21B8125A203AD005B4825 /* GKRandomSource+RandomSource.swift */; };
 		5BA327AF25991F41004DA33B /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA327AE25991F41004DA33B /* ContentViewTests.swift */; };
 		5BB61EFF2598A43E00B9D6D2 /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB61EFE2598A43E00B9D6D2 /* MemoryGame.swift */; };
 		5BB61F072598A46200B9D6D2 /* MemoryGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB61F062598A46200B9D6D2 /* MemoryGameTests.swift */; };
@@ -79,6 +80,7 @@
 		5B8C0F47259A4340003ABC74 /* Int+randomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+randomTests.swift"; sourceTree = "<group>"; };
 		5B8C0F4F259A4B9D003ABC74 /* Array+Shuffling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Shuffling.swift"; sourceTree = "<group>"; };
 		5B8C0F54259A4BB7003ABC74 /* Array+ShufflingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ShufflingTests.swift"; sourceTree = "<group>"; };
+		5BA21B8125A203AD005B4825 /* GKRandomSource+RandomSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GKRandomSource+RandomSource.swift"; sourceTree = "<group>"; };
 		5BA327AE25991F41004DA33B /* ContentViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTests.swift; sourceTree = "<group>"; };
 		5BB61EFE2598A43E00B9D6D2 /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
 		5BB61F062598A46200B9D6D2 /* MemoryGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameTests.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				5B8C0F4F259A4B9D003ABC74 /* Array+Shuffling.swift */,
 				5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */,
 				5B85113225A12F9B00CF6F11 /* Date+current.swift */,
+				5BA21B8125A203AD005B4825 /* GKRandomSource+RandomSource.swift */,
 				5B287F54259CC6A300D14B46 /* GridLayout.swift */,
 				5B8C0F3F259A3AB7003ABC74 /* Int+random.swift */,
 				5BEDB7F325A0E5EC00E93C26 /* UserDefaults+Keys.swift */,
@@ -455,6 +458,7 @@
 				5B287F55259CC6A400D14B46 /* GridLayout.swift in Sources */,
 				5BB61F242598C11D00B9D6D2 /* EmojiMemoryGame.swift in Sources */,
 				5B8C0F50259A4B9D003ABC74 /* Array+Shuffling.swift in Sources */,
+				5BA21B8225A203AD005B4825 /* GKRandomSource+RandomSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

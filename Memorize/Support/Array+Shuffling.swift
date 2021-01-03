@@ -9,11 +9,11 @@ import Foundation
 import GameKit
 
 extension Array {
-    mutating func shuffle(using randomSource: GKRandomSource) {
+    mutating func shuffle(using randomSource: RandomSource) {
         self = shuffled(using: randomSource)
     }
 
-    func shuffled(using randomSource: GKRandomSource) -> [Element] {
-        randomSource.arrayByShufflingObjects(in: self as [Any]) as! [Element]
+    func shuffled(using randomSource: RandomSource) -> [Element] {
+        randomSource.shuffled(self)
     }
 }

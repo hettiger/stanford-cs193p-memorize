@@ -22,18 +22,13 @@ class Int_randomTests: XCTestCase {
     }
 
     func test_intRandomInUsing_returnsRandomIntInClosedRange() {
-        let lowerBound = 2
-        let upperBound = 5
-        let expectedRandomSourceUpperBound = upperBound - lowerBound + 1
+        let expectedRange = 2 ... 5
+        let expectedInt = 4
+        randomSourceFake.nextInt = expectedInt
 
-        for nextInt in 0 ..< expectedRandomSourceUpperBound {
-            let expectedInt = nextInt + lowerBound
-            randomSourceFake.nextInt = nextInt
+        let actualInt = Int.random(in: expectedRange, using: randomSourceFake)
 
-            let actualInt = Int.random(in: 2 ... 5, using: randomSourceFake)
-
-            XCTAssertEqual(expectedRandomSourceUpperBound, randomSourceFake.lastUpperBound)
-            XCTAssertEqual(expectedInt, actualInt)
-        }
+        XCTAssertEqual(expectedRange, randomSourceFake.lastRange)
+        XCTAssertEqual(expectedInt, actualInt)
     }
 }

@@ -19,7 +19,7 @@ extension MemoryGame {
             contents: Contents,
             numberOfCards: Int? = nil,
             color: Color = .clear,
-            randomSource: GKRandomSource? = .sharedRandom()
+            randomSource: RandomSource? = GKRandomSource.sharedRandom()
         ) where Contents.Element == ContentType {
             let contents = Set(contents)
 
@@ -43,7 +43,7 @@ extension MemoryGame {
         private static func numberOfPairsOfCards(
             numberOfCards: Int?,
             contents: Set<ContentType>,
-            using randomSource: GKRandomSource?
+            using randomSource: RandomSource?
         ) -> Int {
             if let numberOfCards = numberOfCards {
                 return min(max(0, Int(numberOfCards / 2)), contents.count)
@@ -62,7 +62,7 @@ extension MemoryGame {
         private static func cards(
             for contents: Set<ContentType>,
             withNumberOfPairs numberOfPairs: Int,
-            using randomSource: GKRandomSource? = nil
+            using randomSource: RandomSource? = nil
         ) -> [Card] {
             let contents = Array(contents)
             var cards = [Card]()
