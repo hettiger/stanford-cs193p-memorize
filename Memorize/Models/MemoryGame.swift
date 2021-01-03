@@ -15,6 +15,7 @@ struct MemoryGame<ContentType: Hashable> {
         case twoCardsFaceUp(Card, Card)
     }
 
+    let userDefaults: UserDefaults
     let theme: Theme
 
     private(set) var state: State = .noCardFaceUp {
@@ -36,8 +37,6 @@ struct MemoryGame<ContentType: Hashable> {
         get { userDefaults.integer(forKey: UserDefaults.Key.highscore.rawValue) }
         set { userDefaults.set(newValue, forKey: UserDefaults.Key.highscore.rawValue) }
     }
-
-    private var userDefaults: UserDefaults
 
     init(
         theme: Theme,
