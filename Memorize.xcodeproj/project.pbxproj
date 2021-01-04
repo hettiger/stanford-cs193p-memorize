@@ -303,13 +303,13 @@
 			isa = PBXGroup;
 			children = (
 				5B8C0F4F259A4B9D003ABC74 /* Array+Shuffling.swift */,
+				5BA21B9A25A26BB2005B4825 /* Color+lightened+darkened.swift */,
 				5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */,
 				5B85113225A12F9B00CF6F11 /* Date+current.swift */,
 				5B287F54259CC6A300D14B46 /* GridLayout.swift */,
 				5B8C0F3F259A3AB7003ABC74 /* Int+random.swift */,
 				5BA21B8125A203AD005B4825 /* MersenneTwisterRandomSource.swift */,
 				5BEDB7F325A0E5EC00E93C26 /* UserDefaults+Keys.swift */,
-				5BA21B9A25A26BB2005B4825 /* Color+lightened+darkened.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
