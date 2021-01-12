@@ -11,7 +11,7 @@ struct ContentView: View {
     @ObservedObject var game = EmojiMemoryGame.shared
 
     var body: some View {
-        Grid(game.cards, desiredAspectRatio: CardView.aspectRatio) { card in
+        Grid(game.cards, desiredAspectRatio: Cardify.aspectRatio) { card in
             CardView(card: card).onTapGesture {
                 game.choose(card: card)
             }

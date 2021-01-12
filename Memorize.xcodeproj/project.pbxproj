@@ -31,6 +31,8 @@
 		5BA327AF25991F41004DA33B /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA327AE25991F41004DA33B /* ContentViewTests.swift */; };
 		5BB1929525ADFBB30029E1B5 /* PieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB1929425ADFBB30029E1B5 /* PieTests.swift */; };
 		5BB1929A25ADFC090029E1B5 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB1929925ADFC090029E1B5 /* Pie.swift */; };
+		5BB192A525AE0B410029E1B5 /* CardifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB192A425AE0B410029E1B5 /* CardifyTests.swift */; };
+		5BB192AA25AE0B640029E1B5 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB192A925AE0B640029E1B5 /* Cardify.swift */; };
 		5BB61EFF2598A43E00B9D6D2 /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB61EFE2598A43E00B9D6D2 /* MemoryGame.swift */; };
 		5BB61F072598A46200B9D6D2 /* MemoryGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB61F062598A46200B9D6D2 /* MemoryGameTests.swift */; };
 		5BB61F242598C11D00B9D6D2 /* EmojiMemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB61F232598C11D00B9D6D2 /* EmojiMemoryGame.swift */; };
@@ -90,6 +92,8 @@
 		5BA327AE25991F41004DA33B /* ContentViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTests.swift; sourceTree = "<group>"; };
 		5BB1929425ADFBB30029E1B5 /* PieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieTests.swift; sourceTree = "<group>"; };
 		5BB1929925ADFC090029E1B5 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
+		5BB192A425AE0B410029E1B5 /* CardifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardifyTests.swift; sourceTree = "<group>"; };
+		5BB192A925AE0B640029E1B5 /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		5BB61EFE2598A43E00B9D6D2 /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
 		5BB61F062598A46200B9D6D2 /* MemoryGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameTests.swift; sourceTree = "<group>"; };
 		5BB61F232598C11D00B9D6D2 /* EmojiMemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGame.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 		5BB1928525ADFA030029E1B5 /* View Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				5BB192A925AE0B640029E1B5 /* Cardify.swift */,
 			);
 			path = "View Modifiers";
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 		5BB1928B25ADFA780029E1B5 /* View Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				5BB192A425AE0B410029E1B5 /* CardifyTests.swift */,
 			);
 			path = "View Modifiers";
 			sourceTree = "<group>";
@@ -521,6 +527,7 @@
 				5BB61F242598C11D00B9D6D2 /* EmojiMemoryGame.swift in Sources */,
 				5B8C0F50259A4B9D003ABC74 /* Array+Shuffling.swift in Sources */,
 				5BA21B8225A203AD005B4825 /* MersenneTwisterRandomSource.swift in Sources */,
+				5BB192AA25AE0B640029E1B5 /* Cardify.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +541,7 @@
 				5BB61F072598A46200B9D6D2 /* MemoryGameTests.swift in Sources */,
 				5BEDB7FC25A0EB4800E93C26 /* UserDefaultsFake.swift in Sources */,
 				5B8C0F48259A4340003ABC74 /* Int+randomTests.swift in Sources */,
+				5BB192A525AE0B410029E1B5 /* CardifyTests.swift in Sources */,
 				5B8C0F55259A4BB7003ABC74 /* Array+ShufflingTests.swift in Sources */,
 				5B85112B25A12E3E00CF6F11 /* TimeMachine.swift in Sources */,
 				5BA21B9625A263B0005B4825 /* MersenneTwisterRandomSourceTests.swift in Sources */,
