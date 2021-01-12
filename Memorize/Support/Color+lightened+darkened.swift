@@ -12,14 +12,14 @@ extension Color {
     ///
     /// - Parameter amount: A value between 0 (no effect) and 1 (full white) that represents the intensity of the lighten effect.
     func lightened(by amount: CGFloat) -> Color {
-        return Color(UIColor(self).lightened(by: amount))
+        Color(UIColor(self).lightened(by: amount))
     }
 
     /// Returns darkened copy of `self`
     ///
     /// - Parameter amount: A value between 0 (no effect) and 1 (full black) that represents the intensity of the darken effect.
     func darkened(by amount: CGFloat) -> Color {
-        return Color(UIColor(self).darkened(by: amount))
+        Color(UIColor(self).darkened(by: amount))
     }
 }
 

@@ -31,7 +31,7 @@ struct Pie: Shape {
             endAngle: endAngle,
             clockwise: clockwise
         )
-        
+
         return path
     }
 }
