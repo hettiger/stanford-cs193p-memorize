@@ -20,6 +20,12 @@ struct CardView: View {
                         .fill(gradient(CardView.faceUpFillColor, for: geometry.size))
                     RoundedRectangle(cornerRadius: CardView.cornerRadius)
                         .strokeBorder(lineWidth: CardView.strokeWidth)
+                    Pie(
+                        startAngle: Angle.degrees(0 - 90),
+                        endAngle: Angle.degrees(110 - 90),
+                        clockwise: true
+                    )
+                    .padding(CardView.piePadding)
                     Text(String(card.content))
                 } else if !card.isMatched {
                     RoundedRectangle(cornerRadius: CardView.cornerRadius)
@@ -32,7 +38,7 @@ struct CardView: View {
     }
 
     private func font(for size: CGSize) -> Font {
-        .system(size: min(size.width, size.height) * CardView.aspectRatio)
+        .system(size: min(size.width, size.height) * CardView.fontSizeFactor)
     }
 
     private func gradient(_ color: Color, for size: CGSize) -> some ShapeStyle {
@@ -54,6 +60,8 @@ struct CardView: View {
     static let faceUpFillColor: Color = .init(white: 0.96)
     static let strokeWidth: CGFloat = 3
     static let aspectRatio: CGFloat = 2 / 3
+    static let fontSizeFactor: CGFloat = 1 / 2
+    static let piePadding: CGFloat = 8
     static let lightenAmount: CGFloat = 0.5
 }
 

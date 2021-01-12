@@ -11,6 +11,7 @@ import ViewInspector
 import XCTest
 
 extension CardView: Inspectable {}
+extension Pie: Inspectable {}
 
 class CardViewTests: XCTestCase {
     var sut: CardView!
@@ -29,11 +30,23 @@ class CardViewTests: XCTestCase {
         sut =
             CardView(card: .init(id: 0, content: "e", isFaceUp: isFaceUp, isMatched: isMatched))
     }
+    
+    func test_cardView_isFaceDown_doesNotShowPie() throws {
+        withCard(isFaceUp: false)
+
+        XCTAssertThrowsError(try sut.inspect().find(Pie.self))
+    }
 
     func test_cardView_isFaceDown_doesNotShowEmoji() throws {
         withCard(isFaceUp: false)
 
         XCTAssertThrowsError(try sut.inspect().find(text: String(sut.card.content)))
+    }
+    
+    func test_cardView_isFaceUp_showsPie() throws {
+        withCard(isFaceUp: true)
+        
+        XCTAssertNoThrow(try sut.inspect().find(Pie.self))
     }
 
     func test_cardView_isFaceUp_showsEmoji() throws {
