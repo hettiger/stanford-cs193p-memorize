@@ -26,6 +26,7 @@ struct CardView: View {
                         clockwise: true
                     )
                     .padding(CardView.piePadding)
+                    .opacity(CardView.pieOpacity)
                     Text(String(card.content))
                 } else if !card.isMatched {
                     RoundedRectangle(cornerRadius: CardView.cornerRadius)
@@ -62,6 +63,7 @@ struct CardView: View {
     static let aspectRatio: CGFloat = 2 / 3
     static let fontSizeFactor: CGFloat = 1 / 2
     static let piePadding: CGFloat = 8
+    static let pieOpacity: Double = 0.4
     static let lightenAmount: CGFloat = 0.5
 }
 
@@ -69,6 +71,7 @@ struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             CardView(card: .init(id: 0, content: "👻", isFaceUp: true))
+                .foregroundColor(.orange)
             CardView(card: .init(id: 1, content: "👻", isFaceUp: false))
         }
     }
