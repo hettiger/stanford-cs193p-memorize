@@ -27,7 +27,6 @@
 		5B8C0F55259A4BB7003ABC74 /* Array+ShufflingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F54259A4BB7003ABC74 /* Array+ShufflingTests.swift */; };
 		5BA21B8225A203AD005B4825 /* MersenneTwisterRandomSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA21B8125A203AD005B4825 /* MersenneTwisterRandomSource.swift */; };
 		5BA21B9625A263B0005B4825 /* MersenneTwisterRandomSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA21B9525A263B0005B4825 /* MersenneTwisterRandomSourceTests.swift */; };
-		5BA21B9B25A26BB2005B4825 /* Color+lightened+darkened.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA21B9A25A26BB2005B4825 /* Color+lightened+darkened.swift */; };
 		5BA327AF25991F41004DA33B /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA327AE25991F41004DA33B /* ContentViewTests.swift */; };
 		5BB1929525ADFBB30029E1B5 /* PieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB1929425ADFBB30029E1B5 /* PieTests.swift */; };
 		5BB1929A25ADFC090029E1B5 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB1929925ADFC090029E1B5 /* Pie.swift */; };
@@ -88,7 +87,6 @@
 		5B8C0F54259A4BB7003ABC74 /* Array+ShufflingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ShufflingTests.swift"; sourceTree = "<group>"; };
 		5BA21B8125A203AD005B4825 /* MersenneTwisterRandomSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MersenneTwisterRandomSource.swift; sourceTree = "<group>"; };
 		5BA21B9525A263B0005B4825 /* MersenneTwisterRandomSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MersenneTwisterRandomSourceTests.swift; sourceTree = "<group>"; };
-		5BA21B9A25A26BB2005B4825 /* Color+lightened+darkened.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+lightened+darkened.swift"; sourceTree = "<group>"; };
 		5BA327AE25991F41004DA33B /* ContentViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTests.swift; sourceTree = "<group>"; };
 		5BB1929425ADFBB30029E1B5 /* PieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieTests.swift; sourceTree = "<group>"; };
 		5BB1929925ADFC090029E1B5 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
@@ -363,7 +361,6 @@
 			isa = PBXGroup;
 			children = (
 				5B8C0F4F259A4B9D003ABC74 /* Array+Shuffling.swift */,
-				5BA21B9A25A26BB2005B4825 /* Color+lightened+darkened.swift */,
 				5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */,
 				5B85113225A12F9B00CF6F11 /* Date+current.swift */,
 				5B287F54259CC6A300D14B46 /* GridLayout.swift */,
@@ -517,7 +514,6 @@
 				5B287F5A259CC75400D14B46 /* Grid.swift in Sources */,
 				5BEDB7F425A0E5EC00E93C26 /* UserDefaults+Keys.swift in Sources */,
 				5BE64D9025976B3B002B1D70 /* ContentView.swift in Sources */,
-				5BA21B9B25A26BB2005B4825 /* Color+lightened+darkened.swift in Sources */,
 				5BE64DC425977BF8002B1D70 /* CardView.swift in Sources */,
 				5BE64D8E25976B3B002B1D70 /* MemorizeApp.swift in Sources */,
 				5BEDB7B1259F3BF200E93C26 /* MemoryGame+Theme.swift in Sources */,

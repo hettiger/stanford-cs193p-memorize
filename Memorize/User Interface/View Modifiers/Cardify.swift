@@ -36,9 +36,9 @@ struct Cardify: ViewModifier {
     private func gradient(_ color: Color, for size: CGSize) -> some ShapeStyle {
         RadialGradient(
             gradient: .init(colors: [
-                color.lightened(by: lightenAmount),
+                color.opacity(gradientOpacity),
                 color,
-                color.lightened(by: lightenAmount),
+                color.opacity(gradientOpacity),
             ]),
             center: UnitPoint(x: centerRatio, y: 1 - centerRatio),
             startRadius: 0,
@@ -52,5 +52,5 @@ struct Cardify: ViewModifier {
     private let faceUpFillColor: Color = .init(white: 0.96)
     private let strokeWidth: CGFloat = 3
     private let centerRatio: CGFloat = 2 / 3
-    private let lightenAmount: CGFloat = 0.5
+    private let gradientOpacity = 0.5
 }
