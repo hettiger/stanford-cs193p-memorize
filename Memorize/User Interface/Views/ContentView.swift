@@ -11,25 +11,31 @@ struct ContentView: View {
     @ObservedObject var game = EmojiMemoryGame.shared
 
     var body: some View {
-        Grid(game.cards, desiredAspectRatio: Cardify.aspectRatio) { card in
+        Grid(game.cards, desiredAspectRatio: aspectRatio) { card in
             CardView(card: card).onTapGesture {
                 game.choose(card: card)
             }
             .accessibilityIdentifier("Memory Game Card \(card.id)")
-            .padding(ContentView.padding)
+            .aspectRatio(aspectRatio, contentMode: .fit)
+            .padding(padding)
         }
         .foregroundColor(game.theme.color)
-        .padding(ContentView.padding)
+        .padding(padding)
     }
 
     // MARK: - Drawing Constants
 
-    static let padding: CGFloat = 10
+    private let aspectRatio: CGFloat = 2 / 3
+    private let padding: CGFloat = 10
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
+        let game = EmojiMemoryGame.shared
+        game.theme = EmojiMemoryGame.themes[3]
+        game.choose(card: game.cards[3])
+
+        return Group {
             ContentView()
                 .preferredColorScheme(.dark)
             ContentView()

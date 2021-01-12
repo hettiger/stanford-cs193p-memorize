@@ -14,7 +14,7 @@ class EmojiMemoryGame: ObservableObject {
     static var shared = EmojiMemoryGame()
     static var randomSource: RandomSource = MersenneTwisterRandomSource.shared
 
-    private static var themes: [Game.Theme] {
+    static var themes: [Game.Theme] {
         [
             .init(name: "Animals", contents: "🦆🦅🦉🐺🐗🐴🐝🪱🐛🦋", color: .orange),
             .init(name: "Food", contents: "🍎🍋🍉🍇🍓🍌🍒🥝🌽🧅", color: .red),
@@ -35,7 +35,8 @@ class EmojiMemoryGame: ObservableObject {
     // MARK: - Model Accessors
 
     var theme: Game.Theme {
-        game.theme
+        get { game.theme }
+        set { game = .init(theme: newValue) }
     }
 
     var cards: [Game.Card] {

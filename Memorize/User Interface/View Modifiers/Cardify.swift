@@ -16,32 +16,31 @@ struct Cardify: ViewModifier {
         GeometryReader { geometry in
             ZStack {
                 if isFaceUp {
-                    RoundedRectangle(cornerRadius: Cardify.cornerRadius)
-                        .fill(Color.white)
-                    RoundedRectangle(cornerRadius: Cardify.cornerRadius)
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        .fill(faceUpFillColor)
+                    RoundedRectangle(cornerRadius: cornerRadius)
                         .fill(gradient(.white, for: geometry.size))
-                    RoundedRectangle(cornerRadius: Cardify.cornerRadius)
-                        .strokeBorder(lineWidth: Cardify.strokeWidth)
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        .strokeBorder(lineWidth: strokeWidth)
                     content
                 } else {
-                    RoundedRectangle(cornerRadius: Cardify.cornerRadius)
+                    RoundedRectangle(cornerRadius: cornerRadius)
                         .fill(Color.white)
-                    RoundedRectangle(cornerRadius: Cardify.cornerRadius)
+                    RoundedRectangle(cornerRadius: cornerRadius)
                         .fill(gradient(color, for: geometry.size))
                 }
             }
         }
-        .aspectRatio(Cardify.aspectRatio, contentMode: .fit)
     }
 
     private func gradient(_ color: Color, for size: CGSize) -> some ShapeStyle {
         RadialGradient(
             gradient: .init(colors: [
-                color.lightened(by: Cardify.lightenAmount),
+                color.lightened(by: lightenAmount),
                 color,
-                color.lightened(by: Cardify.lightenAmount),
+                color.lightened(by: lightenAmount),
             ]),
-            center: UnitPoint(x: Cardify.aspectRatio, y: 1 - Cardify.aspectRatio),
+            center: UnitPoint(x: centerRatio, y: 1 - centerRatio),
             startRadius: 0,
             endRadius: 2 * max(size.width, size.height)
         )
@@ -49,9 +48,9 @@ struct Cardify: ViewModifier {
 
     // MARK: - Drawing Constants
 
-    static let cornerRadius: CGFloat = 10
-    static let faceUpFillColor: Color = .init(white: 0.96)
-    static let strokeWidth: CGFloat = 3
-    static let aspectRatio: CGFloat = 2 / 3
-    static let lightenAmount: CGFloat = 0.5
+    private let cornerRadius: CGFloat = 10
+    private let faceUpFillColor: Color = .init(white: 0.96)
+    private let strokeWidth: CGFloat = 3
+    private let centerRatio: CGFloat = 2 / 3
+    private let lightenAmount: CGFloat = 0.5
 }

@@ -21,8 +21,8 @@ struct CardView: View {
                         endAngle: Angle.degrees(110 - 90),
                         clockwise: true
                     )
-                    .padding(CardView.piePadding)
-                    .opacity(CardView.pieOpacity)
+                    .padding(piePadding)
+                    .opacity(pieOpacity)
                     Text(String(card.content))
                         .font(font(for: geometry.size))
                 }
@@ -35,14 +35,14 @@ struct CardView: View {
     }
 
     private func font(for size: CGSize) -> Font {
-        .system(size: min(size.width, size.height) * CardView.fontSizeFactor)
+        .system(size: min(size.width, size.height) * fontSizeFactor)
     }
 
     // MARK: - Drawing Constants
 
-    static let fontSizeFactor: CGFloat = 1 / 2
-    static let piePadding: CGFloat = 8
-    static let pieOpacity: Double = 0.4
+    private let fontSizeFactor: CGFloat = 1 / 2
+    private let piePadding: CGFloat = 8
+    private let pieOpacity: Double = 0.4
 }
 
 struct CardView_Previews: PreviewProvider {
