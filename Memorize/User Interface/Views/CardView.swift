@@ -13,8 +13,8 @@ struct CardView: View {
     var card: MemoryGame<Character>.Card
 
     var body: some View {
-        if card.isFaceUp || !card.isMatched {
-            GeometryReader { geometry in
+        GeometryReader { geometry in
+            if card.isFaceUp || !card.isMatched {
                 ZStack {
                     Pie(
                         startAngle: Angle.degrees(0 - 90),
@@ -33,6 +33,7 @@ struct CardView: View {
                         )
                 }
                 .cardify(isFaceUp: card.isFaceUp, color: game.theme.color)
+                .transition(.scale)
             }
         }
     }
