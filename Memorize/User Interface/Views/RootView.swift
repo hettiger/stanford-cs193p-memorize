@@ -24,7 +24,11 @@ struct RootView: View {
                     ToolbarItemGroup(placement: .bottomBar) {
                         Text("Highscore: \(game.highscore)")
                         Spacer()
-                        Button("New Game", action: game.startFresh)
+                        Button("New Game") {
+                            withAnimation(.easeInOut(duration: 2)) {
+                                game.startFresh()
+                            }
+                        }
                     }
                 }
                 .foregroundColor(.secondary)

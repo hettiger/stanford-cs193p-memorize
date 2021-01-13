@@ -13,7 +13,9 @@ struct ContentView: View {
     var body: some View {
         Grid(game.cards, desiredAspectRatio: aspectRatio) { card in
             CardView(card: card).onTapGesture {
-                game.choose(card: card)
+                withAnimation(.linear(duration: 2)) {
+                    game.choose(card: card)
+                }
             }
             .accessibilityIdentifier("Memory Game Card \(card.id)")
             .aspectRatio(aspectRatio, contentMode: .fit)
