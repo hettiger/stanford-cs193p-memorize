@@ -32,10 +32,7 @@ struct CardView: View {
                                 : .default
                         )
                 }
-                .modifier(Cardify(
-                    isFaceUp: card.isFaceUp,
-                    color: game.theme.color
-                ))
+                .cardify(isFaceUp: card.isFaceUp, color: game.theme.color)
             }
         }
     }

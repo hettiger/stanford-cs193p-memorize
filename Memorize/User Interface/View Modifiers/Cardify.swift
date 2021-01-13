@@ -56,3 +56,11 @@ struct Cardify: ViewModifier {
     private let centerRatio: CGFloat = 2 / 3
     private let gradientOpacity = 0.5
 }
+
+// MARK: - View Extension
+
+extension View {
+    func cardify(isFaceUp: Bool, color: Color) -> some View {
+        modifier(Cardify(isFaceUp: isFaceUp, color: color))
+    }
+}
