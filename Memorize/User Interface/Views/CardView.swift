@@ -25,6 +25,12 @@ struct CardView: View {
                     .opacity(pieOpacity)
                     Text(String(card.content))
                         .font(font(for: geometry.size))
+                        .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
+                        .animation(
+                            card.isMatched
+                                ? Animation.linear(duration: 2).repeatForever(autoreverses: false)
+                                : .default
+                        )
                 }
                 .modifier(Cardify(
                     isFaceUp: card.isFaceUp,
