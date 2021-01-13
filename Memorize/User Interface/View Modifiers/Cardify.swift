@@ -17,9 +17,9 @@ struct Cardify: ViewModifier {
             ZStack {
                 if isFaceUp {
                     RoundedRectangle(cornerRadius: cornerRadius)
-                        .fill(faceUpFillColor)
+                        .fill(Color.white)
                     RoundedRectangle(cornerRadius: cornerRadius)
-                        .fill(gradient(.white, for: geometry.size))
+                        .fill(gradient(faceUpFillColor, for: geometry.size))
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .strokeBorder(lineWidth: strokeWidth)
                     content
