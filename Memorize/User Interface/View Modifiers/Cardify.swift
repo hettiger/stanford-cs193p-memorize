@@ -10,6 +10,7 @@ import SwiftUI
 struct Cardify: ViewModifier {
     let isFaceUp: Bool
     let color: Color
+    var didAppear: ((Self.Body) -> Void)? = nil
 
     @ViewBuilder
     func body(content: Content) -> some View {
@@ -31,6 +32,7 @@ struct Cardify: ViewModifier {
                 }
             }
         }
+        .onAppear { self.didAppear?(self.body(content: content)) }
     }
 
     private func gradient(_ color: Color, for size: CGSize) -> some ShapeStyle {
