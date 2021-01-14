@@ -13,7 +13,7 @@ struct EmojiGameView: View {
     var body: some View {
         Grid(game.cards, desiredAspectRatio: aspectRatio) { card in
             EmojiCardView(card: card).onTapGesture {
-                withAnimation(.linear(duration: 2)) {
+                withAnimation(.linear) {
                     game.choose(card: card)
                 }
             }

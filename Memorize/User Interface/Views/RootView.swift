@@ -20,7 +20,7 @@ struct RootView: View {
                         Text("Highscore: \(game.highscore)")
                         Spacer()
                         Button("New Game") {
-                            withAnimation(.easeInOut(duration: 2)) {
+                            withAnimation(.easeInOut) {
                                 game.startFresh()
                             }
                         }
