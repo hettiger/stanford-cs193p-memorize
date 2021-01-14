@@ -87,7 +87,7 @@ struct MemoryGame<ContentType: Hashable> {
         case let .twoCardsFaceUp(cardA, cardB):
             for card in [cardA, cardB] {
                 let index = cards.firstIndex(of: card)!
-                if cards[index].isMatched {
+                if cards[index].hasEarnedBonus {
                     score += isMatchedScore
                 } else if cards[index].hasBeenFaceUp {
                     score += hasBeenFaceUpScore

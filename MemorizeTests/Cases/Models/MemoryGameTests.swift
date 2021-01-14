@@ -9,6 +9,10 @@ import GameKit
 @testable import Memorize
 import XCTest
 
+/// Memory Game Tests
+///
+/// Tests do not cover bonus time because I did not want to touch the instructors code.
+/// Someone might copy it and replacements of `Date()` calls might lead to errors …
 class MemoryGameTests: XCTestCase {
     typealias Game = MemoryGame<Character>
 
