@@ -47,8 +47,8 @@ class CardifyTests: XCTestCase {
         sut.didAppear = { body in
             body.inspect { view in
                 XCTAssertNoThrow(
-                    try view.find(ViewType.ZStack.self)
-                        .view(ModifierContent.self, 3)
+                    try view.find(ViewType.Group.self)
+                        .view(ModifierContent.self, 2)
                 )
             }
             ViewHosting.expel()
