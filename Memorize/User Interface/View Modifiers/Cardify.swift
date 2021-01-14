@@ -10,8 +10,6 @@ import SwiftUI
 struct Cardify: AnimatableModifier {
     let color: Color
 
-    var didAppear: ((Self.Body) -> Void)?
-
     var animatableData: Double {
         get { rotation }
         set { rotation = newValue }
@@ -48,7 +46,6 @@ struct Cardify: AnimatableModifier {
             }
             .rotation3DEffect(Angle.degrees(rotation), axis: (0, 1, 0))
         }
-        .onAppear { self.didAppear?(self.body(content: content)) }
     }
 
     private func gradient(_ color: Color, for size: CGSize) -> some ShapeStyle {
