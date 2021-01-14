@@ -41,6 +41,7 @@
 		5BEDB7E325A0C77E00E93C26 /* MemoryGame+CardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7E225A0C77E00E93C26 /* MemoryGame+CardTests.swift */; };
 		5BEDB7F425A0E5EC00E93C26 /* UserDefaults+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7F325A0E5EC00E93C26 /* UserDefaults+Keys.swift */; };
 		5BEDB7FC25A0EB4800E93C26 /* UserDefaultsFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7FB25A0EB4800E93C26 /* UserDefaultsFake.swift */; };
+		5BF9386525B09D6300A6922B /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5BF9386425B09D6300A6922B /* demo.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,8 @@
 		5BEDB7E225A0C77E00E93C26 /* MemoryGame+CardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryGame+CardTests.swift"; sourceTree = "<group>"; };
 		5BEDB7F325A0E5EC00E93C26 /* UserDefaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Keys.swift"; sourceTree = "<group>"; };
 		5BEDB7FB25A0EB4800E93C26 /* UserDefaultsFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsFake.swift; sourceTree = "<group>"; };
+		5BF9386425B09D6300A6922B /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
+		5BF9386925B09D6F00A6922B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +270,8 @@
 		5BE64D8125976B3B002B1D70 = {
 			isa = PBXGroup;
 			children = (
+				5BF9386425B09D6300A6922B /* demo.gif */,
+				5BF9386925B09D6F00A6922B /* README.md */,
 				5BE64D8C25976B3B002B1D70 /* Memorize */,
 				5BE64D9E25976B3C002B1D70 /* MemorizeTests */,
 				5BE64DA925976B3C002B1D70 /* MemorizeUITests */,
@@ -448,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BE64D9525976B3B002B1D70 /* Preview Assets.xcassets in Resources */,
+				5BF9386525B09D6300A6922B /* demo.gif in Resources */,
 				5BE64D9225976B3B002B1D70 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
