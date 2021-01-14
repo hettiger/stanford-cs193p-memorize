@@ -18,15 +18,9 @@ extension MemoryGame {
                     hasBeenFaceUp = true
                 }
             }
-            didSet {
-                if isFaceUp {
-                    chosenAt = Date.current
-                }
-            }
         }
 
         private(set) var hasBeenFaceUp = false
-        private(set) var chosenAt: Date?
         var isMatched = false
         
         // MARK: - Bonus Time

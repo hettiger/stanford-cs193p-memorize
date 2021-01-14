@@ -193,15 +193,6 @@ class MemoryGameTests: XCTestCase {
         XCTAssertEqual(2, sut.score)
     }
 
-    func test_score_matchFiveSecondsAfterChoosing_scoreDoesNotChange() {
-        sut.choose(card: sut.cards[0])
-        timeMachine.date = timeMachine.date.addingTimeInterval(sut.maxAllowedSecondsToMatch)
-
-        sut.choose(card: sut.cards[1])
-
-        XCTAssertEqual(0, sut.score)
-    }
-
     func test_score_mismatchWithOnePreviouslySeenCard_penalizesOnePoint() {
         sut.choose(card: sut.cards[0])
         sut.choose(card: sut.cards[2])

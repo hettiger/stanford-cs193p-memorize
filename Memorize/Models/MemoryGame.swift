@@ -85,9 +85,6 @@ struct MemoryGame<ContentType: Hashable> {
     private mutating func updateScore() {
         switch state {
         case let .twoCardsFaceUp(cardA, cardB):
-            let minChosenAt = min(cardA.chosenAt!, cardB.chosenAt!)
-            guard minChosenAt.addingTimeInterval(maxAllowedSecondsToMatch) > Date.current
-            else { break }
             for card in [cardA, cardB] {
                 let index = cards.firstIndex(of: card)!
                 if cards[index].isMatched {
@@ -106,5 +103,4 @@ struct MemoryGame<ContentType: Hashable> {
     let initialScore = 0
     let isMatchedScore = 1
     let hasBeenFaceUpScore = -1
-    let maxAllowedSecondsToMatch = 3.0
 }
