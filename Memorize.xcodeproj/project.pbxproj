@@ -3,16 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		5B287F55259CC6A400D14B46 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B287F54259CC6A300D14B46 /* GridLayout.swift */; };
 		5B287F5A259CC75400D14B46 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B287F59259CC75400D14B46 /* Grid.swift */; };
-		5B3C3C36259CCB12006332B1 /* GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C3C35259CCB12006332B1 /* GridTests.swift */; };
 		5B3C3C3B259CCD4D006332B1 /* IdentifiableFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C3C3A259CCD4D006332B1 /* IdentifiableFake.swift */; };
-		5B49AE182597CF240043E301 /* CardViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49AE172597CF240043E301 /* CardViewTests.swift */; };
-		5B49AE212597D3320043E301 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 5B49AE202597D3320043E301 /* ViewInspector */; };
 		5B4C892F25AFD55700D91C61 /* XCUIElement+waitForExistenceAndTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C892E25AFD55700D91C61 /* XCUIElement+waitForExistenceAndTap.swift */; };
 		5B5CD2D1259CFD95001ECD96 /* String+Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CD2D0259CFD95001ECD96 /* String+Cards.swift */; };
 		5B85110325A1201800CF6F11 /* CommandLine+Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */; };
@@ -28,10 +25,7 @@
 		5B8C0F55259A4BB7003ABC74 /* Array+ShufflingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F54259A4BB7003ABC74 /* Array+ShufflingTests.swift */; };
 		5BA21B8225A203AD005B4825 /* MersenneTwisterRandomSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA21B8125A203AD005B4825 /* MersenneTwisterRandomSource.swift */; };
 		5BA21B9625A263B0005B4825 /* MersenneTwisterRandomSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA21B9525A263B0005B4825 /* MersenneTwisterRandomSourceTests.swift */; };
-		5BA327AF25991F41004DA33B /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA327AE25991F41004DA33B /* ContentViewTests.swift */; };
-		5BB1929525ADFBB30029E1B5 /* PieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB1929425ADFBB30029E1B5 /* PieTests.swift */; };
 		5BB1929A25ADFC090029E1B5 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB1929925ADFC090029E1B5 /* Pie.swift */; };
-		5BB192A525AE0B410029E1B5 /* CardifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB192A425AE0B410029E1B5 /* CardifyTests.swift */; };
 		5BB192AA25AE0B640029E1B5 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB192A925AE0B640029E1B5 /* Cardify.swift */; };
 		5BB61EFF2598A43E00B9D6D2 /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB61EFE2598A43E00B9D6D2 /* MemoryGame.swift */; };
 		5BB61F072598A46200B9D6D2 /* MemoryGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB61F062598A46200B9D6D2 /* MemoryGameTests.swift */; };
@@ -72,9 +66,7 @@
 /* Begin PBXFileReference section */
 		5B287F54259CC6A300D14B46 /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		5B287F59259CC75400D14B46 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
-		5B3C3C35259CCB12006332B1 /* GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTests.swift; sourceTree = "<group>"; };
 		5B3C3C3A259CCD4D006332B1 /* IdentifiableFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableFake.swift; sourceTree = "<group>"; };
-		5B49AE172597CF240043E301 /* CardViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewTests.swift; sourceTree = "<group>"; };
 		5B4C892E25AFD55700D91C61 /* XCUIElement+waitForExistenceAndTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+waitForExistenceAndTap.swift"; sourceTree = "<group>"; };
 		5B5CD2D0259CFD95001ECD96 /* String+Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Cards.swift"; sourceTree = "<group>"; };
 		5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommandLine+Arguments.swift"; sourceTree = "<group>"; };
@@ -89,10 +81,7 @@
 		5B8C0F54259A4BB7003ABC74 /* Array+ShufflingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ShufflingTests.swift"; sourceTree = "<group>"; };
 		5BA21B8125A203AD005B4825 /* MersenneTwisterRandomSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MersenneTwisterRandomSource.swift; sourceTree = "<group>"; };
 		5BA21B9525A263B0005B4825 /* MersenneTwisterRandomSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MersenneTwisterRandomSourceTests.swift; sourceTree = "<group>"; };
-		5BA327AE25991F41004DA33B /* ContentViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTests.swift; sourceTree = "<group>"; };
-		5BB1929425ADFBB30029E1B5 /* PieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieTests.swift; sourceTree = "<group>"; };
 		5BB1929925ADFC090029E1B5 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
-		5BB192A425AE0B410029E1B5 /* CardifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardifyTests.swift; sourceTree = "<group>"; };
 		5BB192A925AE0B640029E1B5 /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		5BB61EFE2598A43E00B9D6D2 /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
 		5BB61F062598A46200B9D6D2 /* MemoryGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameTests.swift; sourceTree = "<group>"; };
@@ -131,7 +120,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B49AE212597D3320043E301 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,28 +200,9 @@
 		5BB1928725ADFA490029E1B5 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				5BB1928C25ADFA890029E1B5 /* Shapes */,
 				5BB61F52259902FC00B9D6D2 /* View Models */,
-				5BB1928B25ADFA780029E1B5 /* View Modifiers */,
-				5BB61F51259902F300B9D6D2 /* Views */,
 			);
 			path = "User Interface";
-			sourceTree = "<group>";
-		};
-		5BB1928B25ADFA780029E1B5 /* View Modifiers */ = {
-			isa = PBXGroup;
-			children = (
-				5BB192A425AE0B410029E1B5 /* CardifyTests.swift */,
-			);
-			path = "View Modifiers";
-			sourceTree = "<group>";
-		};
-		5BB1928C25ADFA890029E1B5 /* Shapes */ = {
-			isa = PBXGroup;
-			children = (
-				5BB1929425ADFBB30029E1B5 /* PieTests.swift */,
-			);
-			path = Shapes;
 			sourceTree = "<group>";
 		};
 		5BB1928D25ADFA8E0029E1B5 /* Shapes */ = {
@@ -281,16 +250,6 @@
 				5BE64D8F25976B3B002B1D70 /* ContentView.swift */,
 				5B287F59259CC75400D14B46 /* Grid.swift */,
 				5BEDB7CC25A0011300E93C26 /* RootView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		5BB61F51259902F300B9D6D2 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5B49AE172597CF240043E301 /* CardViewTests.swift */,
-				5BA327AE25991F41004DA33B /* ContentViewTests.swift */,
-				5B3C3C35259CCB12006332B1 /* GridTests.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -425,7 +384,6 @@
 			);
 			name = MemorizeTests;
 			packageProductDependencies = (
-				5B49AE202597D3320043E301 /* ViewInspector */,
 			);
 			productName = MemorizeTests;
 			productReference = 5BE64D9B25976B3C002B1D70 /* MemorizeTests.xctest */;
@@ -481,7 +439,6 @@
 			);
 			mainGroup = 5BE64D8125976B3B002B1D70;
 			packageReferences = (
-				5B49AE1F2597D3320043E301 /* XCRemoteSwiftPackageReference "ViewInspector" */,
 			);
 			productRefGroup = 5BE64D8B25976B3B002B1D70 /* Products */;
 			projectDirPath = "";
@@ -551,24 +508,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B5CD2D1259CFD95001ECD96 /* String+Cards.swift in Sources */,
-				5BA327AF25991F41004DA33B /* ContentViewTests.swift in Sources */,
-				5BB1929525ADFBB30029E1B5 /* PieTests.swift in Sources */,
 				5BB61F072598A46200B9D6D2 /* MemoryGameTests.swift in Sources */,
 				5BEDB7FC25A0EB4800E93C26 /* UserDefaultsFake.swift in Sources */,
 				5B8C0F48259A4340003ABC74 /* Int+randomTests.swift in Sources */,
-				5BB192A525AE0B410029E1B5 /* CardifyTests.swift in Sources */,
 				5B8C0F55259A4BB7003ABC74 /* Array+ShufflingTests.swift in Sources */,
 				5B85112B25A12E3E00CF6F11 /* TimeMachine.swift in Sources */,
 				5BA21B9625A263B0005B4825 /* MersenneTwisterRandomSourceTests.swift in Sources */,
 				5BEDB7E325A0C77E00E93C26 /* MemoryGame+CardTests.swift in Sources */,
 				5B85114025A172A900CF6F11 /* UserDefaults+KeysTests.swift in Sources */,
 				5B8C0F38259A3315003ABC74 /* RandomSourceFake.swift in Sources */,
-				5B49AE182597CF240043E301 /* CardViewTests.swift in Sources */,
 				5B85113825A1350400CF6F11 /* Date+currentTests.swift in Sources */,
 				5BEDB7B9259F54D500E93C26 /* MemoryGame+ThemeTests.swift in Sources */,
 				5BB61F292598C16000B9D6D2 /* EmojiMemoryGameTests.swift in Sources */,
 				5B3C3C3B259CCD4D006332B1 /* IdentifiableFake.swift in Sources */,
-				5B3C3C36259CCB12006332B1 /* GridTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,25 +834,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		5B49AE1F2597D3320043E301 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/nalexn/ViewInspector";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.5;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		5B49AE202597D3320043E301 /* ViewInspector */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5B49AE1F2597D3320043E301 /* XCRemoteSwiftPackageReference "ViewInspector" */;
-			productName = ViewInspector;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5BE64D8225976B3B002B1D70 /* Project object */;
 }
