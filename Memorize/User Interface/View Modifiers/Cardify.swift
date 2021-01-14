@@ -7,10 +7,26 @@
 
 import SwiftUI
 
-struct Cardify: ViewModifier {
-    let isFaceUp: Bool
+struct Cardify: AnimatableModifier {
     let color: Color
-    var didAppear: ((Self.Body) -> Void)? = nil
+
+    var didAppear: ((Self.Body) -> Void)?
+
+    var animatableData: Double {
+        get { rotation }
+        set { rotation = newValue }
+    }
+
+    var isFaceUp: Bool {
+        rotation < 90
+    }
+
+    var rotation = 0.0
+
+    init(isFaceUp: Bool, color: Color) {
+        self.color = color
+        rotation = isFaceUp ? 0 : 180
+    }
 
     @ViewBuilder
     func body(content: Content) -> some View {
@@ -31,6 +47,7 @@ struct Cardify: ViewModifier {
                         .fill(gradient(color, for: geometry.size))
                 }
             }
+            .rotation3DEffect(Angle.degrees(rotation), axis: (0, 1, 0))
         }
         .onAppear { self.didAppear?(self.body(content: content)) }
     }
