@@ -13,18 +13,23 @@ class MemoryGame_CardTests: XCTestCase {
     typealias Game = MemoryGame<ContentType>
 
     var sut: Game.Card!
-    var timeMachine = TimeMachine.shared
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        timeMachine.isActive = true
         sut = Game.Card(id: 0, content: "a")
     }
 
     override func tearDownWithError() throws {
-        timeMachine.isActive = false
         sut = nil
         try super.tearDownWithError()
+    }
+
+    func withFaceUp() {
+        sut.isFaceUp = true
+    }
+
+    func withFaceDown() {
+        sut.isFaceUp = false
     }
 
     func assertIsIdentifiable<T: Identifiable>(_: T) {}
@@ -53,21 +58,21 @@ class MemoryGame_CardTests: XCTestCase {
         XCTAssertTrue((sut.isMatched as Any) is Bool)
     }
 
-    func test_cardIsFaceUpSetToFalse_isFaceUp_setsHasBeenFaceUpToTrue() {
-        sut = Game.Card(id: 0, content: "a", isFaceUp: true, hasBeenFaceUp: false)
-
-        sut.isFaceUp.toggle()
-
-        XCTAssertFalse(sut.isFaceUp)
-        XCTAssertTrue(sut.hasBeenFaceUp)
+    func test_card_hasBeenFaceUpIsFalse() {
+        XCTAssertFalse(sut.hasBeenFaceUp)
     }
 
-    func test_cardIsFaceUpSetToTrue_isFaceDownHasBeenFaceUp_hasBeenFaceUpStaysTrue() {
-        sut = Game.Card(id: 0, content: "a", isFaceUp: false, hasBeenFaceUp: true)
+    func test_card_withFaceUp_hasBeenFaceUpIsFalse() {
+        withFaceUp()
 
-        sut.isFaceUp.toggle()
+        XCTAssertFalse(sut.hasBeenFaceUp)
+    }
 
-        XCTAssertTrue(sut.isFaceUp)
+    func test_card_withFaceUpThenFaceDown_hasBeenFaceUpIsTrue() {
+        withFaceUp()
+
+        withFaceDown()
+
         XCTAssertTrue(sut.hasBeenFaceUp)
     }
 }

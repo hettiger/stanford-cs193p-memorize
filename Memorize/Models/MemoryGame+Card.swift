@@ -13,19 +13,28 @@ extension MemoryGame {
         let content: ContentType
 
         var isFaceUp = false {
-            willSet {
+            didSet {
                 if isFaceUp {
+                    startUsingBonusTime()
+                } else {
+                    stopUsingBonusTime()
+                }
+                if oldValue {
                     hasBeenFaceUp = true
                 }
             }
         }
 
         private(set) var hasBeenFaceUp = false
-        var isMatched = false
-        
+
+        var isMatched = false {
+            didSet { stopUsingBonusTime() }
+        }
+
         // MARK: - Bonus Time
-        
+
         // Created by CS193p Instructor.
+        // Modified by Martin Hettiger. (Changes made by SwiftFormat)
         // Copyright © 2020 Stanford University. All rights reserved.
         //
         // this could give matching bonus points
@@ -43,6 +52,7 @@ extension MemoryGame {
                 return pastFaceUpTime
             }
         }
+
         // the last time this card was turned face up (and is still face up)
         var lastFaceUpDate: Date?
         // the accumulated time this card has been face up in the past
@@ -53,28 +63,33 @@ extension MemoryGame {
         var bonusTimeRemaining: TimeInterval {
             max(0, bonusTimeLimit - faceUpTime)
         }
+
         // percentage of the bonus time remaining
         var bonusRemaining: Double {
-            (bonusTimeLimit > 0 && bonusTimeRemaining > 0) ? bonusTimeRemaining/bonusTimeLimit : 0
+            (bonusTimeLimit > 0 && bonusTimeRemaining > 0) ? bonusTimeRemaining / bonusTimeLimit : 0
         }
+
         // whether the card was matched during the bonus time period
         var hasEarnedBonus: Bool {
             isMatched && bonusTimeRemaining > 0
         }
+
         // whether we are currently face up, unmatched and have not yet used up the bonus window
         var isConsumingBonusTime: Bool {
             isFaceUp && !isMatched && bonusTimeRemaining > 0
         }
+
         // called when the card transitions to face up state
         private mutating func startUsingBonusTime() {
             if isConsumingBonusTime, lastFaceUpDate == nil {
                 lastFaceUpDate = Date()
             }
         }
+
         // called when the card goes back face down (or gets matched)
         private mutating func stopUsingBonusTime() {
             pastFaceUpTime = faceUpTime
-            self.lastFaceUpDate = nil
+            lastFaceUpDate = nil
         }
     }
 }

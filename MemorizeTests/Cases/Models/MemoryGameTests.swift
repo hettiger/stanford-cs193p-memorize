@@ -14,18 +14,15 @@ class MemoryGameTests: XCTestCase {
 
     var sut: Game!
     var userDefaultsFake: UserDefaultsFake!
-    var timeMachine = TimeMachine.shared
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         userDefaultsFake = UserDefaultsFake()
-        timeMachine.isActive = true
         withContents("🐶🐱🐭🐰")
     }
 
     override func tearDownWithError() throws {
         userDefaultsFake = nil
-        timeMachine.isActive = false
         sut = nil
         try super.tearDownWithError()
     }

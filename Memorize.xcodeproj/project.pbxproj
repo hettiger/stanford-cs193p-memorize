@@ -14,9 +14,6 @@
 		5B5CD2D1259CFD95001ECD96 /* String+Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CD2D0259CFD95001ECD96 /* String+Cards.swift */; };
 		5B85110325A1201800CF6F11 /* CommandLine+Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */; };
 		5B85111125A1213000CF6F11 /* CommandLine+Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */; };
-		5B85112B25A12E3E00CF6F11 /* TimeMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85112A25A12E3E00CF6F11 /* TimeMachine.swift */; };
-		5B85113325A12F9B00CF6F11 /* Date+current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85113225A12F9B00CF6F11 /* Date+current.swift */; };
-		5B85113825A1350400CF6F11 /* Date+currentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85113725A1350400CF6F11 /* Date+currentTests.swift */; };
 		5B85114025A172A900CF6F11 /* UserDefaults+KeysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85113F25A172A900CF6F11 /* UserDefaults+KeysTests.swift */; };
 		5B8C0F38259A3315003ABC74 /* RandomSourceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F37259A3315003ABC74 /* RandomSourceFake.swift */; };
 		5B8C0F40259A3AB7003ABC74 /* Int+random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C0F3F259A3AB7003ABC74 /* Int+random.swift */; };
@@ -70,9 +67,6 @@
 		5B4C892E25AFD55700D91C61 /* XCUIElement+waitForExistenceAndTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+waitForExistenceAndTap.swift"; sourceTree = "<group>"; };
 		5B5CD2D0259CFD95001ECD96 /* String+Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Cards.swift"; sourceTree = "<group>"; };
 		5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommandLine+Arguments.swift"; sourceTree = "<group>"; };
-		5B85112A25A12E3E00CF6F11 /* TimeMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachine.swift; sourceTree = "<group>"; };
-		5B85113225A12F9B00CF6F11 /* Date+current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+current.swift"; sourceTree = "<group>"; };
-		5B85113725A1350400CF6F11 /* Date+currentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+currentTests.swift"; sourceTree = "<group>"; };
 		5B85113F25A172A900CF6F11 /* UserDefaults+KeysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+KeysTests.swift"; sourceTree = "<group>"; };
 		5B8C0F37259A3315003ABC74 /* RandomSourceFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSourceFake.swift; sourceTree = "<group>"; };
 		5B8C0F3F259A3AB7003ABC74 /* Int+random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+random.swift"; sourceTree = "<group>"; };
@@ -163,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				5B5CD2D0259CFD95001ECD96 /* String+Cards.swift */,
-				5B85112A25A12E3E00CF6F11 /* TimeMachine.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -217,7 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				5B8C0F54259A4BB7003ABC74 /* Array+ShufflingTests.swift */,
-				5B85113725A1350400CF6F11 /* Date+currentTests.swift */,
 				5B8C0F47259A4340003ABC74 /* Int+randomTests.swift */,
 				5B85113F25A172A900CF6F11 /* UserDefaults+KeysTests.swift */,
 				5BA21B9525A263B0005B4825 /* MersenneTwisterRandomSourceTests.swift */,
@@ -340,7 +332,6 @@
 			children = (
 				5B8C0F4F259A4B9D003ABC74 /* Array+Shuffling.swift */,
 				5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */,
-				5B85113225A12F9B00CF6F11 /* Date+current.swift */,
 				5B287F54259CC6A300D14B46 /* GridLayout.swift */,
 				5B8C0F3F259A3AB7003ABC74 /* Int+random.swift */,
 				5BA21B8125A203AD005B4825 /* MersenneTwisterRandomSource.swift */,
@@ -484,7 +475,6 @@
 			files = (
 				5BEDB7CD25A0011300E93C26 /* RootView.swift in Sources */,
 				5BB61F372599003200B9D6D2 /* MemoryGame+Card.swift in Sources */,
-				5B85113325A12F9B00CF6F11 /* Date+current.swift in Sources */,
 				5BB61EFF2598A43E00B9D6D2 /* MemoryGame.swift in Sources */,
 				5B8C0F40259A3AB7003ABC74 /* Int+random.swift in Sources */,
 				5B287F5A259CC75400D14B46 /* Grid.swift in Sources */,
@@ -512,12 +502,10 @@
 				5BEDB7FC25A0EB4800E93C26 /* UserDefaultsFake.swift in Sources */,
 				5B8C0F48259A4340003ABC74 /* Int+randomTests.swift in Sources */,
 				5B8C0F55259A4BB7003ABC74 /* Array+ShufflingTests.swift in Sources */,
-				5B85112B25A12E3E00CF6F11 /* TimeMachine.swift in Sources */,
 				5BA21B9625A263B0005B4825 /* MersenneTwisterRandomSourceTests.swift in Sources */,
 				5BEDB7E325A0C77E00E93C26 /* MemoryGame+CardTests.swift in Sources */,
 				5B85114025A172A900CF6F11 /* UserDefaults+KeysTests.swift in Sources */,
 				5B8C0F38259A3315003ABC74 /* RandomSourceFake.swift in Sources */,
-				5B85113825A1350400CF6F11 /* Date+currentTests.swift in Sources */,
 				5BEDB7B9259F54D500E93C26 /* MemoryGame+ThemeTests.swift in Sources */,
 				5BB61F292598C16000B9D6D2 /* EmojiMemoryGameTests.swift in Sources */,
 				5B3C3C3B259CCD4D006332B1 /* IdentifiableFake.swift in Sources */,
