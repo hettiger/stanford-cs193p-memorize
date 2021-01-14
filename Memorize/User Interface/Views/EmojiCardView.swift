@@ -1,5 +1,5 @@
 //
-//  CardView.swift
+//  EmojiCardView.swift
 //  Memorize
 //
 //  Created by Martin Hettiger on 26.12.20.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CardView: View {
+struct EmojiCardView: View {
     @ObservedObject var game = EmojiMemoryGame.shared
 
     var card: MemoryGame<Character>.Card
@@ -52,9 +52,9 @@ struct CardView: View {
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CardView(card: .init(id: 0, content: "👻", isFaceUp: true))
+            EmojiCardView(card: .init(id: 0, content: "👻", isFaceUp: true))
                 .foregroundColor(.orange)
-            CardView(card: .init(id: 1, content: "👻", isFaceUp: false))
+            EmojiCardView(card: .init(id: 1, content: "👻", isFaceUp: false))
         }
     }
 }

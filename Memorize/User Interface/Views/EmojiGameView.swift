@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  EmojiGameView.swift
 //  Memorize
 //
 //  Created by Martin Hettiger on 26.12.20.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct EmojiGameView: View {
     @ObservedObject var game = EmojiMemoryGame.shared
 
     var body: some View {
         Grid(game.cards, desiredAspectRatio: aspectRatio) { card in
-            CardView(card: card).onTapGesture {
+            EmojiCardView(card: card).onTapGesture {
                 withAnimation(.linear(duration: 2)) {
                     game.choose(card: card)
                 }
@@ -39,9 +39,9 @@ struct ContentView_Previews: PreviewProvider {
         game.choose(card: game.cards[3])
 
         return Group {
-            ContentView()
+            EmojiGameView()
                 .preferredColorScheme(.dark)
-            ContentView()
+            EmojiGameView()
                 .preferredColorScheme(.light)
         }
     }

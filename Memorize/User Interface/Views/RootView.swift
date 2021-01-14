@@ -7,17 +7,12 @@
 
 import SwiftUI
 
-/// RootView
-///
-/// ViewInspector (Testing Library) has problems with `.navigationBarItems()` modifier.
-/// Moving the `NavigationView` out of the way allows unit testing `ContentView`.
-/// The `RootView` is covered with real UI tests.
 struct RootView: View {
     @ObservedObject var game = EmojiMemoryGame.shared
 
     var body: some View {
         NavigationView {
-            ContentView()
+            EmojiGameView()
                 .navigationBarItems(trailing: Text("Score: \(game.score)"))
                 .navigationBarTitle(game.theme.name, displayMode: .inline)
                 .toolbar {

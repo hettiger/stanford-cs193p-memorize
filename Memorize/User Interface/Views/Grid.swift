@@ -41,7 +41,7 @@ struct Grid<Item: Identifiable, ItemView: View>: View where Item: Hashable {
 struct Grid_Previews: PreviewProvider {
     static var previews: some View {
         Grid(EmojiMemoryGame.shared.cards) { card in
-            CardView(card: card).padding()
+            EmojiCardView(card: card).padding()
         }
     }
 }
