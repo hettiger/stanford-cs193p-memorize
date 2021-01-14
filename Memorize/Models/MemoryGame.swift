@@ -100,7 +100,7 @@ struct MemoryGame<ContentType: Hashable> {
 
     // MARK: - Score Constants
 
-    let initialScore = 0
-    let isMatchedScore = 1
-    let hasBeenFaceUpScore = -1
+    private let initialScore = 0
+    private let isMatchedScore = 1
+    private let hasBeenFaceUpScore = -1
 }
