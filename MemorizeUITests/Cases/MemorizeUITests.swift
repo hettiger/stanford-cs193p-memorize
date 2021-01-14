@@ -38,8 +38,8 @@ class MemorizeUITests: XCTestCase {
 
         XCTAssertTrue(app.staticTexts["Score: 0"].exists)
 
-        app.otherElements["Memory Game Card 0"].tap()
-        app.otherElements["Memory Game Card 1"].tap()
+        app.buttons["Memory Game Card 0"].waitForExistenceAndTap()
+        app.buttons["Memory Game Card 1"].waitForExistenceAndTap()
 
         XCTAssertTrue(app.staticTexts["Score: 2"].exists)
         XCTAssertTrue(app.staticTexts["Highscore: 2"].exists)

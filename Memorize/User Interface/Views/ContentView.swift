@@ -17,9 +17,10 @@ struct ContentView: View {
                     game.choose(card: card)
                 }
             }
-            .accessibilityIdentifier("Memory Game Card \(card.id)")
             .aspectRatio(aspectRatio, contentMode: .fit)
             .padding(padding)
+            .accessibility(addTraits: .isButton)
+            .accessibility(identifier: "Memory Game Card \(card.id)")
         }
         .foregroundColor(game.theme.color)
         .padding(padding)
