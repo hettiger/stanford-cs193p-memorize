@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct Pie: Shape {
-    let startAngle: Angle
-    let endAngle: Angle
+    var startAngle: Angle
+    var endAngle: Angle
+
+    var animatableData: AnimatablePair<Double, Double> {
+        get { .init(startAngle.degrees, endAngle.degrees) }
+        set { startAngle.degrees = newValue.first; endAngle.degrees = newValue.second }
+    }
 
     private(set) var clockwise = false
 
