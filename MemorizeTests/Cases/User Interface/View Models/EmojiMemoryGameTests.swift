@@ -63,7 +63,7 @@ class EmojiMemoryGameTests: XCTestCase {
 
     func test_emojiMemoryGameStartFresh_startsNewGameWithRandomOtherTheme() {
         let initialTheme = sut.theme
-        let expectedThemes = [Game.Theme(name: "expected", contents: "a")]
+        let expectedThemes = [Game.Theme(name: "expected", contents: "a", numberOfPairsOfCards: 1)]
 
         randomSourceFake.shuffle = {
             guard let themes = $0 as? [Game.Theme] else { return [] }

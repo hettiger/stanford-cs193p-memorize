@@ -16,12 +16,22 @@ class EmojiMemoryGame: ObservableObject {
 
     static var themes: [Game.Theme] {
         [
-            .init(name: "Animals", contents: "🦆🦅🦉🐺🐗🐴🐝🪱🐛🦋", color: .orange),
-            .init(name: "Food", contents: "🍎🍋🍉🍇🍓🍌🍒🥝🌽🧅", color: .red),
-            .init(name: "Activities", contents: "⚽️🏀🏈🎾🎱🏓⛳️🛼🥋🪁", color: .green),
-            .init(name: "Tech", contents: "⌚️💻📱🖥🖨📷☎️📡🔦📺", numberOfCards: 6, color: .gray),
-            .init(name: "Travel", contents: "🚙🚌🚕🚑🚓🚒🚜🚃🚂✈️", numberOfCards: 8, color: .blue),
-            .init(name: "Countries", contents: "🇺🇸🇩🇪🇫🇷🇱🇺🇵🇱🇨🇭🇩🇰🇦🇹🇨🇿🇮🇹", color: .purple),
+            .init(name: "Animals", contents: "🦆🦅🦉🐺🐗🐴🐝🪱🐛🦋", numberOfPairsOfCards: 5, color: .orange),
+            .init(name: "Food", contents: "🍎🍋🍉🍇🍓🍌🍒🥝🌽🧅", numberOfPairsOfCards: 6, color: .red),
+            .init(
+                name: "Activities",
+                contents: "⚽️🏀🏈🎾🎱🏓⛳️🛼🥋🪁",
+                numberOfPairsOfCards: 7,
+                color: .green
+            ),
+            .init(name: "Tech", contents: "⌚️💻📱🖥🖨📷☎️📡🔦📺", numberOfPairsOfCards: 3, color: .gray),
+            .init(name: "Travel", contents: "🚙🚌🚕🚑🚓🚒🚜🚃🚂✈️", numberOfPairsOfCards: 4, color: .blue),
+            .init(
+                name: "Countries",
+                contents: "🇺🇸🇩🇪🇫🇷🇱🇺🇵🇱🇨🇭🇩🇰🇦🇹🇨🇿🇮🇹",
+                numberOfPairsOfCards: 3,
+                color: .purple
+            ),
         ]
     }
 

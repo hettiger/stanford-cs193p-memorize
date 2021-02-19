@@ -33,7 +33,12 @@ class MemoryGameTests: XCTestCase {
 
     func withContents(_ newContents: String) {
         sut = Game(
-            theme: .init(name: "Test", contents: newContents, randomSource: nil),
+            theme: .init(
+                name: "Test",
+                contents: newContents,
+                numberOfPairsOfCards: newContents.count,
+                randomSource: nil
+            ),
             userDefaults: userDefaultsFake
         )
     }

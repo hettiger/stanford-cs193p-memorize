@@ -17,46 +17,21 @@ extension MemoryGame {
         init<Contents: Sequence>(
             name: String,
             contents: Contents,
-            numberOfCards: Int? = nil,
+            numberOfPairsOfCards: Int,
             color: Color = .clear,
             randomSource: RandomSource? = MersenneTwisterRandomSource.shared
         ) where Contents.Element == ContentType {
             let contents = Set(contents)
 
-            let numberOfPairsOfCards = Theme.numberOfPairsOfCards(
-                numberOfCards: numberOfCards,
-                contents: contents,
-                using: randomSource
-            )
-
             let cards = Theme.cards(
                 for: contents,
-                withNumberOfPairs: numberOfPairsOfCards,
+                withNumberOfPairs: max(0, min(contents.count, numberOfPairsOfCards)),
                 using: randomSource
             )
 
             self.name = name
             self.cards = cards
             self.color = color
-        }
-
-        private static func numberOfPairsOfCards(
-            numberOfCards: Int?,
-            contents: Set<ContentType>,
-            using randomSource: RandomSource?
-        ) -> Int {
-            if let numberOfCards = numberOfCards {
-                return min(max(0, Int(numberOfCards / 2)), contents.count)
-            }
-
-            if let randomSource = randomSource {
-                return .random(
-                    in: min(2, contents.count) ... contents.count,
-                    using: randomSource
-                )
-            }
-
-            return contents.count
         }
 
         private static func cards(

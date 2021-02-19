@@ -19,12 +19,12 @@ class MemoryGame_ThemeTests: XCTestCase {
 
     var sut: MemoryGame<Character>.Theme!
     var contents: Set<ContentType>!
-    var numberOfCards: Int?
+    var numberOfPairsOfCards: Int!
     var randomSourceFake: RandomSourceFake!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        numberOfCards = nil
+        numberOfPairsOfCards = 4
         randomSourceFake = RandomSourceFake()
         withContents("abcdefg")
     }
@@ -32,7 +32,7 @@ class MemoryGame_ThemeTests: XCTestCase {
     override func tearDownWithError() throws {
         sut = nil
         contents = nil
-        numberOfCards = nil
+        numberOfPairsOfCards = nil
         randomSourceFake = nil
         try super.tearDownWithError()
     }
@@ -42,18 +42,18 @@ class MemoryGame_ThemeTests: XCTestCase {
         sut = .init(
             name: themeName,
             contents: contents,
-            numberOfCards: numberOfCards,
+            numberOfPairsOfCards: numberOfPairsOfCards,
             color: color,
             randomSource: randomSourceFake
         )
     }
 
-    func withNumberOfCards(_ numberOfCards: Int?) {
-        self.numberOfCards = numberOfCards
+    func withNumberOfPairsOfCards(_ numberOfPairsOfCards: Int) {
+        self.numberOfPairsOfCards = numberOfPairsOfCards
         sut = .init(
             name: themeName,
             contents: contents,
-            numberOfCards: numberOfCards,
+            numberOfPairsOfCards: numberOfPairsOfCards,
             color: color,
             randomSource: randomSourceFake
         )
@@ -75,62 +75,34 @@ class MemoryGame_ThemeTests: XCTestCase {
         XCTAssertTrue((sut.color as Any) is Color)
     }
 
-    func test_theme_evenNumberOfCards_cardsCountIsMatchingNumbersOfCards() {
-        withNumberOfCards(4)
+    func test_theme_numberOfPairsOfCards_cardsCountIsDoubleTheNumberOfPairsOfCards() {
+        withNumberOfPairsOfCards(4)
 
-        XCTAssertEqual(4, sut.cards.count)
+        XCTAssertEqual(8, sut.cards.count)
     }
 
-    func test_theme_unevenNumberOfCards_cardsCountIsNearestEvenNumberInNumberOfCards(
+    func test_theme_negativeNumberOfPairsOfCards_cardsCountIsZero() {
+        withNumberOfPairsOfCards(-10)
+
+        XCTAssertEqual(0, sut.cards.count)
+    }
+
+    func test_theme_zeroNumberOfPairsOfCards_cardsCountIsZero() {
+        withNumberOfPairsOfCards(0)
+
+        XCTAssertEqual(0, sut.cards.count)
+    }
+
+    func test_theme_lessContentThanRequestedNumberOfPairsOfCards_cardsCountIsContentElementCountTimesTwo(
     ) {
-        withNumberOfCards(5)
-
-        XCTAssertEqual(4, sut.cards.count)
-    }
-
-    func test_theme_negativeNumberOfCards_cardsCountIsZero() {
-        withNumberOfCards(-10)
-
-        XCTAssertEqual(0, sut.cards.count)
-    }
-
-    func test_theme_zeroNumberOfCards_cardsCountIsZero() {
-        withNumberOfCards(0)
-
-        XCTAssertEqual(0, sut.cards.count)
-    }
-
-    func test_theme_nilNumberOfCards_cardsCountIsRandom() {
-        let numberOfPairsOfCards = 3
-        let expectedCardsCount = 2 * numberOfPairsOfCards
-        randomSourceFake.nextInt = numberOfPairsOfCards
-
-        withNumberOfCards(nil)
-
-        XCTAssertEqual(expectedCardsCount, sut.cards.count)
-    }
-
-    func test_theme_nilNumberOfCards_randomSourceUsesAppropriateRange() {
-        withNumberOfCards(nil)
-
-        for contents in ["", "a", "ab", "abc", "abcd"] {
-            let expectedRange = min(2, contents.count) ... contents.count
-
-            withContents(contents)
-
-            XCTAssertEqual(expectedRange, randomSourceFake.lastRange)
-        }
-    }
-
-    func test_theme_lessContentThanRequestedNumberOfCards_cardsCountIsContentElementCountTimesTwo() {
-        withNumberOfCards(10)
+        withNumberOfPairsOfCards(10)
         withContents("ab")
 
         XCTAssertEqual(4, sut.cards.count)
     }
 
-    func test_theme_emptyContentButNumberOfCards_cardsCountIsZero() {
-        withNumberOfCards(10)
+    func test_theme_emptyContentButNumberOfPairsOfCardsGreaterThanZero_cardsCountIsZero() {
+        withNumberOfPairsOfCards(10)
         withContents("")
 
         XCTAssertEqual(0, sut.cards.count)
