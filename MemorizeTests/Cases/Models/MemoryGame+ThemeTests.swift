@@ -116,4 +116,13 @@ class MemoryGame_ThemeTests: XCTestCase {
 
         XCTAssertEqual(expectedCards, sut.cards)
     }
+    
+    func test_theme_isCodable() {
+        XCTAssert((sut as Any) is Codable)
+    }
+    
+    func test_themeJson_returnsString() {
+        XCTAssertNotNil(sut.json)
+        XCTAssert((sut.json as Any) is String)
+    }
 }

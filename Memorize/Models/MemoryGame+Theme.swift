@@ -9,10 +9,17 @@ import GameKit
 import SwiftUI
 
 extension MemoryGame {
-    struct Theme: Hashable {
+    struct Theme: Hashable, Codable {
         let name: String
         let cards: [Card]
         let color: Color
+
+        var json: String? {
+            if let data = try? JSONEncoder().encode(self) {
+                return String(data: data, encoding: .utf8)
+            }
+            return nil
+        }
 
         init<Contents: Sequence>(
             name: String,

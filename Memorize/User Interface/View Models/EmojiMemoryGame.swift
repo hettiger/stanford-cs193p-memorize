@@ -36,7 +36,9 @@ class EmojiMemoryGame: ObservableObject {
     }
 
     private static func makeGame(isIncluded: ((Game.Theme) -> Bool) = { _ in true }) -> Game {
-        Game(theme: themes.filter(isIncluded).shuffled(using: randomSource).first ?? themes[0])
+        let theme = themes.filter(isIncluded).shuffled(using: randomSource).first ?? themes[0]
+        print("Current theme JSON representation: \(theme.json ?? "nil")")
+        return Game(theme: theme)
     }
 
     @Published

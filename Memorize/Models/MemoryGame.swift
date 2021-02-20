@@ -8,7 +8,7 @@
 import Foundation
 import GameKit
 
-struct MemoryGame<ContentType: Hashable> {
+struct MemoryGame<ContentType> where ContentType: Hashable, ContentType: Codable {
     enum State: Hashable {
         case noCardFaceUp
         case oneCardFaceUp(Card)
