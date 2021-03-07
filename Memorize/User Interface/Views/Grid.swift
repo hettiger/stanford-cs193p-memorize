@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Swinject
 
 struct Grid<Item: Identifiable, ItemView: View>: View where Item: Hashable {
     var items: [Item]
@@ -40,8 +41,14 @@ struct Grid<Item: Identifiable, ItemView: View>: View where Item: Hashable {
 
 struct Grid_Previews: PreviewProvider {
     static var previews: some View {
-        Grid(EmojiMemoryGame.shared.cards) { card in
-            EmojiCardView(card: card).padding()
+        let container = ContainerFactory.makeEmojiMemoryGameContainer()
+        let game = container.resolve(EmojiMemoryGame.self)!
+
+        return Group {
+            Grid(game.cards) { card in
+                EmojiCardView(card: card).padding()
+            }
         }
+        .environmentObject(game)
     }
 }

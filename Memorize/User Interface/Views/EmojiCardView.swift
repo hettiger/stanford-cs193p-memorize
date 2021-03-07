@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+import Swinject
 
 struct EmojiCardView: View {
-    @ObservedObject var game = EmojiMemoryGame.shared
     var card: MemoryGame<Character>.Card
-    @State private var animatedBonusRemaining: Double = 0
+
+    @EnvironmentObject
+    private var game: EmojiMemoryGame
+
+    @State
+    private var animatedBonusRemaining: Double = 0
 
     var body: some View {
         GeometryReader { geometry in
@@ -69,10 +74,15 @@ struct EmojiCardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
+        let container = ContainerFactory.makeEmojiMemoryGameContainer()
+        let emojiMemoryGame = container.resolve(EmojiMemoryGame.self)!
+
         Group {
             EmojiCardView(card: .init(id: 0, content: "👻", isFaceUp: true))
                 .foregroundColor(.orange)
             EmojiCardView(card: .init(id: 1, content: "👻", isFaceUp: false))
         }
+        .padding()
+        .environmentObject(emojiMemoryGame)
     }
 }

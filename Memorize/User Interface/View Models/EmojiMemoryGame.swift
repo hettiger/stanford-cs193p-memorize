@@ -6,49 +6,25 @@
 //
 
 import Foundation
-import GameKit
 
 class EmojiMemoryGame: ObservableObject {
     typealias Game = MemoryGame<Character>
-
-    static var shared = EmojiMemoryGame()
-    static var randomSource: RandomSource = MersenneTwisterRandomSource.shared
-
-    static var themes: [Game.Theme] {
-        [
-            .init(name: "Animals", contents: "🦆🦅🦉🐺🐗🐴🐝🪱🐛🦋", numberOfPairsOfCards: 5, color: .orange),
-            .init(name: "Food", contents: "🍎🍋🍉🍇🍓🍌🍒🥝🌽🧅", numberOfPairsOfCards: 6, color: .red),
-            .init(
-                name: "Activities",
-                contents: "⚽️🏀🏈🎾🎱🏓⛳️🛼🥋🪁",
-                numberOfPairsOfCards: 7,
-                color: .green
-            ),
-            .init(name: "Tech", contents: "⌚️💻📱🖥🖨📷☎️📡🔦📺", numberOfPairsOfCards: 3, color: .gray),
-            .init(name: "Travel", contents: "🚙🚌🚕🚑🚓🚒🚜🚃🚂✈️", numberOfPairsOfCards: 4, color: .blue),
-            .init(
-                name: "Countries",
-                contents: "🇺🇸🇩🇪🇫🇷🇱🇺🇵🇱🇨🇭🇩🇰🇦🇹🇨🇿🇮🇹",
-                numberOfPairsOfCards: 3,
-                color: .purple
-            ),
-        ]
-    }
-
-    private static func makeGame(isIncluded: ((Game.Theme) -> Bool) = { _ in true }) -> Game {
-        let theme = themes.filter(isIncluded).shuffled(using: randomSource).first ?? themes[0]
-        print("Current theme JSON representation: \(theme.json ?? "nil")")
-        return Game(theme: theme)
-    }
+    typealias GameFactory = (_ currentGame: Game?) -> Game
 
     @Published
-    private var game = EmojiMemoryGame.makeGame()
+    private var game: Game
+
+    private var makeGame: GameFactory
+
+    init(gameFactory: @escaping GameFactory) {
+        makeGame = gameFactory
+        game = makeGame(nil)
+    }
 
     // MARK: - Model Accessors
 
     var theme: Game.Theme {
-        get { game.theme }
-        set { game = .init(theme: newValue) }
+        game.theme
     }
 
     var cards: [Game.Card] {
@@ -70,6 +46,6 @@ class EmojiMemoryGame: ObservableObject {
     }
 
     func startFresh() {
-        game = EmojiMemoryGame.makeGame { $0.name != game.theme.name }
+        game = makeGame(game)
     }
 }
