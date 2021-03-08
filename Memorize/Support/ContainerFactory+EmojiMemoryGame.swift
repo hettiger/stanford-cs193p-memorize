@@ -10,11 +10,20 @@ import Swinject
 import SwinjectAutoregistration
 
 extension ContainerFactory {
+    private typealias Game = EmojiMemoryGame.Game
+
     static func makeEmojiMemoryGameContainer() -> Container {
-        typealias Game = EmojiMemoryGame.Game
-        
         let container = Container(parent: makeMemorizeAppContainer())
-        
+
+        registerThemes(container)
+        registerGame(container)
+        registerGameFactory(container)
+        registerEmojiMemoryGame(container)
+
+        return container
+    }
+
+    private static func registerThemes(_ container: Container) {
         container.register([Game.Theme].self) { resolver in
             let randomSource = resolver.resolve(RandomSource.self)
             return [
@@ -62,13 +71,17 @@ extension ContainerFactory {
                 ),
             ]
         }
+    }
 
+    private static func registerGame(_ container: Container) {
         container.autoregister(
             Game.self,
             argument: Game.Theme.self,
             initializer: Game.init(theme:userDefaults:)
         )
+    }
 
+    private static func registerGameFactory(_ container: Container) {
         container.register(EmojiMemoryGame.GameFactory.self) { resolver in
             { currentGame in
                 let themes = resolver.resolve([Game.Theme].self)!
@@ -81,12 +94,12 @@ extension ContainerFactory {
                 return resolver.resolve(Game.self, argument: theme)!
             }
         }
+    }
 
+    private static func registerEmojiMemoryGame(_ container: Container) {
         container.autoregister(
             EmojiMemoryGame.self,
             initializer: EmojiMemoryGame.init(gameFactory:)
         ).inObjectScope(.container)
-        
-        return container
     }
 }
