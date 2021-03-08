@@ -7,27 +7,32 @@
 
 import GameKit
 @testable import Memorize
+import Swinject
+import SwinjectAutoregistration
 import XCTest
 
 class EmojiMemoryGameTests: XCTestCase {
     typealias Game = EmojiMemoryGame.Game
 
-    var sut: EmojiMemoryGame!
-    var randomSource: RandomSource!
-    var randomSourceFake: RandomSourceFake!
+    var container: Container!
+
+    var sut: EmojiMemoryGame {
+        container.resolve(EmojiMemoryGame.self)!
+    }
+
+    var randomSourceFake: RandomSourceFake {
+        container.resolve(RandomSource.self) as! RandomSourceFake
+    }
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        randomSource = EmojiMemoryGame.randomSource
-        randomSourceFake = RandomSourceFake()
-        EmojiMemoryGame.randomSource = randomSourceFake
-        sut = EmojiMemoryGame()
+        container = ContainerFactory.makeEmojiMemoryGameContainer()
+        container.autoregister(RandomSource.self, initializer: RandomSourceFake.init)
+            .inObjectScope(.container)
     }
 
     override func tearDownWithError() throws {
-        EmojiMemoryGame.randomSource = randomSource
-        randomSourceFake = nil
-        sut = nil
+        container = nil
         try super.tearDownWithError()
     }
 
@@ -63,7 +68,11 @@ class EmojiMemoryGameTests: XCTestCase {
 
     func test_emojiMemoryGameStartFresh_startsNewGameWithRandomOtherTheme() {
         let initialTheme = sut.theme
-        let expectedThemes = [Game.Theme(name: "expected", contents: "a", numberOfPairsOfCards: 1)]
+        let expectedThemes = [Game.Theme(
+            name: "expected",
+            contents: "a",
+            numberOfPairsOfCards: 1
+        )]
 
         randomSourceFake.shuffle = {
             guard let themes = $0 as? [Game.Theme] else { return [] }

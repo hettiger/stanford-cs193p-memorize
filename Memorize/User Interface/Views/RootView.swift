@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Swinject
 
 struct RootView: View {
-    @ObservedObject var game = EmojiMemoryGame.shared
+    @EnvironmentObject var game: EmojiMemoryGame
 
     var body: some View {
         NavigationView {
@@ -33,6 +34,12 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView()
+        let container = ContainerFactory.makeEmojiMemoryGameContainer()
+        let emojiMemoryGame = container.resolve(EmojiMemoryGame.self)!
+
+        Group {
+            RootView()
+        }
+        .environmentObject(emojiMemoryGame)
     }
 }

@@ -26,7 +26,7 @@ extension MemoryGame {
             contents: Contents,
             numberOfPairsOfCards: Int,
             color: Color = .clear,
-            randomSource: RandomSource? = MersenneTwisterRandomSource.shared
+            randomSource: RandomSource? = nil
         ) where Contents.Element == ContentType {
             let contents = Set(contents)
 

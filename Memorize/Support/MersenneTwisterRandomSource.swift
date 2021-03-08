@@ -14,8 +14,6 @@ protocol RandomSource {
 }
 
 class MersenneTwisterRandomSource: RandomSource {
-    static let shared = MersenneTwisterRandomSource()
-
     private let randomSource: GKRandomSource
 
     init(seed: UInt64? = nil) {

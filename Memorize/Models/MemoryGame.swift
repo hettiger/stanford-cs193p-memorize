@@ -40,7 +40,7 @@ struct MemoryGame<ContentType> where ContentType: Hashable, ContentType: Codable
 
     init(
         theme: Theme,
-        userDefaults: UserDefaults = .standard
+        userDefaults: UserDefaults
     ) {
         self.userDefaults = userDefaults
         score = initialScore

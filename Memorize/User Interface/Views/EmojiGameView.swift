@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Swinject
 
 struct EmojiGameView: View {
-    @ObservedObject var game = EmojiMemoryGame.shared
+    @EnvironmentObject var game: EmojiMemoryGame
 
     var body: some View {
         Grid(game.cards, desiredAspectRatio: aspectRatio) { card in
@@ -34,8 +35,11 @@ struct EmojiGameView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let game = EmojiMemoryGame.shared
-        game.theme = EmojiMemoryGame.themes[3]
+        let container = ContainerFactory.makeEmojiMemoryGameContainer()
+        container.register(EmojiMemoryGame.Game.Theme.self, factory: { resolver in
+            resolver.resolve([EmojiMemoryGame.Game.Theme].self)![3]
+        })
+        let game = container.resolve(EmojiMemoryGame.self)!
         game.choose(card: game.cards[3])
 
         return Group {
@@ -44,5 +48,6 @@ struct ContentView_Previews: PreviewProvider {
             EmojiGameView()
                 .preferredColorScheme(.light)
         }
+        .environmentObject(game)
     }
 }
