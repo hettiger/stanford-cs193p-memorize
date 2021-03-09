@@ -39,6 +39,8 @@
 		5BE64D9525976B3B002B1D70 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE64D9425976B3B002B1D70 /* Preview Assets.xcassets */; };
 		5BE64DAB25976B3C002B1D70 /* MemorizeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE64DAA25976B3C002B1D70 /* MemorizeUITests.swift */; };
 		5BE64DC425977BF8002B1D70 /* EmojiCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE64DC325977BF8002B1D70 /* EmojiCardView.swift */; };
+		5BEAF7C825F81C5600CF926F /* EmojiMemoryGameThemeStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAF7C725F81C5600CF926F /* EmojiMemoryGameThemeStoreTests.swift */; };
+		5BEAF7CD25F81D8300CF926F /* EmojiMemoryGameThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAF7CC25F81D8300CF926F /* EmojiMemoryGameThemeStore.swift */; };
 		5BEB5F6125F4E532003B3D76 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 5BEB5F6025F4E532003B3D76 /* Swinject */; };
 		5BEB5F6725F4E54C003B3D76 /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = 5BEB5F6625F4E54C003B3D76 /* SwinjectAutoregistration */; };
 		5BEDB7B1259F3BF200E93C26 /* MemoryGame+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7B0259F3BF200E93C26 /* MemoryGame+Theme.swift */; };
@@ -105,6 +107,8 @@
 		5BE64DAA25976B3C002B1D70 /* MemorizeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeUITests.swift; sourceTree = "<group>"; };
 		5BE64DAC25976B3C002B1D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BE64DC325977BF8002B1D70 /* EmojiCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCardView.swift; sourceTree = "<group>"; };
+		5BEAF7C725F81C5600CF926F /* EmojiMemoryGameThemeStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGameThemeStoreTests.swift; sourceTree = "<group>"; };
+		5BEAF7CC25F81D8300CF926F /* EmojiMemoryGameThemeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGameThemeStore.swift; sourceTree = "<group>"; };
 		5BEDB7B0259F3BF200E93C26 /* MemoryGame+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryGame+Theme.swift"; sourceTree = "<group>"; };
 		5BEDB7B8259F54D500E93C26 /* MemoryGame+ThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryGame+ThemeTests.swift"; sourceTree = "<group>"; };
 		5BEDB7CC25A0011300E93C26 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -246,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				5BB61F232598C11D00B9D6D2 /* EmojiMemoryGame.swift */,
+				5BEAF7CC25F81D8300CF926F /* EmojiMemoryGameThemeStore.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				5BB61F282598C16000B9D6D2 /* EmojiMemoryGameTests.swift */,
+				5BEAF7C725F81C5600CF926F /* EmojiMemoryGameThemeStoreTests.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -510,6 +516,7 @@
 				5B8A04C725F6AFA7001F47D4 /* ContainerFactory.swift in Sources */,
 				5BEDB7F425A0E5EC00E93C26 /* UserDefaults+Keys.swift in Sources */,
 				5BE64D9025976B3B002B1D70 /* EmojiGameView.swift in Sources */,
+				5BEAF7CD25F81D8300CF926F /* EmojiMemoryGameThemeStore.swift in Sources */,
 				5B8A04D825F6B24C001F47D4 /* ContainerFactory+EmojiMemoryGame.swift in Sources */,
 				5BE64DC425977BF8002B1D70 /* EmojiCardView.swift in Sources */,
 				5BE64D8E25976B3B002B1D70 /* MemorizeApp.swift in Sources */,
@@ -535,6 +542,7 @@
 				5B8C0F48259A4340003ABC74 /* Int+randomTests.swift in Sources */,
 				5B8C0F55259A4BB7003ABC74 /* Array+ShufflingTests.swift in Sources */,
 				5BA21B9625A263B0005B4825 /* MersenneTwisterRandomSourceTests.swift in Sources */,
+				5BEAF7C825F81C5600CF926F /* EmojiMemoryGameThemeStoreTests.swift in Sources */,
 				5BEDB7E325A0C77E00E93C26 /* MemoryGame+CardTests.swift in Sources */,
 				5B85114025A172A900CF6F11 /* UserDefaults+KeysTests.swift in Sources */,
 				5B8C0F38259A3315003ABC74 /* RandomSourceFake.swift in Sources */,

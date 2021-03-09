@@ -19,6 +19,7 @@ extension ContainerFactory {
         registerGame(container)
         registerGameFactory(container)
         registerEmojiMemoryGame(container)
+        registerEmojiMemoryGameThemeChooser(container)
 
         return container
     }
@@ -101,5 +102,12 @@ extension ContainerFactory {
             EmojiMemoryGame.self,
             initializer: EmojiMemoryGame.init(gameFactory:)
         ).inObjectScope(.container)
+    }
+
+    private static func registerEmojiMemoryGameThemeChooser(_ container: Container) {
+        container.autoregister(
+            EmojiMemoryGameThemeStore.self,
+            initializer: EmojiMemoryGameThemeStore.init
+        )
     }
 }
