@@ -40,18 +40,28 @@ class EmojiMemoryGameThemeStoreTests: XCTestCase {
         sut.themes = container.resolve([Game.Theme].self)!
 
         let json = userDefaults.string(forKey: UserDefaults.Key.themes.rawValue)
-        
+
         XCTAssertNotNil(json)
     }
-    
+
     func test_emojiMemoryGameThemeStore_providesStoredThemes() {
         let expectedThemes = container.resolve([Game.Theme].self)!
         let data = try! JSONEncoder().encode(expectedThemes)
         let json = String(data: data, encoding: .utf8)
         userDefaults.setValue(json, forKey: UserDefaults.Key.themes.rawValue)
-        
+
         let actualThemes = sut.themes
-        
+
         XCTAssert(actualThemes.count == expectedThemes.count)
+    }
+
+    func test_emojiMemoryGameThemeStore_isObservableObject() {
+        func assertIsObservableObject<T: ObservableObject>(_: T)
+            where T.ObjectWillChangePublisher: Any {}
+        assertIsObservableObject(sut)
+    }
+
+    func test_emojiMemoryGameThemeStore_providesThemesPublisher() {
+        XCTAssertTrue((sut.$themes as Any) is Published<[Game.Theme]>.Publisher)
     }
 }
