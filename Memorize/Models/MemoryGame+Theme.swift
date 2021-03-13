@@ -9,10 +9,12 @@ import GameKit
 import SwiftUI
 
 extension MemoryGame {
-    struct Theme: Hashable, Codable {
+    struct Theme: Hashable, Codable, Identifiable {
         let name: String
         let cards: [Card]
         let color: Color
+        
+        private(set) var id = UUID()
 
         var json: String? {
             if let data = try? JSONEncoder().encode(self) {

@@ -49,6 +49,6 @@ struct Grid_Previews: PreviewProvider {
                 EmojiCardView(card: card).padding()
             }
         }
-        .environmentObject(game)
+        .withGlobalEnvironmentObjects(in: container)
     }
 }

@@ -35,11 +35,10 @@ struct RootView: View {
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
         let container = ContainerFactory.makeEmojiMemoryGameContainer()
-        let emojiMemoryGame = container.resolve(EmojiMemoryGame.self)!
 
         Group {
             RootView()
         }
-        .environmentObject(emojiMemoryGame)
+        .withGlobalEnvironmentObjects(in: container)
     }
 }

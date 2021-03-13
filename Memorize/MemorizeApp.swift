@@ -16,14 +16,14 @@ struct MemorizeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView().environmentObject(container.resolve(EmojiMemoryGame.self)!)
+            RootView().withGlobalEnvironmentObjects(in: container)
         }
     }
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     let container = ContainerFactory.makeEmojiMemoryGameContainer()
-    
+
     func application(
         _: UIApplication,
         didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil

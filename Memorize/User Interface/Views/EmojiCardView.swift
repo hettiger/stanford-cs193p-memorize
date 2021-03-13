@@ -75,7 +75,6 @@ struct EmojiCardView: View {
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         let container = ContainerFactory.makeEmojiMemoryGameContainer()
-        let emojiMemoryGame = container.resolve(EmojiMemoryGame.self)!
 
         Group {
             EmojiCardView(card: .init(id: 0, content: "👻", isFaceUp: true))
@@ -83,6 +82,6 @@ struct CardView_Previews: PreviewProvider {
             EmojiCardView(card: .init(id: 1, content: "👻", isFaceUp: false))
         }
         .padding()
-        .environmentObject(emojiMemoryGame)
+        .withGlobalEnvironmentObjects(in: container)
     }
 }

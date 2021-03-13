@@ -48,6 +48,6 @@ struct ContentView_Previews: PreviewProvider {
             EmojiGameView()
                 .preferredColorScheme(.light)
         }
-        .environmentObject(game)
+        .withGlobalEnvironmentObjects(in: container)
     }
 }
