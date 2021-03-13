@@ -31,37 +31,53 @@ class EmojiMemoryGameThemeStoreTests: XCTestCase {
         container.removeAll()
         super.tearDown()
     }
-
-    func test_emojiMemoryGameThemeStore_providesThemes() {
-        XCTAssertTrue((sut.themes as Any) is [Game.Theme])
-    }
-
-    func test_emojiMemoryGameThemeStore_persistsThemesToUserDefaults() {
-        sut.themes = container.resolve([Game.Theme].self)!
-
-        let json = userDefaults.string(forKey: UserDefaults.Key.themes.rawValue)
-
-        XCTAssertNotNil(json)
-    }
-
-    func test_emojiMemoryGameThemeStore_providesStoredThemes() {
-        let expectedThemes = container.resolve([Game.Theme].self)!
-        let data = try! JSONEncoder().encode(expectedThemes)
-        let json = String(data: data, encoding: .utf8)
-        userDefaults.setValue(json, forKey: UserDefaults.Key.themes.rawValue)
-
-        let actualThemes = sut.themes
-
-        XCTAssert(actualThemes.count == expectedThemes.count)
-    }
-
+    
     func test_emojiMemoryGameThemeStore_isObservableObject() {
         func assertIsObservableObject<T: ObservableObject>(_: T)
             where T.ObjectWillChangePublisher: Any {}
         assertIsObservableObject(sut)
     }
 
+    func test_emojiMemoryGameThemeStore_providesThemes() {
+        XCTAssertTrue((sut.themes as Any) is [Game.Theme])
+    }
+    
     func test_emojiMemoryGameThemeStore_providesThemesPublisher() {
         XCTAssertTrue((sut.$themes as Any) is Published<[Game.Theme]>.Publisher)
+    }
+    
+    func test_emojiMemoryGameThemeStore_seedsInitialData() {
+        let expectedThemes = container.resolve([Game.Theme].self)!
+        
+        let actualThemes = sut.themes
+        
+        XCTAssert(actualThemes.count == expectedThemes.count)
+    }
+    
+    func test_emojiMemoryGameThemeStore_withDidSeedThemesSetToTrue_doesNotSeedData() {
+        userDefaults.setValue(true, forKey: UserDefaults.Key.didSeedThemes.rawValue)
+        
+        let actualThemes = sut.themes
+        
+        XCTAssert(actualThemes.count == 0)
+    }
+
+    func test_emojiMemoryGameThemeStore_persistsThemesToUserDefaults() {
+        sut.themes = [.init(name: "fake theme", contents: "", numberOfPairsOfCards: 0)]
+
+        let json = userDefaults.string(forKey: UserDefaults.Key.themes.rawValue)
+
+        XCTAssertTrue(json?.contains("fake theme") ?? false)
+    }
+
+    func test_emojiMemoryGameThemeStore_providesStoredThemes() {
+        let expectedThemes = [Game.Theme(name: "fake theme", contents: "", numberOfPairsOfCards: 0)]
+        let data = try! JSONEncoder().encode(expectedThemes)
+        let json = String(data: data, encoding: .utf8)
+        userDefaults.setValue(json, forKey: UserDefaults.Key.themes.rawValue)
+
+        let actualThemes = sut.themes
+
+        XCTAssert(actualThemes.map(\.name) == ["fake theme"])
     }
 }

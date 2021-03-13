@@ -12,17 +12,31 @@ class EmojiMemoryGameThemeStore: ObservableObject {
     typealias Game = EmojiMemoryGame.Game
 
     private let userDefaults: UserDefaults
+    private let themesSeed: [Game.Theme]
 
     @Published
     var themes = [Game.Theme]()
 
     private var subscriptions = [AnyCancellable]()
+    
+    private var didSeedThemes: Bool {
+        get { userDefaults.bool(forKey: UserDefaults.Key.didSeedThemes.rawValue) }
+        set { userDefaults.setValue(newValue, forKey: UserDefaults.Key.didSeedThemes.rawValue) }
+    }
 
-    init(userDefaults: UserDefaults) {
+    init(userDefaults: UserDefaults, themesSeed: [Game.Theme]) {
         self.userDefaults = userDefaults
+        self.themesSeed = themesSeed
 
+        seedThemes()
         fetchThemes()
         autosaveThemes()
+    }
+    
+    private func seedThemes() {
+        guard !didSeedThemes else { return }
+        themes = themesSeed
+        didSeedThemes = true
     }
 
     private func fetchThemes() {

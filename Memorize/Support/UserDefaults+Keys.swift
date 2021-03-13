@@ -9,7 +9,7 @@ import Foundation
 
 extension UserDefaults {
     enum Key: String, CaseIterable {
-        case highscore, themes
+        case highscore, themes, didSeedThemes
     }
 
     func reset() {
