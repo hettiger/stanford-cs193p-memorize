@@ -22,11 +22,9 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        let container = ContainerFactory.makeEmojiMemoryGameContainer()
-
         Group {
             RootView()
         }
-        .withGlobalEnvironmentObjects(in: container)
+        .withGlobalEnvironmentObjects()
     }
 }

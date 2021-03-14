@@ -10,11 +10,11 @@ import Swinject
 
 @main
 struct MemorizeApp: App {
-    let container = ContainerFactory.makeEmojiMemoryGameContainer()
+    static let container = ContainerFactory.makeEmojiMemoryGameContainer()
 
     var body: some Scene {
         WindowGroup {
-            RootView().withGlobalEnvironmentObjects(in: container)
+            RootView().withGlobalEnvironmentObjects()
         }
     }
 
@@ -25,7 +25,7 @@ struct MemorizeApp: App {
     private func resetDefaults() {
         #if DEBUG
             if CommandLine.arguments.contains(CommandLine.Argument.resetUserDefaults.rawValue) {
-                container.resolve(UserDefaults.self)!.reset()
+                MemorizeApp.container.resolve(UserDefaults.self)!.reset()
             }
         #endif
     }

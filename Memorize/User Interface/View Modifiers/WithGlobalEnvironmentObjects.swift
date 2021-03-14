@@ -9,7 +9,7 @@ import SwiftUI
 import Swinject
 
 struct WithGlobalEnvironmentObjects: ViewModifier {
-    let container: Container
+    private var container: Container { MemorizeApp.container }
 
     func body(content: Content) -> some View {
         content
@@ -19,7 +19,7 @@ struct WithGlobalEnvironmentObjects: ViewModifier {
 }
 
 extension View {
-    func withGlobalEnvironmentObjects(in container: Container) -> some View {
-        return modifier(WithGlobalEnvironmentObjects(container: container))
+    func withGlobalEnvironmentObjects() -> some View {
+        return modifier(WithGlobalEnvironmentObjects())
     }
 }

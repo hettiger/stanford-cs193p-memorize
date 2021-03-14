@@ -50,7 +50,7 @@ struct EmojiGameView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let container = ContainerFactory.makeEmojiMemoryGameContainer()
+        let container = MemorizeApp.container
         container.register(EmojiMemoryGame.Game.Theme.self, factory: { resolver in
             resolver.resolve([EmojiMemoryGame.Game.Theme].self)![3]
         })
@@ -67,6 +67,6 @@ struct ContentView_Previews: PreviewProvider {
                     .preferredColorScheme(.light)
             }
         }
-        .withGlobalEnvironmentObjects(in: container)
+        .withGlobalEnvironmentObjects()
     }
 }

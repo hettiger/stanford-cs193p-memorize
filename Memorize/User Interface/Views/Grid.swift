@@ -41,14 +41,13 @@ struct Grid<Item: Identifiable, ItemView: View>: View where Item: Hashable {
 
 struct Grid_Previews: PreviewProvider {
     static var previews: some View {
-        let container = ContainerFactory.makeEmojiMemoryGameContainer()
-        let game = container.resolve(EmojiMemoryGame.self)!
+        let game = MemorizeApp.container.resolve(EmojiMemoryGame.self)!
 
         return Group {
             Grid(game.cards) { card in
                 EmojiCardView(card: card).padding()
             }
         }
-        .withGlobalEnvironmentObjects(in: container)
+        .withGlobalEnvironmentObjects()
     }
 }

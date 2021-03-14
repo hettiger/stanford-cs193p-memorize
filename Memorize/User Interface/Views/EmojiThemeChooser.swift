@@ -22,7 +22,6 @@ struct EmojiThemeChooser: View {
 
 struct EmojiThemeChooser_Previews: PreviewProvider {
     static var previews: some View {
-        let container = ContainerFactory.makeEmojiMemoryGameContainer()
-        EmojiThemeChooser().withGlobalEnvironmentObjects(in: container)
+        EmojiThemeChooser().withGlobalEnvironmentObjects()
     }
 }
