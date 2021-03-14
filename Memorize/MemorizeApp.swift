@@ -10,26 +10,16 @@ import Swinject
 
 @main
 struct MemorizeApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
-    private var container: Container { delegate.container }
+    let container = ContainerFactory.makeEmojiMemoryGameContainer()
 
     var body: some Scene {
         WindowGroup {
             RootView().withGlobalEnvironmentObjects(in: container)
         }
     }
-}
 
-class AppDelegate: NSObject, UIApplicationDelegate {
-    let container = ContainerFactory.makeEmojiMemoryGameContainer()
-
-    func application(
-        _: UIApplication,
-        didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil
-    ) -> Bool {
+    init() {
         resetDefaults()
-        return true
     }
 
     private func resetDefaults() {
