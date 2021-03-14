@@ -33,6 +33,7 @@ struct EmojiGameView: View {
             ToolbarItemGroup(placement: .bottomBar) {
                 Text("Highscore: \(game.highscore)")
                 Spacer()
+                /// - ToDo: This button changes the appearance of the other toolbar items. This should not happen …
                 Button("New Game") {
                     withAnimation(.easeInOut) {
                         game.startFresh()
