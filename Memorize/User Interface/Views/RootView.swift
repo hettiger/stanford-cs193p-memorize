@@ -13,10 +13,12 @@ struct RootView: View {
 
     var body: some View {
         NavigationView {
-            EmojiGameView()
-                .navigationBarItems(trailing: Text("Score: \(game.score)"))
+            EmojiThemeChooser()
                 .navigationBarTitle(game.theme.name, displayMode: .inline)
                 .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        Text("Score: \(game.score)")
+                    }
                     ToolbarItemGroup(placement: .bottomBar) {
                         Text("Highscore: \(game.highscore)")
                         Spacer()
