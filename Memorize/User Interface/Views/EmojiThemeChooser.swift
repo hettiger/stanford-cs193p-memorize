@@ -14,7 +14,19 @@ struct EmojiThemeChooser: View {
     var body: some View {
         List {
             ForEach(store.themes) { theme in
-                Text(theme.name)
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(theme.name).foregroundColor(theme.color)
+                            .font(.title2)
+                        Text("(\(theme.cards.count) cards)")
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                    }
+                    Text("All of \(theme.contents.map { String($0) }.joined())")
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        .lineLimit(1)
+                }
             }
         }
     }

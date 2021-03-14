@@ -22,6 +22,10 @@ extension MemoryGame {
             }
             return nil
         }
+        
+        var contents: Set<ContentType> {
+            Set(cards.map(\.content))
+        }
 
         init<Contents: Sequence>(
             name: String,
