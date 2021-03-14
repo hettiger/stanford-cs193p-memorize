@@ -25,6 +25,21 @@ struct EmojiGameView: View {
         }
         .foregroundColor(game.theme.color)
         .padding(padding)
+        .navigationBarTitle(game.theme.name, displayMode: .inline)
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Text("Score: \(game.score)")
+            }
+            ToolbarItemGroup(placement: .bottomBar) {
+                Text("Highscore: \(game.highscore)")
+                Spacer()
+                Button("New Game") {
+                    withAnimation(.easeInOut) {
+                        game.startFresh()
+                    }
+                }
+            }
+        }
     }
 
     // MARK: - Drawing Constants
@@ -43,10 +58,14 @@ struct ContentView_Previews: PreviewProvider {
         game.choose(card: game.cards[3])
 
         return Group {
-            EmojiGameView()
-                .preferredColorScheme(.dark)
-            EmojiGameView()
-                .preferredColorScheme(.light)
+            NavigationView {
+                EmojiGameView()
+                    .preferredColorScheme(.dark)
+            }
+            NavigationView {
+                EmojiGameView()
+                    .preferredColorScheme(.light)
+            }
         }
         .withGlobalEnvironmentObjects(in: container)
     }
