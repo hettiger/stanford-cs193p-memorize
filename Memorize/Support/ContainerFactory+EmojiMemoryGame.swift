@@ -97,6 +97,7 @@ extension ContainerFactory {
         }
     }
 
+    /// - ToDo: It's weird to have 2 registrations in non-container scope. Also the game factory model is kinda like obsolete now with the theme chooser …? Tests are not really covering the registrations with arguments either.
     private static func registerEmojiMemoryGame(_ container: Container) {
         container
             .register(EmojiMemoryGame.self) { (resolver: Resolver, theme: Game.Theme) in
