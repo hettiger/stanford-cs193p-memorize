@@ -9,11 +9,12 @@ import GameKit
 import SwiftUI
 
 extension MemoryGame {
+    /// - ToDo: Storing randomized cards in the themes is causing problems with the new theme chooser store etc. (Starting a new game maintains the card order at the moment …)
     struct Theme: Hashable, Codable, Identifiable {
         let name: String
         let cards: [Card]
         let color: Color
-        
+
         private(set) var id = UUID()
 
         var json: String? {
@@ -22,7 +23,7 @@ extension MemoryGame {
             }
             return nil
         }
-        
+
         var contents: Set<ContentType> {
             Set(cards.map(\.content))
         }
