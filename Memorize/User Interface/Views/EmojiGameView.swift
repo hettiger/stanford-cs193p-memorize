@@ -68,5 +68,6 @@ struct ContentView_Previews: PreviewProvider {
             }
         }
         .withGlobalEnvironmentObjects()
+        .environmentObject(game)
     }
 }

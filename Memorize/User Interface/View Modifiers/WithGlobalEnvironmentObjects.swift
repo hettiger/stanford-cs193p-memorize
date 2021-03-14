@@ -14,7 +14,6 @@ struct WithGlobalEnvironmentObjects: ViewModifier {
     func body(content: Content) -> some View {
         content
             .environmentObject(container.resolve(EmojiMemoryGameThemeStore.self)!)
-            .environmentObject(container.resolve(EmojiMemoryGame.self)!)
     }
 }
 
