@@ -24,7 +24,8 @@ class EmojiMemoryGame: ObservableObject {
     // MARK: - Model Accessors
 
     var theme: Game.Theme {
-        game.theme
+        get { game.theme }
+        set { game = MemorizeApp.container.resolve(Game.self, argument: newValue)! }
     }
 
     var cards: [Game.Card] {

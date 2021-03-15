@@ -9,7 +9,10 @@ import SwiftUI
 import Swinject
 
 struct EmojiGameView: View {
-    @EnvironmentObject var game: EmojiMemoryGame
+    @EnvironmentObject
+    var game: EmojiMemoryGame
+
+    var theme: EmojiMemoryGame.Game.Theme
 
     var body: some View {
         Grid(game.cards, desiredAspectRatio: aspectRatio) { card in
@@ -23,9 +26,9 @@ struct EmojiGameView: View {
             .accessibility(addTraits: .isButton)
             .accessibility(identifier: "Memory Game Card \(card.id)")
         }
-        .foregroundColor(game.theme.color)
+        .foregroundColor(theme.color)
         .padding(padding)
-        .navigationBarTitle(game.theme.name, displayMode: .inline)
+        .navigationBarTitle(theme.name, displayMode: .inline)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Text("Score: \(game.score)")
@@ -40,6 +43,9 @@ struct EmojiGameView: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            game.theme = theme
         }
     }
 
@@ -60,11 +66,11 @@ struct ContentView_Previews: PreviewProvider {
 
         return Group {
             NavigationView {
-                EmojiGameView()
+                EmojiGameView(theme: game.theme)
                     .preferredColorScheme(.dark)
             }
             NavigationView {
-                EmojiGameView()
+                EmojiGameView(theme: game.theme)
                     .preferredColorScheme(.light)
             }
         }

@@ -16,17 +16,11 @@ struct EmojiThemeChooser: View {
     var body: some View {
         List {
             ForEach(store.themes) { theme in
-                NavigationLink(destination: LazyView(destination(for: theme))) {
+                NavigationLink(destination: EmojiGameView(theme: theme)) {
                     EmojiThemeChooserRow(theme: theme)
                 }
             }
         }
-    }
-
-    private func destination(for theme: Game.Theme) -> some View {
-        let container = MemorizeApp.container
-        let game = container.resolve(EmojiMemoryGame.self, argument: theme)!
-        return EmojiGameView().environmentObject(game)
     }
 }
 

@@ -13,6 +13,7 @@ struct WithGlobalEnvironmentObjects: ViewModifier {
 
     func body(content: Content) -> some View {
         content
+            .environmentObject(container.resolve(EmojiMemoryGame.self)!)
             .environmentObject(container.resolve(EmojiMemoryGameThemeStore.self)!)
     }
 }
