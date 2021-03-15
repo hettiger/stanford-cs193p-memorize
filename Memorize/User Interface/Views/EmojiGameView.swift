@@ -31,12 +31,11 @@ struct EmojiGameView: View {
         .navigationBarTitle(theme.name, displayMode: .inline)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Text("Score: \(game.score)")
+                Text("Score: \(game.score)").foregroundColor(.secondary)
             }
             ToolbarItemGroup(placement: .bottomBar) {
-                Text("Highscore: \(game.highscore)")
+                Text("Highscore: \(game.highscore)").foregroundColor(.secondary)
                 Spacer()
-                /// - ToDo: This button changes the appearance of the other toolbar items. This should not happen …
                 Button("New Game") {
                     withAnimation(.easeInOut) {
                         game.startFresh()
