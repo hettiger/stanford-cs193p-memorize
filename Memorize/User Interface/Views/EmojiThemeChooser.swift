@@ -13,14 +13,26 @@ struct EmojiThemeChooser: View {
     @EnvironmentObject
     var store: EmojiMemoryGameThemeStore
 
+    @EnvironmentObject
+    var game: EmojiMemoryGame
+
+    @State
+    private var isShowingGameView = false
+
     var body: some View {
         List {
             ForEach(store.themes) { theme in
-                NavigationLink(destination: EmojiGameView(theme: theme)) {
+                Button {
+                    game.theme = theme
+                    isShowingGameView = true
+                } label: {
                     EmojiThemeChooserRow(theme: theme)
                 }
             }
         }
+        .background(NavigationLink(destination: EmojiGameView(), isActive: $isShowingGameView) {
+            EmptyView()
+        })
     }
 }
 

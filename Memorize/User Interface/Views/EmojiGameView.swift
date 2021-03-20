@@ -12,8 +12,6 @@ struct EmojiGameView: View {
     @EnvironmentObject
     var game: EmojiMemoryGame
 
-    var theme: EmojiMemoryGame.Game.Theme
-
     var body: some View {
         Grid(game.cards, desiredAspectRatio: aspectRatio) { card in
             EmojiCardView(card: card).onTapGesture {
@@ -26,9 +24,9 @@ struct EmojiGameView: View {
             .accessibility(addTraits: .isButton)
             .accessibility(identifier: "Memory Game Card \(card.id)")
         }
-        .foregroundColor(theme.color)
+        .foregroundColor(game.theme.color)
         .padding(padding)
-        .navigationBarTitle(theme.name, displayMode: .inline)
+        .navigationBarTitle(game.theme.name, displayMode: .inline)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Text("Score: \(game.score)").foregroundColor(.secondary)
@@ -42,9 +40,6 @@ struct EmojiGameView: View {
                     }
                 }
             }
-        }
-        .onAppear {
-            game.theme = theme
         }
     }
 
@@ -65,11 +60,11 @@ struct ContentView_Previews: PreviewProvider {
 
         return Group {
             NavigationView {
-                EmojiGameView(theme: game.theme)
+                EmojiGameView()
                     .preferredColorScheme(.dark)
             }
             NavigationView {
-                EmojiGameView(theme: game.theme)
+                EmojiGameView()
                     .preferredColorScheme(.light)
             }
         }
