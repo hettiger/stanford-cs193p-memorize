@@ -31,6 +31,7 @@ struct EmojiGameView: View {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Text("Score: \(game.score)").foregroundColor(.secondary)
             }
+            /// - ToDo: On first navigation to this view it is appearing in a very weird way though this is probably a SwiftUI bug.
             ToolbarItemGroup(placement: .bottomBar) {
                 Text("Highscore: \(game.highscore)").foregroundColor(.secondary)
                 Spacer()
