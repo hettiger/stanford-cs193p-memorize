@@ -20,6 +20,6 @@ struct WithGlobalEnvironmentObjects: ViewModifier {
 
 extension View {
     func withGlobalEnvironmentObjects() -> some View {
-        return modifier(WithGlobalEnvironmentObjects())
+        modifier(WithGlobalEnvironmentObjects())
     }
 }

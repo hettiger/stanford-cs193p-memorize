@@ -25,50 +25,37 @@ extension ContainerFactory {
     }
 
     private static func registerThemes(_ container: Container) {
-        container.register([Game.Theme].self) { resolver in
-            let randomSource = resolver.resolve(RandomSource.self)
-            return [
+        container.register([Game.Theme].self) { _ in
+            [
                 .init(
                     name: "Animals",
                     contents: "🦆🦅🦉🐺🐗🐴🐝🪱🐛🦋",
-                    numberOfPairsOfCards: 5,
-                    color: .orange,
-                    randomSource: randomSource
+                    color: .orange
                 ),
                 .init(
                     name: "Food",
                     contents: "🍎🍋🍉🍇🍓🍌🍒🥝🌽🧅",
-                    numberOfPairsOfCards: 6,
-                    color: .red,
-                    randomSource: randomSource
+                    color: .red
                 ),
                 .init(
                     name: "Activities",
                     contents: "⚽️🏀🏈🎾🎱🏓⛳️🛼🥋🪁",
-                    numberOfPairsOfCards: 7,
-                    color: .green,
-                    randomSource: randomSource
+                    color: .green
                 ),
                 .init(
                     name: "Tech",
                     contents: "⌚️💻📱🖥🖨📷☎️📡🔦📺",
-                    numberOfPairsOfCards: 3,
-                    color: .gray,
-                    randomSource: randomSource
+                    color: .gray
                 ),
                 .init(
                     name: "Travel",
                     contents: "🚙🚌🚕🚑🚓🚒🚜🚃🚂✈️",
-                    numberOfPairsOfCards: 4,
-                    color: .blue,
-                    randomSource: randomSource
+                    color: .blue
                 ),
                 .init(
                     name: "Countries",
                     contents: "🇺🇸🇩🇪🇫🇷🇱🇺🇵🇱🇨🇭🇩🇰🇦🇹🇨🇿🇮🇹",
-                    numberOfPairsOfCards: 3,
-                    color: .purple,
-                    randomSource: randomSource
+                    color: .purple
                 ),
             ]
         }
@@ -78,7 +65,7 @@ extension ContainerFactory {
         container.autoregister(
             Game.self,
             argument: Game.Theme.self,
-            initializer: Game.init(theme:userDefaults:)
+            initializer: Game.init(theme:userDefaults:randomSource:)
         )
     }
 

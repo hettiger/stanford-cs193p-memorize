@@ -16,31 +16,41 @@ import XCTest
 class MemoryGameTests: XCTestCase {
     typealias Game = MemoryGame<Character>
 
-    var sut: Game!
-    var userDefaultsFake: UserDefaultsFake!
+    let container = ContainerFactory.makeEmojiMemoryGameContainer()
 
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        userDefaultsFake = UserDefaultsFake()
+    var sut: Game!
+
+    var userDefaultsFake: UserDefaultsFake {
+        container.resolve(UserDefaults.self) as! UserDefaultsFake
+    }
+
+    var randomSourceFake: RandomSourceFake {
+        container.resolve(RandomSource.self) as! RandomSourceFake
+    }
+
+    override func setUp() {
+        super.setUp()
+        container.autoregister(UserDefaults.self, initializer: UserDefaultsFake.init)
+            .inObjectScope(.container)
+        container.autoregister(RandomSource.self, initializer: RandomSourceFake.init)
+            .inObjectScope(.container)
         withContents("🐶🐱🐭🐰")
     }
 
-    override func tearDownWithError() throws {
-        userDefaultsFake = nil
+    override func tearDown() {
         sut = nil
-        try super.tearDownWithError()
+        container.removeAll()
+        super.tearDown()
     }
 
     func withContents(_ newContents: String) {
-        sut = Game(
-            theme: .init(
+        container.register(Game.self) { resolver in
+            resolver.resolve(Game.self, argument: Game.Theme(
                 name: "Test",
-                contents: newContents,
-                numberOfPairsOfCards: newContents.count,
-                randomSource: nil
-            ),
-            userDefaults: userDefaultsFake
-        )
+                contents: newContents
+            ))!
+        }
+        sut = container.resolve(Game.self)!
     }
 
     func withMatch() {
@@ -60,6 +70,24 @@ class MemoryGameTests: XCTestCase {
 
     func test_memoryGame_providesCards() {
         XCTAssertTrue((sut.cards as Any) is [Game.Card])
+    }
+
+    func test_memoryGame_cardsCountIsDoubleTheNumberOfThemeContents() {
+        XCTAssertTrue(sut.cards.count == sut.theme.contents.count * 2)
+    }
+
+    func test_memoryGame_themeWithZeroContents_cardsCountIsZero() {
+        withContents("")
+        XCTAssertTrue(sut.cards.count == 0)
+    }
+
+    func test_memoryGame_providesShuffledCards() {
+        let expectedCards = "dbca".cards
+        randomSourceFake.shuffle = { _ in expectedCards }
+
+        withContents("")
+
+        XCTAssertEqual(expectedCards, sut.cards)
     }
 
     func test_memoryGame_providesState() {

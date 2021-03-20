@@ -9,14 +9,17 @@ import Foundation
 import GameKit
 
 struct MemoryGame<ContentType> where ContentType: Hashable, ContentType: Codable {
+    typealias ContentType = ContentType
+
     enum State: Hashable {
         case noCardFaceUp
         case oneCardFaceUp(Card)
         case twoCardsFaceUp(Card, Card)
     }
 
-    let userDefaults: UserDefaults
     let theme: Theme
+    let userDefaults: UserDefaults
+    let randomSource: RandomSource
 
     private(set) var state: State = .noCardFaceUp {
         didSet {
@@ -40,12 +43,16 @@ struct MemoryGame<ContentType> where ContentType: Hashable, ContentType: Codable
 
     init(
         theme: Theme,
-        userDefaults: UserDefaults
+        userDefaults: UserDefaults,
+        randomSource: RandomSource
     ) {
-        self.userDefaults = userDefaults
-        score = initialScore
         self.theme = theme
-        cards = theme.cards
+        self.userDefaults = userDefaults
+        self.randomSource = randomSource
+        cards = self.theme.contents.reduce(into: [Card]()) { cards, content in
+            for _ in 1 ... 2 { cards.append(Card(id: cards.count, content: content)) }
+        }.shuffled(using: randomSource)
+        score = initialScore
     }
 
     mutating func choose(card: Card) {

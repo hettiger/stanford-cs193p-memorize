@@ -18,7 +18,7 @@ class EmojiMemoryGameThemeStore: ObservableObject {
     var themes = [Game.Theme]()
 
     private var subscriptions = [AnyCancellable]()
-    
+
     private var didSeedThemes: Bool {
         get { userDefaults.bool(forKey: UserDefaults.Key.didSeedThemes.rawValue) }
         set { userDefaults.setValue(newValue, forKey: UserDefaults.Key.didSeedThemes.rawValue) }
@@ -32,7 +32,7 @@ class EmojiMemoryGameThemeStore: ObservableObject {
         fetchThemes()
         autosaveThemes()
     }
-    
+
     private func seedThemes() {
         guard !didSeedThemes else { return }
         themes = themesSeed

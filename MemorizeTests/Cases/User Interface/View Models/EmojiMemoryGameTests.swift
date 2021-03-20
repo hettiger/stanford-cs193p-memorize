@@ -70,8 +70,7 @@ class EmojiMemoryGameTests: XCTestCase {
         let initialTheme = sut.theme
         let expectedThemes = [Game.Theme(
             name: "expected",
-            contents: "a",
-            numberOfPairsOfCards: 1
+            contents: "a"
         )]
 
         randomSourceFake.shuffle = {

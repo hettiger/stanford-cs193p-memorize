@@ -15,7 +15,7 @@ struct EmojiThemeChooserRow: View {
             HStack(alignment: .firstTextBaseline) {
                 Text(theme.name).foregroundColor(theme.color)
                     .font(.title2)
-                Text("(\(theme.cards.count) cards)")
+                Text("(\(theme.contents.count * 2) cards)")
                     .font(.footnote)
                     .foregroundColor(.secondary)
             }
