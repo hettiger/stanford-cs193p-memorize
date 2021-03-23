@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct EmojiThemeChooser: View {
-    private typealias Game = EmojiMemoryGame.Game
-
     @EnvironmentObject
     var store: EmojiMemoryGameThemeStore
 
@@ -17,22 +15,20 @@ struct EmojiThemeChooser: View {
     var game: EmojiMemoryGame
 
     @State
-    private var isShowingGameView = false
+    private var isShowingGameView: Bool = false
 
     var body: some View {
         List {
             ForEach(store.themes) { theme in
-                Button {
+                NavigationLink(destination: EmojiGameView(), isActive: $isShowingGameView) {
+                    EmojiThemeChooserRow(theme: theme)
+                }
+                .onTapGesture {
                     game.theme = theme
                     isShowingGameView = true
-                } label: {
-                    EmojiThemeChooserRow(theme: theme)
                 }
             }
         }
-        .background(NavigationLink(destination: EmojiGameView(), isActive: $isShowingGameView) {
-            EmptyView()
-        })
     }
 }
 
