@@ -6,15 +6,12 @@
 //
 
 import SwiftUI
-import Swinject
 
 struct WithGlobalEnvironmentObjects: ViewModifier {
-    private var container: Container { MemorizeApp.container }
-
     func body(content: Content) -> some View {
         content
-            .environmentObject(container.resolve(EmojiMemoryGame.self)!)
-            .environmentObject(container.resolve(EmojiMemoryGameThemeStore.self)!)
+            .environmentObject(MemorizeApp.container.resolve(EmojiMemoryGame.self)!)
+            .environmentObject(MemorizeApp.container.resolve(EmojiMemoryGameThemeStore.self)!)
     }
 }
 

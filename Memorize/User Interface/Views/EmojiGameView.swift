@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Swinject
 
 struct EmojiGameView: View {
     @EnvironmentObject
@@ -70,6 +69,5 @@ struct ContentView_Previews: PreviewProvider {
             }
         }
         .withGlobalEnvironmentObjects()
-        .environmentObject(game)
     }
 }

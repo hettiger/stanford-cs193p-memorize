@@ -30,8 +30,10 @@ struct EmojiThemeChooserRow: View {
 struct EmojiThemeChooserRow_Previews: PreviewProvider {
     static var previews: some View {
         let container = ContainerFactory.makeEmojiMemoryGameContainer()
+        let theme = container.resolve([EmojiMemoryGame.Game.Theme].self)![0]
+
         List {
-            EmojiThemeChooserRow(theme: container.resolve([EmojiMemoryGame.Game.Theme].self)![0])
+            EmojiThemeChooserRow(theme: theme)
         }
     }
 }

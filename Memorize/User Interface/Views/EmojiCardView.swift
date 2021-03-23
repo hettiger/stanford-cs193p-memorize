@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Swinject
 
 struct EmojiCardView: View {
     var card: MemoryGame<Character>.Card

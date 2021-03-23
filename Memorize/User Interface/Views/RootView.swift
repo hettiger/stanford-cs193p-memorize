@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Swinject
 
 struct RootView: View {
     @EnvironmentObject var game: EmojiMemoryGame
@@ -22,9 +21,6 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            RootView()
-        }
-        .withGlobalEnvironmentObjects()
+        RootView().withGlobalEnvironmentObjects()
     }
 }
