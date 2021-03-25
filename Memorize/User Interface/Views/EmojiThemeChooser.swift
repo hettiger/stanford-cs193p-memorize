@@ -34,6 +34,11 @@ struct EmojiThemeChooser: View {
 
 struct EmojiThemeChooser_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiThemeChooser().withGlobalEnvironmentObjects()
+        let container = MemorizeApp.container
+        let themes = container.resolve([EmojiMemoryGame.Game.Theme].self)!
+        let store = container.resolve(EmojiMemoryGameThemeStore.self)!
+        store.themes = themes
+
+        return EmojiThemeChooser().withGlobalEnvironmentObjects()
     }
 }

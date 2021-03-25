@@ -21,6 +21,11 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView().withGlobalEnvironmentObjects()
+        let container = MemorizeApp.container
+        let themes = container.resolve([EmojiMemoryGame.Game.Theme].self)!
+        let store = container.resolve(EmojiMemoryGameThemeStore.self)!
+        store.themes = themes
+
+        return RootView().withGlobalEnvironmentObjects()
     }
 }
