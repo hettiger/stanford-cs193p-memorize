@@ -29,9 +29,29 @@ struct EmojiThemeChooser: View {
                         isShowingGameView = true
                     }
                 }
+                .onDelete(perform: delete(_:))
             }
             .navigationBarTitle("Memorize")
+            .toolbar(content: {
+                ToolbarItemGroup(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                    EditButton()
+                }
+                ToolbarItemGroup(placement: .bottomBar) {
+                    Spacer()
+                    Button(action: add) {
+                        Image(systemName: "plus").imageScale(.large)
+                    }
+                }
+            })
         }
+    }
+
+    private func add() {
+        store.themes.append(.init(name: "Untitled", contents: "🌱", color: .green))
+    }
+
+    private func delete(_ indexSet: IndexSet) {
+        store.themes.remove(atOffsets: indexSet)
     }
 }
 
