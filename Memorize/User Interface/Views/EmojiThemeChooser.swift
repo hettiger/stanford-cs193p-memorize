@@ -18,16 +18,19 @@ struct EmojiThemeChooser: View {
     private var isShowingGameView: Bool = false
 
     var body: some View {
-        List {
-            ForEach(store.themes) { theme in
-                NavigationLink(destination: EmojiGameView(), isActive: $isShowingGameView) {
-                    EmojiThemeChooserRow(theme: theme)
-                }
-                .onTapGesture {
-                    game.theme = theme
-                    isShowingGameView = true
+        NavigationView {
+            List {
+                ForEach(store.themes) { theme in
+                    NavigationLink(destination: EmojiGameView(), isActive: $isShowingGameView) {
+                        EmojiThemeChooserRow(theme: theme)
+                    }
+                    .onTapGesture {
+                        game.theme = theme
+                        isShowingGameView = true
+                    }
                 }
             }
+            .navigationBarTitle("Memorize")
         }
     }
 }

@@ -48,7 +48,6 @@
 		5BEB5F6725F4E54C003B3D76 /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = 5BEB5F6625F4E54C003B3D76 /* SwinjectAutoregistration */; };
 		5BEDB7B1259F3BF200E93C26 /* MemoryGame+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7B0259F3BF200E93C26 /* MemoryGame+Theme.swift */; };
 		5BEDB7B9259F54D500E93C26 /* MemoryGame+ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7B8259F54D500E93C26 /* MemoryGame+ThemeTests.swift */; };
-		5BEDB7CD25A0011300E93C26 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7CC25A0011300E93C26 /* RootView.swift */; };
 		5BEDB7E325A0C77E00E93C26 /* MemoryGame+CardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7E225A0C77E00E93C26 /* MemoryGame+CardTests.swift */; };
 		5BEDB7F425A0E5EC00E93C26 /* UserDefaults+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7F325A0E5EC00E93C26 /* UserDefaults+Keys.swift */; };
 		5BEDB7FC25A0EB4800E93C26 /* UserDefaultsFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEDB7FB25A0EB4800E93C26 /* UserDefaultsFake.swift */; };
@@ -117,7 +116,6 @@
 		5BEAF7CC25F81D8300CF926F /* EmojiMemoryGameThemeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGameThemeStore.swift; sourceTree = "<group>"; };
 		5BEDB7B0259F3BF200E93C26 /* MemoryGame+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryGame+Theme.swift"; sourceTree = "<group>"; };
 		5BEDB7B8259F54D500E93C26 /* MemoryGame+ThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryGame+ThemeTests.swift"; sourceTree = "<group>"; };
-		5BEDB7CC25A0011300E93C26 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		5BEDB7E225A0C77E00E93C26 /* MemoryGame+CardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryGame+CardTests.swift"; sourceTree = "<group>"; };
 		5BEDB7F325A0E5EC00E93C26 /* UserDefaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Keys.swift"; sourceTree = "<group>"; };
 		5BEDB7FB25A0EB4800E93C26 /* UserDefaultsFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsFake.swift; sourceTree = "<group>"; };
@@ -270,7 +268,6 @@
 				5BD87C2A25FD4C8500E995EB /* EmojiThemeChooser.swift */,
 				5B187DEA25FE1EED006D0409 /* EmojiThemeChooserRow.swift */,
 				5B287F59259CC75400D14B46 /* Grid.swift */,
-				5BEDB7CC25A0011300E93C26 /* RootView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -516,7 +513,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BEDB7CD25A0011300E93C26 /* RootView.swift in Sources */,
 				5BB61F372599003200B9D6D2 /* MemoryGame+Card.swift in Sources */,
 				5BB61EFF2598A43E00B9D6D2 /* MemoryGame.swift in Sources */,
 				5B8C0F40259A3AB7003ABC74 /* Int+random.swift in Sources */,
