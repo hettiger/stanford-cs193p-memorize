@@ -47,7 +47,9 @@ struct EmojiThemeChooser: View {
     }
 
     private func add() {
-        store.themes.append(.init(name: "Untitled", contents: "🌱", color: .green))
+        withAnimation {
+            store.themes.append(.init(name: "Untitled", contents: "🌱", color: .green))
+        }
     }
 
     private func delete(_ indexSet: IndexSet) {
