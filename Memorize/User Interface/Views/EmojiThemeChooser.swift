@@ -39,7 +39,7 @@ struct EmojiThemeChooser: View {
                 ToolbarItemGroup(placement: .bottomBar) {
                     Spacer()
                     Button(action: add) {
-                        Image(systemName: "plus").imageScale(.large)
+                        Label("Add Theme", systemImage: "plus")
                     }
                 }
             })
