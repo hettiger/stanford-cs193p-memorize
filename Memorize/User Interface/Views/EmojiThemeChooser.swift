@@ -52,6 +52,7 @@ struct EmojiThemeChooser: View {
                 ToolbarItemGroup(placement: ToolbarItemPlacement.navigationBarTrailing) {
                     EditButton()
                 }
+                /// - ToDo: Fix `bottomBar` of `EmojiThemeChooser` and `EmojiGameView` are interferring somehow when »New Game« is pressed
                 ToolbarItemGroup(placement: .bottomBar) {
                     Spacer()
                     Button(action: add) {
