@@ -34,6 +34,7 @@ struct EmojiThemeChooserRow: View {
                     .font(.footnote)
                     .foregroundColor(.secondary)
                     .lineLimit(1)
+                    .animation(nil)
             }
         })
     }
