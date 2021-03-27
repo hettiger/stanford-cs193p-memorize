@@ -17,14 +17,30 @@ struct EmojiThemeChooser: View {
     @State
     private var isShowingGameView: Bool = false
 
+    @State
+    private var editMode: EditMode
+
+    init(editMode: EditMode = .inactive) {
+        _editMode = State(initialValue: editMode)
+    }
+
     var body: some View {
         NavigationView {
             List {
                 ForEach(store.themes) { theme in
                     NavigationLink(destination: EmojiGameView(), isActive: $isShowingGameView) {
-                        EmojiThemeChooserRow(theme: theme)
+                        EmojiThemeChooserRow(
+                            theme: theme,
+                            editMode: $editMode
+                        )
                     }
                     .onTapGesture {
+                        if editMode.isEditing {
+                            // TODO: Show theme editor
+                            print("show theme editor")
+                            return
+                        }
+
                         game.theme = theme
                         isShowingGameView = true
                     }
@@ -43,6 +59,7 @@ struct EmojiThemeChooser: View {
                     }
                 }
             })
+            .environment(\.editMode, $editMode)
         }
     }
 
@@ -64,6 +81,11 @@ struct EmojiThemeChooser_Previews: PreviewProvider {
         let store = container.resolve(EmojiMemoryGameThemeStore.self)!
         store.themes = themes
 
-        return EmojiThemeChooser().withGlobalEnvironmentObjects()
+        return Group {
+            EmojiThemeChooser()
+                .withGlobalEnvironmentObjects()
+            EmojiThemeChooser(editMode: .active)
+                .withGlobalEnvironmentObjects()
+        }
     }
 }
