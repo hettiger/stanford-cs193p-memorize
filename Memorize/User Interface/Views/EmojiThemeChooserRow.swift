@@ -14,25 +14,15 @@ struct EmojiThemeChooserRow: View {
     var editMode: EditMode
 
     var body: some View {
-        HStack(alignment: .center, spacing: 8, content: {
+        HStack(alignment: .center, spacing: 0, content: {
             if editMode == EditMode.active {
-                Image(systemName: "pencil")
-                    .imageScale(.small)
-                    .padding(4)
-                    .foregroundColor(.white)
-                    .background(theme.color)
-                    .clipShape(Circle())
-                    .transition(
-                        AnyTransition.opacity.animation(Animation.linear)
-                            .combined(with: AnyTransition.move(edge: .leading)
-                                .animation(Animation.easeInOut))
-                    )
+                EditableListRowIndicator(color: theme.color)
             }
             VStack(alignment: .leading, spacing: 8) {
                 HStack(alignment: .firstTextBaseline) {
                     Text(theme.name)
-                        // `foregroundColor` + `colorMultiply` is used in combination
-                        // to get animated text color changes basically for free
+                        // `foregroundColor` + `colorMultiply` is used in combination to get
+                        // animated text color changes basically for free
                         .foregroundColor(.white)
                         .colorMultiply(editMode == .active ? .black : theme.color)
                         .font(.title2)
