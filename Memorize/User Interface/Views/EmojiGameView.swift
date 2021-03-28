@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EmojiGameView: View {
     @EnvironmentObject
-    var game: EmojiMemoryGame
+    private var game: EmojiMemoryGame
 
     var body: some View {
         Grid(game.cards, desiredAspectRatio: aspectRatio) { card in
@@ -27,18 +27,11 @@ struct EmojiGameView: View {
         .padding(padding)
         .navigationBarTitle(game.theme.name, displayMode: .inline)
         .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 Text("Score: \(game.score)").foregroundColor(.secondary)
             }
-            /// - ToDo: On first navigation to this view it is appearing in a very weird way though this is probably a SwiftUI bug.
             ToolbarItemGroup(placement: .bottomBar) {
-                Text("Highscore: \(game.highscore)").foregroundColor(.secondary)
-                Spacer()
-                Button("New Game") {
-                    withAnimation(.easeInOut) {
-                        game.startFresh()
-                    }
-                }
+                EmojiGameViewBottomBar()
             }
         }
     }

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct Grid<Item: Identifiable, ItemView: View>: View where Item: Hashable {
-    var items: [Item]
-    var desiredAspectRatio: Double
-    var viewForItem: (Item) -> ItemView
+    private var items: [Item]
+    private var desiredAspectRatio: Double
+    private var viewForItem: (Item) -> ItemView
 
     init(
         _ items: [Item],

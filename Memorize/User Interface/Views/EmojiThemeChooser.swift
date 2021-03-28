@@ -9,13 +9,13 @@ import SwiftUI
 
 struct EmojiThemeChooser: View {
     @EnvironmentObject
-    var store: EmojiMemoryGameThemeStore
+    private var store: EmojiMemoryGameThemeStore
 
     @EnvironmentObject
-    var game: EmojiMemoryGame
+    private var game: EmojiMemoryGame
 
     @State
-    private var isShowingGameView: Bool = false
+    private var isShowingGameView = false
 
     @State
     private var editMode: EditMode
@@ -49,24 +49,14 @@ struct EmojiThemeChooser: View {
             }
             .navigationBarTitle("Memorize")
             .toolbar(content: {
-                ToolbarItemGroup(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
-                /// - ToDo: Fix `bottomBar` of `EmojiThemeChooser` and `EmojiGameView` are interferring somehow when »New Game« is pressed
                 ToolbarItemGroup(placement: .bottomBar) {
-                    Spacer()
-                    Button(action: add) {
-                        Label("Add Theme", systemImage: "plus")
-                    }
+                    EmojiThemeChooserBottomBar()
                 }
             })
             .environment(\.editMode, $editMode)
-        }
-    }
-
-    private func add() {
-        withAnimation {
-            store.themes.append(.init(name: "Untitled", contents: "🌱", color: .green))
         }
     }
 
