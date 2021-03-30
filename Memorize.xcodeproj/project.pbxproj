@@ -15,6 +15,7 @@
 		5B314CC025E14D3100E88170 /* Color+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B314CBF25E14D3100E88170 /* Color+Codable.swift */; };
 		5B314CC525E14D6C00E88170 /* Character+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B314CC425E14D6C00E88170 /* Character+Codable.swift */; };
 		5B3C3C3B259CCD4D006332B1 /* IdentifiableFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C3C3A259CCD4D006332B1 /* IdentifiableFake.swift */; };
+		5B3E83E92613ABBE00D0F931 /* EmojiThemeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3E83E82613ABBE00D0F931 /* EmojiThemeEditor.swift */; };
 		5B4C892F25AFD55700D91C61 /* XCUIElement+waitForExistenceAndTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4C892E25AFD55700D91C61 /* XCUIElement+waitForExistenceAndTap.swift */; };
 		5B5CD2D1259CFD95001ECD96 /* String+Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CD2D0259CFD95001ECD96 /* String+Cards.swift */; };
 		5B85110325A1201800CF6F11 /* CommandLine+Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */; };
@@ -83,6 +84,7 @@
 		5B314CBF25E14D3100E88170 /* Color+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Codable.swift"; sourceTree = "<group>"; };
 		5B314CC425E14D6C00E88170 /* Character+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Codable.swift"; sourceTree = "<group>"; };
 		5B3C3C3A259CCD4D006332B1 /* IdentifiableFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableFake.swift; sourceTree = "<group>"; };
+		5B3E83E82613ABBE00D0F931 /* EmojiThemeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiThemeEditor.swift; sourceTree = "<group>"; };
 		5B4C892E25AFD55700D91C61 /* XCUIElement+waitForExistenceAndTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+waitForExistenceAndTap.swift"; sourceTree = "<group>"; };
 		5B5CD2D0259CFD95001ECD96 /* String+Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Cards.swift"; sourceTree = "<group>"; };
 		5B85110225A1201800CF6F11 /* CommandLine+Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommandLine+Arguments.swift"; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				5BD87C2A25FD4C8500E995EB /* EmojiThemeChooser.swift */,
 				5B1DF9F62610B36C009F685D /* EmojiThemeChooserBottomBar.swift */,
 				5B187DEA25FE1EED006D0409 /* EmojiThemeChooserRow.swift */,
+				5B3E83E82613ABBE00D0F931 /* EmojiThemeEditor.swift */,
 				5B287F59259CC75400D14B46 /* Grid.swift */,
 			);
 			path = Views;
@@ -529,6 +532,7 @@
 				5B314CC525E14D6C00E88170 /* Character+Codable.swift in Sources */,
 				5B1DF9EF2610B274009F685D /* EmojiGameViewBottomBar.swift in Sources */,
 				5B8A04C725F6AFA7001F47D4 /* ContainerFactory.swift in Sources */,
+				5B3E83E92613ABBE00D0F931 /* EmojiThemeEditor.swift in Sources */,
 				5BEDB7F425A0E5EC00E93C26 /* UserDefaults+Keys.swift in Sources */,
 				5BE64D9025976B3B002B1D70 /* EmojiGameView.swift in Sources */,
 				5BEAF7CD25F81D8300CF926F /* EmojiMemoryGameThemeStore.swift in Sources */,

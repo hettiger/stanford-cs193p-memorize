@@ -18,6 +18,9 @@ struct EmojiThemeChooser: View {
     private var isShowingGameView = false
 
     @State
+    private var isShowingThemeEditor = false
+
+    @State
     private var editMode: EditMode
 
     init(editMode: EditMode = .inactive) {
@@ -34,10 +37,12 @@ struct EmojiThemeChooser: View {
                             editMode: $editMode
                         )
                     }
+                    .sheet(isPresented: $isShowingThemeEditor) {
+                        EmojiThemeEditor()
+                    }
                     .onTapGesture {
                         if editMode.isEditing {
-                            // TODO: Show theme editor
-                            print("show theme editor")
+                            isShowingThemeEditor = true
                             return
                         }
 
