@@ -38,7 +38,7 @@ struct EmojiThemeChooser: View {
                         )
                     }
                     .sheet(isPresented: $isShowingThemeEditor) {
-                        EmojiThemeEditor()
+                        EmojiThemeEditor(theme: theme)
                     }
                     .onTapGesture {
                         if editMode.isEditing {
