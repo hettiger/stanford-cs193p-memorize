@@ -18,9 +18,6 @@ struct EmojiThemeChooser: View {
     private var isShowingGameView = false
 
     @State
-    private var isShowingThemeEditor = false
-
-    @State
     private var editMode: EditMode
 
     init(editMode: EditMode = .inactive) {
@@ -31,23 +28,14 @@ struct EmojiThemeChooser: View {
         NavigationView {
             List {
                 ForEach(store.themes) { theme in
-                    NavigationLink(destination: EmojiGameView(), isActive: $isShowingGameView) {
-                        EmojiThemeChooserRow(
-                            theme: theme,
-                            editMode: $editMode
-                        )
-                    }
-                    .sheet(isPresented: $isShowingThemeEditor) {
-                        EmojiThemeEditor(theme: theme)
-                    }
-                    .onTapGesture {
-                        if editMode.isEditing {
-                            isShowingThemeEditor = true
-                            return
+                    NavigationLink(destination: EmojiGameView(), isActive: Binding<Bool>(
+                        get: { isShowingGameView },
+                        set: { newIsShowingGameView in
+                            game.theme = theme
+                            isShowingGameView = newIsShowingGameView
                         }
-
-                        game.theme = theme
-                        isShowingGameView = true
+                    )) {
+                        EmojiThemeChooserRow(theme: theme, editMode: $editMode)
                     }
                 }
                 .onDelete(perform: delete(_:))

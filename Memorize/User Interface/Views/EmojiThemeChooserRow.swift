@@ -13,10 +13,19 @@ struct EmojiThemeChooserRow: View {
     @Binding
     var editMode: EditMode
 
+    @State
+    private var isShowingThemeEditor = false
+
     var body: some View {
         HStack(alignment: .center, spacing: 0, content: {
             if editMode == EditMode.active {
                 EditableListRowIndicator(color: theme.color)
+                    .onTapGesture {
+                        isShowingThemeEditor = true
+                    }
+                    .sheet(isPresented: $isShowingThemeEditor) {
+                        EmojiThemeEditor(theme: theme)
+                    }
             }
             VStack(alignment: .leading, spacing: 8) {
                 HStack(alignment: .firstTextBaseline) {
