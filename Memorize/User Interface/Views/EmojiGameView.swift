@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct EmojiGameView: View {
+    var theme: EmojiMemoryGame.Game.Theme
+
     @EnvironmentObject
     private var game: EmojiMemoryGame
 
@@ -34,6 +36,9 @@ struct EmojiGameView: View {
                 EmojiGameViewBottomBar()
             }
         }
+        .onAppear {
+            game.theme = theme
+        }
     }
 
     // MARK: - Drawing Constants
@@ -53,11 +58,11 @@ struct ContentView_Previews: PreviewProvider {
 
         return Group {
             NavigationView {
-                EmojiGameView()
+                EmojiGameView(theme: container.resolve(EmojiMemoryGame.Game.Theme.self)!)
                     .preferredColorScheme(.dark)
             }
             NavigationView {
-                EmojiGameView()
+                EmojiGameView(theme: container.resolve(EmojiMemoryGame.Game.Theme.self)!)
                     .preferredColorScheme(.light)
             }
         }
