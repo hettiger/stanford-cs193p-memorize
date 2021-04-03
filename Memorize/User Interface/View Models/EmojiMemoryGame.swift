@@ -16,22 +16,18 @@ class EmojiMemoryGame: ObservableObject {
 
     private var makeGame: GameFactory
 
-    init(gameFactory: @escaping GameFactory) {
+    init(initialTheme: Game.Theme, gameFactory: @escaping GameFactory) {
+        theme = initialTheme
         makeGame = gameFactory
-        themeObserver = MemorizeApp.container.resolve([Game.Theme].self)![0]
         game = makeGame(nil)
-        $game.map(\.theme).assign(to: &$themeObserver)
+        $game.map(\.theme).assign(to: &$theme)
+        startFresh(theme: initialTheme)
     }
 
     // MARK: - Model Accessors
 
     @Published
-    var themeObserver: Game.Theme
-
-    var theme: Game.Theme {
-        get { game.theme }
-        set { game = MemorizeApp.container.resolve(Game.self, argument: newValue)! }
-    }
+    private(set) var theme: Game.Theme
 
     var cards: [Game.Card] {
         game.cards
@@ -51,7 +47,11 @@ class EmojiMemoryGame: ObservableObject {
         game.choose(card: card)
     }
 
-    func startFresh() {
-        game = makeGame(game)
+    func startFresh(theme: Game.Theme? = nil) {
+        if let theme = theme {
+            game = MemorizeApp.container.resolve(Game.self, argument: theme)!
+        } else {
+            game = makeGame(game)
+        }
     }
 }

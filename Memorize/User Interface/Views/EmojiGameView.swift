@@ -37,11 +37,11 @@ struct EmojiGameView: View {
                 EmojiGameViewBottomBar()
             }
         }
-        .onReceive(game.$themeObserver.dropFirst()) { newTheme in
+        .onReceive(game.$theme.dropFirst()) { newTheme in
             theme = newTheme
         }
         .onAppear {
-            game.theme = theme
+            game.startFresh(theme: theme)
         }
     }
 

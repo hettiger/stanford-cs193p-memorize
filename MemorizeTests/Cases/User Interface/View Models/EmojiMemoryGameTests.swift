@@ -89,4 +89,12 @@ class EmojiMemoryGameTests: XCTestCase {
 
         XCTAssertNoThrow(sut.startFresh())
     }
+    
+    func test_emojiMemoryGameStartFresh_withTheme_startsNewGameWithProvidedTheme() {
+        let expectedTheme = Game.Theme.init(name: "expected", contents: "a")
+        
+        sut.startFresh(theme: expectedTheme)
+        
+        XCTAssertEqual(expectedTheme, sut.theme)
+    }
 }
