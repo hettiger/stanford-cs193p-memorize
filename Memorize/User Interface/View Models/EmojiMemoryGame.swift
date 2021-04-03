@@ -9,19 +9,21 @@ import Foundation
 
 class EmojiMemoryGame: ObservableObject {
     typealias Game = MemoryGame<Character>
-    typealias GameFactory = (_ currentGame: Game?) -> Game
 
     @Published
     private var game: Game
 
-    private var makeGame: GameFactory
+    private let themeStore: EmojiMemoryGameThemeStore
 
-    init(initialTheme: Game.Theme, gameFactory: @escaping GameFactory) {
-        theme = initialTheme
-        makeGame = gameFactory
-        game = makeGame(nil)
+    private let randomSource: RandomSource
+
+    init(themeStore: EmojiMemoryGameThemeStore, randomSource: RandomSource) {
+        let theme = themeStore.themes.first!
+        self.themeStore = themeStore
+        self.randomSource = randomSource
+        self.theme = theme
+        game = MemorizeApp.container.resolve(Game.self, argument: theme)!
         $game.map(\.theme).assign(to: &$theme)
-        startFresh(theme: initialTheme)
     }
 
     // MARK: - Model Accessors
@@ -48,10 +50,13 @@ class EmojiMemoryGame: ObservableObject {
     }
 
     func startFresh(theme: Game.Theme? = nil) {
-        if let theme = theme {
-            game = MemorizeApp.container.resolve(Game.self, argument: theme)!
-        } else {
-            game = makeGame(game)
-        }
+        let nextTheme = theme ??
+            (themeStore.themes
+                .filter { $0.name != game.theme.name }
+                .shuffled(using: randomSource)
+                .first ??
+                themeStore.themes[0])
+
+        game = MemorizeApp.container.resolve(Game.self, argument: nextTheme)!
     }
 }

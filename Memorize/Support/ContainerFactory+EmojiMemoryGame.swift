@@ -17,7 +17,6 @@ extension ContainerFactory {
 
         registerThemes(container)
         registerGame(container)
-        registerGameFactory(container)
         registerEmojiMemoryGame(container)
         registerEmojiMemoryGameThemeChooser(container)
 
@@ -69,27 +68,11 @@ extension ContainerFactory {
         )
     }
 
-    private static func registerGameFactory(_ container: Container) {
-        container.register(EmojiMemoryGame.GameFactory.self) { resolver in
-            { currentGame in
-                let themes = resolver.resolve([Game.Theme].self)!
-                let randomSource = resolver.resolve(RandomSource.self)!
-                let theme = themes
-                    .filter { $0.name != currentGame?.theme.name ?? "" }
-                    .shuffled(using: randomSource)
-                    .first
-                    ?? themes[0]
-                return resolver.resolve(Game.self, argument: theme)!
-            }
-        }
-    }
-
     private static func registerEmojiMemoryGame(_ container: Container) {
-        container.register(EmojiMemoryGame.self) { resolver in
-            let initialTheme = resolver.resolve([Game.Theme].self)![0]
-            let gameFactory = resolver.resolve(EmojiMemoryGame.GameFactory.self)!
-            return EmojiMemoryGame(initialTheme: initialTheme, gameFactory: gameFactory)
-        }.inObjectScope(.container)
+        container.autoregister(
+            EmojiMemoryGame.self,
+            initializer: EmojiMemoryGame.init(themeStore:randomSource:)
+        ).inObjectScope(.container)
     }
 
     private static func registerEmojiMemoryGameThemeChooser(_ container: Container) {
