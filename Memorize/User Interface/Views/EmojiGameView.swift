@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct EmojiGameView: View {
+    @State
+    var theme: EmojiMemoryGame.Game.Theme
+
     @EnvironmentObject
     private var game: EmojiMemoryGame
 
@@ -23,9 +26,9 @@ struct EmojiGameView: View {
             .accessibility(addTraits: .isButton)
             .accessibility(identifier: "Memory Game Card \(card.id)")
         }
-        .foregroundColor(game.theme.color)
+        .foregroundColor(theme.color)
         .padding(padding)
-        .navigationBarTitle(game.theme.name, displayMode: .inline)
+        .navigationBarTitle(theme.name, displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Text("Score: \(game.score)").foregroundColor(.secondary)
@@ -33,6 +36,12 @@ struct EmojiGameView: View {
             ToolbarItemGroup(placement: .bottomBar) {
                 EmojiGameViewBottomBar()
             }
+        }
+        .onReceive(game.$themeObserver.dropFirst()) { newTheme in
+            theme = newTheme
+        }
+        .onAppear {
+            game.theme = theme
         }
     }
 
@@ -53,11 +62,11 @@ struct ContentView_Previews: PreviewProvider {
 
         return Group {
             NavigationView {
-                EmojiGameView()
+                EmojiGameView(theme: container.resolve(EmojiMemoryGame.Game.Theme.self)!)
                     .preferredColorScheme(.dark)
             }
             NavigationView {
-                EmojiGameView()
+                EmojiGameView(theme: container.resolve(EmojiMemoryGame.Game.Theme.self)!)
                     .preferredColorScheme(.light)
             }
         }

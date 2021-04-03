@@ -18,10 +18,15 @@ class EmojiMemoryGame: ObservableObject {
 
     init(gameFactory: @escaping GameFactory) {
         makeGame = gameFactory
+        themeObserver = MemorizeApp.container.resolve([Game.Theme].self)![0]
         game = makeGame(nil)
+        $game.map(\.theme).assign(to: &$themeObserver)
     }
 
     // MARK: - Model Accessors
+
+    @Published
+    var themeObserver: Game.Theme
 
     var theme: Game.Theme {
         get { game.theme }

@@ -28,13 +28,7 @@ struct EmojiThemeChooser: View {
         NavigationView {
             List {
                 ForEach(store.themes) { theme in
-                    NavigationLink(destination: EmojiGameView(), isActive: Binding<Bool>(
-                        get: { isShowingGameView },
-                        set: { newIsShowingGameView in
-                            game.theme = theme
-                            isShowingGameView = newIsShowingGameView
-                        }
-                    )) {
+                    NavigationLink(destination: EmojiGameView(theme: theme)) {
                         EmojiThemeChooserRow(theme: theme, editMode: $editMode)
                     }
                 }
