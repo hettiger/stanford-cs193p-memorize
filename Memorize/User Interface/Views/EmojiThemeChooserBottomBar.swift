@@ -20,7 +20,7 @@ struct EmojiThemeChooserBottomBar: View {
 
     private func add() {
         withAnimation {
-            store.themes.append(.init(name: "Untitled", contents: "🌱", color: .green))
+            store.themes.append(.init(name: "Untitled", contents: "🌱☀️", color: .green))
         }
     }
 }
