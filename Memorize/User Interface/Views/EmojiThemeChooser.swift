@@ -15,9 +15,6 @@ struct EmojiThemeChooser: View {
     private var game: EmojiMemoryGame
 
     @State
-    private var isShowingGameView = false
-
-    @State
     private var editMode: EditMode
 
     init(editMode: EditMode = .inactive) {
