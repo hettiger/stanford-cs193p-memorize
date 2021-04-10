@@ -24,7 +24,7 @@ struct EmojiThemeChooserRow: View {
                         isShowingThemeEditor = true
                     }
                     .sheet(isPresented: $isShowingThemeEditor) {
-                        EmojiThemeEditor(theme: theme)
+                        EmojiThemeEditor(theme: theme, isPresented: $isShowingThemeEditor)
                     }
             }
             VStack(alignment: .leading, spacing: 8) {

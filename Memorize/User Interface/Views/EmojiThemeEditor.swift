@@ -13,6 +13,9 @@ import SwiftUI
 struct EmojiThemeEditor: View {
     var theme: EmojiMemoryGame.Game.Theme
 
+    @Binding
+    var isPresented: Bool
+
     @State
     private var themeName = ""
 
@@ -32,42 +35,70 @@ struct EmojiThemeEditor: View {
     private var emojisToAdd = ""
 
     var body: some View {
-        Form {
-            Section {
-                TextField("Name", text: $themeName)
-                ColorPicker("Color", selection: $themeColor)
-            }
-            Section(header: Text("Add Emoji")) {
-                TextField("Emoji", text: $emojisToAdd) { began in
-                    if !began {
-                        var newContents = Set(themeContents)
-                        emojisToAdd.forEach { newContents.insert($0) }
-                        emojisToAdd = ""
-                        themeContents = newContents.sorted()
+        NavigationView {
+            Form {
+                Section {
+                    TextField("Name", text: $themeName)
+                    ColorPicker("Color", selection: $themeColor)
+                }
+                Section(header: Text("Add Emoji")) {
+                    TextField("Emoji", text: $emojisToAdd) { began in
+                        if !began {
+                            var newContents = Set(themeContents)
+                            emojisToAdd.forEach { newContents.insert($0) }
+                            emojisToAdd = ""
+                            themeContents = newContents.sorted()
+                        }
+                    }
+                }
+                Section(header: Text("Emojis")) {
+                    Grid(themeContents) { emoji in
+                        Text(String(emoji))
+                            .font(.largeTitle)
+                            .padding(2)
+                            .fixedSize()
+                    }
+                    .frame(height: emojiGridHeight)
+                }
+                Section(header: Text("Card Count")) {
+                    Stepper(
+                        value: $themeNumberOfPairsOfCards,
+                        in: 2 ... max(2, themeContents.count)
+                    ) {
+                        Text("\(themeNumberOfPairsOfCards) Pairs")
                     }
                 }
             }
-            Section(header: Text("Emojis")) {
-                Grid(themeContents) { emoji in
-                    Text(String(emoji))
-                        .font(.largeTitle)
-                        .padding(2)
-                        .fixedSize()
+            .navigationTitle("Theme Editor")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar(content: {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(action: cancel, label: {
+                        Text("Cancel")
+                    })
                 }
-                .frame(height: emojiGridHeight)
-            }
-            Section(header: Text("Card Count")) {
-                Stepper(value: $themeNumberOfPairsOfCards, in: 2 ... max(2, themeContents.count)) {
-                    Text("\(themeNumberOfPairsOfCards) Pairs")
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(action: save, label: {
+                        Text("Save")
+                    })
                 }
+            })
+            .onAppear {
+                themeName = theme.name
+                themeColor = theme.color
+                themeNumberOfPairsOfCards = theme.contents.count
+                themeContents = theme.contents.sorted()
             }
         }
-        .onAppear {
-            themeName = theme.name
-            themeColor = theme.color
-            themeNumberOfPairsOfCards = theme.contents.count
-            themeContents = theme.contents.sorted()
-        }
+    }
+
+    private func cancel() {
+        isPresented = false
+    }
+
+    private func save() {
+        print("Registered save call; missing implementation.")
+        isPresented = false
     }
 
     // MARK: - Drawing Constants
@@ -84,7 +115,8 @@ extension Character: Identifiable {
 struct EmojiThemeEditor_Previews: PreviewProvider {
     static var previews: some View {
         EmojiThemeEditor(
-            theme: .init(name: "Theme Name", contents: "🐶🐭🐰🦊🐻", color: .orange)
+            theme: .init(name: "Theme Name", contents: "🐶🐭🐰🦊🐻", color: .orange),
+            isPresented: .constant(true)
         )
     }
 }
