@@ -33,8 +33,16 @@ struct EmojiThemeChooser: View {
             }
             .navigationBarTitle("Memorize")
             .toolbar(content: {
+                // Workaround EditButton not having font weight bold when user is editing
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+                    if !editMode.isEditing {
+                        EditButton()
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    if editMode.isEditing {
+                        EditButton()
+                    }
                 }
                 ToolbarItemGroup(placement: .bottomBar) {
                     EmojiThemeChooserBottomBar()
