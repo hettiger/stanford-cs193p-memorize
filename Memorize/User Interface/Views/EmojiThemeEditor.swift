@@ -56,15 +56,25 @@ struct EmojiThemeEditor: View {
                         }
                     }
                 }
-                Section(header: Text("Emojis")) {
+                Section(header: HStack {
+                    Text("Emojis").textCase(.uppercase)
+                    Spacer()
+                    Text("tap to exclude")
+                }) {
                     Grid(themeContents) { emoji in
                         Text(String(emoji))
                             .font(.largeTitle)
                             .padding(2)
                             .fixedSize()
+                            .onTapGesture {
+                                guard let index = themeContents.firstIndex(of: emoji)
+                                else { return }
+                                themeContents.remove(at: index)
+                            }
                     }
                     .frame(height: emojiGridHeight)
                 }
+                .textCase(.none)
                 Section(header: Text("Card Count")) {
                     Stepper(
                         value: $themeNumberOfPairsOfCards,
