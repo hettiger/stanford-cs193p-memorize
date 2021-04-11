@@ -13,6 +13,25 @@ import SwiftUI
 struct EmojiThemeEditor: View {
     typealias Theme = EmojiMemoryGame.Game.Theme
 
+    class ErrorBag: ObservableObject {
+        enum Key {
+            case contents
+        }
+
+        @Published
+        private(set) var errors = [Key: String?]()
+
+        subscript(key: Key) -> String? {
+            get { errors[key] ?? nil }
+            set { errors[key] = newValue }
+        }
+
+        func clear() {
+            guard !errors.isEmpty else { return }
+            errors = [:]
+        }
+    }
+
     var theme: Theme
 
     @EnvironmentObject
@@ -39,6 +58,9 @@ struct EmojiThemeEditor: View {
     @State
     private var emojisToAdd = ""
 
+    @ObservedObject
+    private var errorBag = ErrorBag()
+
     var body: some View {
         NavigationView {
             Form {
@@ -56,17 +78,31 @@ struct EmojiThemeEditor: View {
                         }
                     }
                 }
-                Section(header: HStack {
-                    Text("Emojis").textCase(.uppercase)
-                    Spacer()
-                    Text("tap to exclude")
-                }) {
+                Section(
+                    header: HStack {
+                        Text("Emojis").textCase(.uppercase)
+                        Spacer()
+                        Text("tap to exclude")
+                    },
+                    footer: Group {
+                        if let error = errorBag[.contents] {
+                            Text(error).foregroundColor(.red)
+                        }
+                    }
+                ) {
                     Grid(themeContents) { emoji in
                         Text(String(emoji))
                             .font(.largeTitle)
                             .padding(2)
                             .fixedSize()
                             .onTapGesture {
+                                guard themeContents.count > 2 else {
+                                    withAnimation {
+                                        errorBag[.contents] =
+                                            "A theme must consist of two or more emojis."
+                                    }
+                                    return
+                                }
                                 guard let index = themeContents.firstIndex(of: emoji)
                                 else { return }
                                 themeContents.remove(at: index)
@@ -104,6 +140,11 @@ struct EmojiThemeEditor: View {
                 themeNumberOfPairsOfCards = theme.contents.count
                 themeContents = theme.contents.sorted()
             }
+            .onReceive(errorBag.$errors.debounce(for: errorTTL, scheduler: scheduler)) { _ in
+                withAnimation {
+                    errorBag.clear()
+                }
+            }
         }
     }
 
@@ -120,6 +161,9 @@ struct EmojiThemeEditor: View {
     }
 
     // MARK: - Drawing Constants
+
+    let scheduler = RunLoop.main
+    let errorTTL: RunLoop.SchedulerTimeType.Stride = 8
 
     var emojiGridHeight: CGFloat {
         CGFloat((themeContents.count - 1) / 6) * 70 + 70
