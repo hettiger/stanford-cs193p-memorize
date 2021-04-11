@@ -11,7 +11,12 @@ import SwiftUI
 ///
 /// - ToDo: Finalize theme editor implementation
 struct EmojiThemeEditor: View {
-    var theme: EmojiMemoryGame.Game.Theme
+    typealias Theme = EmojiMemoryGame.Game.Theme
+
+    var theme: Theme
+
+    @EnvironmentObject
+    private var store: EmojiMemoryGameThemeStore
 
     @Binding
     var isPresented: Bool
@@ -97,7 +102,10 @@ struct EmojiThemeEditor: View {
     }
 
     private func save() {
-        print("Registered save call; missing implementation.")
+        let newTheme = Theme(name: themeName, contents: themeContents, color: themeColor)
+        let index = store.themes.firstIndex { $0.id == theme.id }!
+        store.themes[index] = newTheme
+
         isPresented = false
     }
 
